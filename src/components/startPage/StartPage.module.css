@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: no-repeat bottom/68% url('../../assets/images//table.png');
+  background: no-repeat bottom/100vh url('../../assets/images//table.png');
 }
 
 .start-table {
