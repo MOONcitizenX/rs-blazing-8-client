@@ -1,6 +1,41 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 200;
+  src: local(''), url('./assets/fonts/nunito-sans-v12-latin_cyrillic-200.woff2') format('woff2'),
+    url('./assets/fonts/nunito-sans-v12-latin_cyrillic-200.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url('./assets/fonts/nunito-sans-v12-latin_cyrillic-regular.woff2') format('woff2'),
+    url('./assets/fonts/nunito-sans-v12-latin_cyrillic-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''), url('./assets/fonts/nunito-sans-v12-latin_cyrillic-700.woff2') format('woff2'),
+    url('./assets/fonts/nunito-sans-v12-latin_cyrillic-700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'BlobSpongey';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/BlobSpongeyLowercase.ttf');
+}
+
 :root {
-  --text-color: #333333;
   --white-color: #ffffff;
+  --beige-color: #feefde;
+  --red-color: #c65552;
+  --dark-red-color: #b63d44;
+  --brown-color: #47362c;
+  --green-color: #67bf8d;
 }
 
 *,
@@ -22,7 +57,8 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--text-color);
+  color: var(--beige-color);
+  background: center / cover no-repeat url('/src/assets/images/western-bg.jpg');
 }
 
 #root {
