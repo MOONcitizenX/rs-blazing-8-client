@@ -1,6 +1,9 @@
 :root {
-  --text-color: #333333;
   --white-color: #ffffff;
+  --beige-color: #feefde;
+  --red-color: #c65552;
+  --dark-red-color: #b63d44;
+  --green-color: #67bf8d;
 }
 
 *,
@@ -22,7 +25,7 @@ body {
   font-style: normal;
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--text-color);
+  color: var(--beige-color);
 }
 
 #root {
