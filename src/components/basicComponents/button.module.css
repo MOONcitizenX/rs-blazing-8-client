@@ -1,0 +1,20 @@
+.button {
+  height: 4rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--green-color);
+  color: var(--beige-color);
+  font-family: 'BlobSpongey';
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(1);
+}
