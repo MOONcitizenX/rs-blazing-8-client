@@ -37,7 +37,7 @@ export const LobbyPage = () => {
                   <p className={style.startMessage}>Start now!</p>
                   <p className={style.playersMessage}>
                     <span className={style.players}>
-                      {2 /* заменить на кол-во игроков с бэка */}
+                      {2 /* TODO replace with players amount from server */}
                     </span>{' '}
                     players
                   </p>

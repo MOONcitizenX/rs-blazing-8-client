@@ -11,6 +11,9 @@
 
 .players,
 .spectators {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 50%;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -18,6 +21,23 @@
 
 .players {
   background-color: var(--beige-color);
+}
+
+.remove-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  margin-top: 1rem;
+  background-color: var(--red-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: var(--beige-color);
+  font-weight: 400;
+  font-size: 8rem;
 }
 
 .spectators {
