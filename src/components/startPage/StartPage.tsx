@@ -9,8 +9,8 @@ export const StartPage = () => {
         <div className={style.startTable}>
           <div className={style.separator}>OR</div>
           <div className={style.form}>
-            <TextInput placeholder="Room ID" />
-            <Button buttonText="Join" />
+            <TextInput attributes={{ placeholder: 'Room ID' }} />
+            <Button attributes={{}}>Join</Button>
           </div>
         </div>
       </div>

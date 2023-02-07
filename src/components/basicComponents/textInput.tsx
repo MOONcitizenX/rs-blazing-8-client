@@ -1,9 +1,24 @@
+import React from 'react';
 import style from './textInput.module.css';
 
 interface TextInputProps {
-  placeholder: string;
+  attributes: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
 }
 
-export const TextInput = ({ placeholder }: TextInputProps) => {
-  return <input className={style.input} type="text" placeholder={placeholder} />;
+export const TextInput = ({ attributes }: TextInputProps) => {
+  const { onChange, placeholder, className, type, disabled, value } = attributes;
+
+  return (
+    <input
+      className={className ? `${style.input} ${className}` : style.input}
+      type={type}
+      disabled={disabled}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+    />
+  );
 };
