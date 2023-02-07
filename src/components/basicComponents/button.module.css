@@ -1,5 +1,5 @@
 .button {
-  height: 4rem;
+  min-height: 4rem;
   padding: 0 1rem;
   border: none;
   border-radius: 0.5rem;
