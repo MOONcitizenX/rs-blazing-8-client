@@ -15,9 +15,10 @@
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%);
+  gap: 3rem;
 }
 
 .separator {
@@ -52,10 +53,4 @@
   right: 0;
   transform: rotate(92deg);
   background: center/100% no-repeat url(/src/assets/icons/ornament.png);
-}
-
-.form {
-  display: flex;
-  gap: 1rem;
-  margin: 1rem;
 }

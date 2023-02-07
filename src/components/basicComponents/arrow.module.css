@@ -1,0 +1,23 @@
+.arrow {
+  fill: var(--beige-color);
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+  transition: fill 0.3s ease;
+}
+
+.arrow:hover {
+  fill: var(--arrow-hover);
+}
+
+.arrow.right {
+  rotate: 180deg;
+}
+
+.arrow.top {
+  rotate: 90deg;
+}
+
+.arrow.bottom {
+  rotate: 270deg;
+}
