@@ -3,7 +3,6 @@ declare const styles: {
   readonly "tableWrapper": string;
   readonly "startTable": string;
   readonly "separator": string;
-  readonly "form": string;
 };
 export = styles;
 

@@ -1,0 +1,5 @@
+.form__registration {
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
