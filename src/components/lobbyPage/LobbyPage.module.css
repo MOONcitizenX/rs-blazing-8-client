@@ -95,9 +95,10 @@
   gap: 1rem;
 }
 
-.pattern-button {
+button.pattern-button {
+  padding: 0;
   border: none;
-  background: transparent;
+  background-color: transparent;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -109,6 +110,7 @@
 .pattern-image {
   width: 6rem;
   height: 8.5rem;
+
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
 }

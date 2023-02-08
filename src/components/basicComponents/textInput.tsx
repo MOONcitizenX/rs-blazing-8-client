@@ -9,10 +9,10 @@ interface TextInputProps {
 }
 
 export const TextInput = ({ attributes }: TextInputProps) => {
-  const { onChange, placeholder, className, type, disabled, value } = attributes;
-
+  const { onChange, placeholder, className, type, disabled, value, required } = attributes;
   return (
     <input
+      required={required}
       className={className ? `${style.input} ${className}` : style.input}
       type={type}
       disabled={disabled}

@@ -15,9 +15,12 @@ export const Players = (/* accepts players data */) => {
           <p className={style.buttonText}>-</p>
         </button>
         <div className={style.hint}>Select to not play</div>
-        <div className={style.player}>
-          <img className={style.avatar} src="" alt="Players avatar" />
-        </div>
+
+        {/* roomState.players.map(el => {
+          return (<div className={style.player}>
+          <img className={style.avatar} src={el.avatarId} alt="Players avatar" />
+        </div>)
+        }) */}
       </div>
       <div className={style.spectators}>
         <div className={style.eye}>

@@ -54,17 +54,18 @@ export const LobbyPage = (/* accepts server info */) => {
               <div className={style.backgroundWrapper}>
                 <div className={style.backgroundTitle}>Background</div>
                 <div className={style.backgrounds}>
-                  <button
-                    className={style.patternButton}
-                    type="button"
-                    onClick={() => {
-                      setState((prevState) => {
-                        return {
-                          ...prevState,
-                          background: bg1,
-                        };
-                      });
-                      setLS('state', state);
+                  <Button
+                    attributes={{
+                      className: style.patternButton,
+                      type: 'button',
+                      onClick: () => {
+                        setState((prevState) => {
+                          return {
+                            ...prevState,
+                            background: bg1,
+                          };
+                        });
+                      },
                     }}
                   >
                     <img
@@ -74,18 +75,19 @@ export const LobbyPage = (/* accepts server info */) => {
                       src={background1}
                       alt="Western night background"
                     />
-                  </button>
-                  <button
-                    className={style.patternButton}
-                    type="button"
-                    onClick={() => {
-                      setState((prevState) => {
-                        return {
-                          ...prevState,
-                          background: bg2,
-                        };
-                      });
-                      setLS('state', state);
+                  </Button>
+                  <Button
+                    attributes={{
+                      className: style.patternButton,
+                      type: 'button',
+                      onClick: () => {
+                        setState((prevState) => {
+                          return {
+                            ...prevState,
+                            background: bg2,
+                          };
+                        });
+                      },
                     }}
                   >
                     <img
@@ -95,23 +97,24 @@ export const LobbyPage = (/* accepts server info */) => {
                       src={background2}
                       alt="Western day background"
                     />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div className={style.cardbackWrapper}>
                 <div className={style.cardbackTitle}>Cardback</div>
                 <div className={style.cardbacks}>
-                  <button
-                    className={style.patternButton}
-                    type="button"
-                    onClick={() => {
-                      setState((prevState) => {
-                        return {
-                          ...prevState,
-                          cardback: cb1,
-                        };
-                      });
-                      setLS('state', state);
+                  <Button
+                    attributes={{
+                      className: style.patternButton,
+                      type: 'button',
+                      onClick: () => {
+                        setState((prevState) => {
+                          return {
+                            ...prevState,
+                            cardback: cb1,
+                          };
+                        });
+                      },
                     }}
                   >
                     <img
@@ -121,18 +124,19 @@ export const LobbyPage = (/* accepts server info */) => {
                       src={cardback1}
                       alt="Logo cardback"
                     />
-                  </button>
-                  <button
-                    className={style.patternButton}
-                    type="button"
-                    onClick={() => {
-                      setState((prevState) => {
-                        return {
-                          ...prevState,
-                          cardback: cb2,
-                        };
-                      });
-                      setLS('state', state);
+                  </Button>
+                  <Button
+                    attributes={{
+                      className: style.patternButton,
+                      type: 'button',
+                      onClick: () => {
+                        setState((prevState) => {
+                          return {
+                            ...prevState,
+                            cardback: cb2,
+                          };
+                        });
+                      },
                     }}
                   >
                     <img
@@ -142,7 +146,7 @@ export const LobbyPage = (/* accepts server info */) => {
                       src={cardback2}
                       alt="Patterned cardback"
                     />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
