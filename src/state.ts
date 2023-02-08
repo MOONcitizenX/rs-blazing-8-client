@@ -9,7 +9,7 @@ export interface Context {
 const savedState = getLS('state');
 
 export const initialState: State = {
-  host: false,
+  host: true,
   background: savedState?.background ?? '../../assets/images/western-bg.jpg',
   cardback: savedState?.cardback ?? '../../assets/images/cardback1.png',
 };

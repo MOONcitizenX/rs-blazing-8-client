@@ -11,8 +11,8 @@ export const UserRegistration = ({ onSubmit }: UserRegistrationProps) => {
   // TODO use state for userInput, required input
   return (
     <Form className={styles.form__registration} onSubmit={onSubmit}>
-      <TextInput placeholder="User Name" />
-      <Button buttonText="Create Room" />
+      <TextInput attributes={{ placeholder: 'User Name' }} />
+      <Button attributes={{ children: 'Create Room' }} />
     </Form>
   );
 };

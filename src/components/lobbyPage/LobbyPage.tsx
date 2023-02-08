@@ -17,7 +17,7 @@ const bg2 = '../../assets/images/western-bg2.jpg';
 const cb1 = '../../assets/images/cardback1.png';
 const cb2 = '../../assets/images/cardback2.png';
 
-export const LobbyPage = () => {
+export const LobbyPage = (/* accepts server info */) => {
   const [state, setState] = useState(initialState);
 
   return (
@@ -29,7 +29,7 @@ export const LobbyPage = () => {
             {state.host ? (
               <div className={style.hostTable}>
                 <div className={style.hostMessage}>
-                  Waiting for more players
+                  Wait for more players
                   <AnimatedDots />
                 </div>
                 <Separator />
