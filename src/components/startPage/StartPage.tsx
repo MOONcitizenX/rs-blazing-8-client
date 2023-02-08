@@ -7,6 +7,7 @@ import { UserRegistration } from '../startPageComponents/userRegistrationCompone
 import { UserConnect } from '../startPageComponents/userConnectComponent/UserConnect';
 import { AvatarChooseComponent } from '../startPageComponents/userAvatarChooseComponent/userAvatarChooseComponent';
 import { ServerToClientEvents } from '../../API/ServerToClientEvents';
+import { Separator } from '../basicComponents/separator';
 
 export const StartPage = () => {
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ export const StartPage = () => {
             userNameHandler={userNameHandler}
             onSubmit={createRoomHandler}
           />
-          <div className={style.separator}>OR</div>
+          <Separator />
           <UserConnect
             roomId={userData.roomId}
             roomIdHandler={roomIdHandler}

@@ -1,0 +1,105 @@
+.players-wrapper {
+  position: absolute;
+  height: 95vh;
+  width: 7rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.players,
+.spectators {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  height: 50%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.players {
+  background-color: var(--beige-color);
+}
+
+.remove-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  margin-top: 1rem;
+  background-color: var(--red-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: var(--beige-color);
+  font-weight: 400;
+  font-size: 8rem;
+  z-index: 2;
+}
+
+.button-text {
+  position: relative;
+  bottom: 4px;
+}
+
+.hint {
+  opacity: 0;
+  width: 10rem;
+  height: 5rem;
+  position: absolute;
+  top: 1rem;
+  left: 8rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--red-color);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.remove-button:hover ~ .hint {
+  opacity: 1;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 3px solid var(--green-color);
+  background-color: var(--beige-color);
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.spectators {
+  background-color: rgb(254, 239, 222, 0.4);
+}
+
+.eye {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--red-color);
+}
+
+.eye-image {
+  width: 5rem;
+  height: 2.5rem;
+}

@@ -6,6 +6,7 @@ import style from './userAvatarChooseComponent.module.css';
 interface AvatarChooseComponentProps {
   onAvatarChange: (id: number) => void;
 }
+
 export const AvatarChooseComponent = ({ onAvatarChange }: AvatarChooseComponentProps) => {
   return (
     <div className={style.choose__wrapper}>

@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "form": string;
+  readonly "body": string;
 };
 export = styles;
 
