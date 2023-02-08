@@ -1,12 +1,10 @@
 import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
-import style from './app.module.css';
+import { useRoomState } from './store/roomStore';
+import style from './App.module.css';
 
 export const App = () => {
-  return (
-    <div className={style.body}>
-      <StartPage />
-      <LobbyPage />
-    </div>
-  );
+  const status = useRoomState((state) => state.status);
+
+  return <div className={style.body}>{!status ? <StartPage /> : <LobbyPage />}</div>;
 };
