@@ -1,12 +1,11 @@
 import { IRoomResponse } from './IRoomResponse';
-import { IUserCreateRoom } from './IUserCreateRoom';
-import { IJoinRoom } from './IJoinRoom';
 import { IGetMeResponse } from './IGetMeResponse';
+import { IErrorMessage } from './IErrorMessage';
 
 export interface ServerToClientEvents {
   noArg: () => void;
-  'create-room': (data: IUserCreateRoom) => void;
   'room-state': (data: IRoomResponse) => void;
-  'join-room': (data: IJoinRoom) => void;
   'get-me': (data: IGetMeResponse) => void;
+  'leave-success': () => void;
+  error: (error: IErrorMessage) => void;
 }

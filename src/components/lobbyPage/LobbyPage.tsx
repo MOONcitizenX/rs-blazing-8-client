@@ -1,3 +1,4 @@
+import { Socket } from 'socket.io-client';
 import classNames from 'classnames';
 import { AnimatedDots } from '../basicComponents/animatedDots';
 import style from './LobbyPage.module.css';
@@ -11,19 +12,36 @@ import cardback1 from '../../assets/images/cardback1.png';
 import cardback2 from '../../assets/images/cardback2.png';
 import { backgroundsArray, cardbacksArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
+import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
+import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 
-export const LobbyPage = () => {
-  const playersAmount = useRoomState((state) => state.players.length);
+interface LobbyPageProps {
+  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+}
 
-  // const store = useRoomState((state) => state);
-  // const isHost = store.userId === store.players[0].id;
-  const isHost = true;
+const minPlayers = 2;
+const maxPlayers = 5;
+
+export const LobbyPage = ({ socket }: LobbyPageProps) => {
+  const userId = usePlayerState((state) => state.id);
+
+  const players = useRoomState((state) => state.players);
+  const isHost = userId === players[0].id;
 
   const changeBackground = usePlayerState((state) => state.changeBackground);
   const stateBackground = usePlayerState((state) => state.background);
 
   const changeCardback = usePlayerState((state) => state.changeCardback);
   const stateCardback = usePlayerState((state) => state.cardback);
+  const isGameReady = players.length >= minPlayers && players.length <= maxPlayers;
+
+  // const leaveRoomHandler = () => {
+  //   socket.emit('leave-room');
+  // };
+
+  // const startGameHandler = () => {
+  //   socket.emit("start-game")
+  // }
 
   return (
     <div className={style.startPageWrapper}>
@@ -37,10 +55,10 @@ export const LobbyPage = () => {
                 <AnimatedDots />
               </div>
               <Separator />
-              <Button attributes={{ className: 'start-button' }}>
+              <Button attributes={{ disabled: !isGameReady, className: 'start-button' }}>
                 <p className={style.startMessage}>Start now!</p>
                 <p className={style.playersMessage}>
-                  <span className={style.players}>{playersAmount}</span> players
+                  <span className={style.players}>{players.length}</span> players
                 </p>
               </Button>
             </div>

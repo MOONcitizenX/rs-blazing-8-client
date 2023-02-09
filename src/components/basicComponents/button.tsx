@@ -10,9 +10,10 @@ interface ButtonProps {
 }
 
 export const Button = ({ attributes, children }: ButtonProps) => {
-  const { onClick, className, type } = attributes;
+  const { onClick, className, type, disabled } = attributes;
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={className ? `${style.button} ${className}` : style.button}
       type={type ? 'submit' : 'button'}

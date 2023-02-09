@@ -11,6 +11,10 @@
   transition: all 0.2s ease-in-out;
 }
 
+.button:disabled {
+  background-color: grey;
+}
+
 .button:hover {
   transform: scale(1.05);
 }

@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { backgroundsArray, cardbacksArray } from './basicMedia';
-import { PlayerStoreTypes } from './playerStoreTypes';
+import { PlayerStoreTypes } from './types/interfaces/playerStoreTypes';
 
 export const usePlayerState = create(
   devtools<PlayerStoreTypes>((set) => ({
+    id: '',
     name: '',
     avatarId: 0,
     host: true,
@@ -13,6 +14,11 @@ export const usePlayerState = create(
     emotion: null,
     timer: 0,
     cardsInHand: 0,
+
+    setId: (id: string) =>
+      set((state: PlayerStoreTypes) => {
+        return { ...state, id };
+      }),
 
     addName: (name: string) =>
       set((state: PlayerStoreTypes) => {
