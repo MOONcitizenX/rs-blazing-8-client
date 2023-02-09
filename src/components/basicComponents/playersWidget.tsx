@@ -1,7 +1,11 @@
 import style from './playersWidget.module.css';
 import eyeIcon from '../../assets/icons/eye.svg';
+import { useRoomState } from '../../store/roomStore';
+import { avatarsArray } from '../../store/basicMedia';
 
 export const Players = (/* accepts players data */) => {
+  const players = useRoomState((state) => state.players);
+
   return (
     <div className={style.playersWrapper}>
       <div className={style.players}>
@@ -16,11 +20,13 @@ export const Players = (/* accepts players data */) => {
         </button>
         <div className={style.hint}>Select to not play</div>
 
-        {/* roomState.players.map(el => {
-          return (<div className={style.player}>
-          <img className={style.avatar} src={el.avatarId} alt="Players avatar" />
-        </div>)
-        }) */}
+        {players.map((el) => {
+          return (
+            <div key={el.id} className={style.player}>
+              <img className={style.avatar} src={avatarsArray[+el.avatarId]} alt="Players avatar" />
+            </div>
+          );
+        })}
       </div>
       <div className={style.spectators}>
         <div className={style.eye}>

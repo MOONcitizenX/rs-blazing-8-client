@@ -23,7 +23,7 @@ export const StartPage = ({ socket }: StartPageProps) => {
   const createRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addName(userName);
-    socket.emit('create-room', { userName });
+    socket.emit('create-room', { userName, avatarId });
   };
 
   const joinRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
