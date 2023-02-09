@@ -1,0 +1,93 @@
+.copy {
+  all: unset;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  border-radius: 0.8rem;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.copy {
+  position: relative;
+}
+
+.copy:hover {
+  opacity: 0.8;
+}
+
+.copy-icon,
+.done-icon {
+  width: 2rem;
+  height: 2rem;
+  filter: invert(100%) sepia(100%) saturate(22%) hue-rotate(252deg) brightness(104%) contrast(100%);
+}
+
+.copy-icon,
+.done-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in-out;
+}
+
+.done-icon {
+  opacity: 0;
+}
+
+.active .copy-icon {
+  animation: opacity1 1s ease;
+}
+
+.active .done-icon {
+  animation: opacity2 1s ease;
+}
+
+@keyframes opacity1 {
+  from {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity2 {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
