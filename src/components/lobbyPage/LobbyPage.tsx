@@ -24,17 +24,16 @@ const maxPlayers = 5;
 
 export const LobbyPage = ({ socket }: LobbyPageProps) => {
   const userId = usePlayerState((state) => state.id);
-  const playersAmount = useRoomState((state) => state.players.length);
 
-  const store = useRoomState((state) => state);
-  const isHost = userId === store.players[0].id;
+  const players = useRoomState((state) => state.players);
+  const isHost = userId === players[0].id;
 
   const changeBackground = usePlayerState((state) => state.changeBackground);
   const stateBackground = usePlayerState((state) => state.background);
 
   const changeCardback = usePlayerState((state) => state.changeCardback);
   const stateCardback = usePlayerState((state) => state.cardback);
-  const gameReady = playersAmount < minPlayers || playersAmount > maxPlayers;
+  const isGameReady = players.length >= minPlayers && players.length <= maxPlayers;
 
   // const leaveRoomHandler = () => {
   //   socket.emit('leave-room');
@@ -56,10 +55,10 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
                 <AnimatedDots />
               </div>
               <Separator />
-              <Button attributes={{ disabled: gameReady, className: 'start-button' }}>
+              <Button attributes={{ disabled: !isGameReady, className: 'start-button' }}>
                 <p className={style.startMessage}>Start now!</p>
                 <p className={style.playersMessage}>
-                  <span className={style.players}>{playersAmount}</span> players
+                  <span className={style.players}>{players.length}</span> players
                 </p>
               </Button>
             </div>
