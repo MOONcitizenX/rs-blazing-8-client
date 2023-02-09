@@ -1,5 +1,6 @@
 declare const styles: {
-  readonly "body": string;
+  readonly "firstBackground": string;
+  readonly "secondBackground": string;
 };
 export = styles;
 
