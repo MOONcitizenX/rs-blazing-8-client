@@ -1,52 +1,46 @@
 import React, { useState } from 'react';
+import { Socket } from 'socket.io-client';
 import style from './StartPage.module.css';
-import { IPlayerData } from '../../types/interfaces/IPlayerData';
 import { UserRegistration } from '../startPageComponents/userRegistrationComponent/UserRegistration';
 import { UserConnect } from '../startPageComponents/userConnectComponent/UserConnect';
 import { AvatarChooseComponent } from '../startPageComponents/userAvatarChooseComponent/userAvatarChooseComponent';
 import { Separator } from '../basicComponents/separator';
 import { usePlayerState } from '../../store/playerStore';
-import { useRoomState } from '../../store/roomStore';
+import { ServerToClientEvents } from '../../API/ServerToClientEvents';
+import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 
-export const StartPage = () => {
+interface StartPageProps {
+  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+}
+
+export const StartPage = ({ socket }: StartPageProps) => {
   const addName = usePlayerState((state) => state.addName);
-  const changeStatus = useRoomState((state) => state.changeStatus);
-
-  const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [userData, setUserData] = useState<IPlayerData>({
-    name: '',
-    avatarId: 0,
-    ready: true,
-    roomId: '',
-  });
+  const userId = usePlayerState((state) => state.id);
+  const [userName, setUserName] = useState<string>('');
+  const [roomId, setRoomId] = useState<string>('');
+  const [avatarId, setAvatarId] = useState<string>('0');
 
   const createRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addName(userData.name);
-    changeStatus('lobby');
+    addName(userName);
+    socket.emit('create-room', { userName });
   };
 
   const joinRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    changeStatus('lobby');
+    socket.emit('join-room', { userName, roomId, avatarId });
   };
 
-  const changeAvatarHandler = (id: number) => {
-    setUserData((prevState) => {
-      return { ...prevState, avatarId: id };
-    });
+  const changeAvatarHandler = (id: string) => {
+    setAvatarId(id);
   };
 
   const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData((prevState) => {
-      return { ...prevState, name: e.target.value };
-    });
+    setUserName(e.target.value);
   };
 
   const roomIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData((prevState) => {
-      return { ...prevState, roomId: e.target.value.trim() };
-    });
+    setRoomId(e.target.value.trim());
   };
 
   return (
@@ -55,13 +49,14 @@ export const StartPage = () => {
         <div className={style.startTable}>
           <AvatarChooseComponent onAvatarChange={changeAvatarHandler} />
           <UserRegistration
-            userName={userData.name}
+            userName={userName}
             userNameHandler={userNameHandler}
             onSubmit={createRoomHandler}
           />
           <Separator />
           <UserConnect
-            roomId={userData.roomId}
+            isUserName={!userName}
+            roomId={roomId}
             roomIdHandler={roomIdHandler}
             onSubmit={joinRoomHandler}
           />

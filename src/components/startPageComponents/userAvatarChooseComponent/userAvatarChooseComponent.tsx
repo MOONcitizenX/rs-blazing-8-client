@@ -4,7 +4,7 @@ import { Arrow } from '../../basicComponents/arrow';
 import style from './userAvatarChooseComponent.module.css';
 
 interface AvatarChooseComponentProps {
-  onAvatarChange: (id: number) => void;
+  onAvatarChange: (id: string) => void;
 }
 
 export const AvatarChooseComponent = ({ onAvatarChange }: AvatarChooseComponentProps) => {

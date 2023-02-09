@@ -7,9 +7,10 @@ interface UserConnectProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   roomIdHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   roomId: string;
+  isUserName: boolean;
 }
 // TODO use state for room id, required input and check for wrong inputs
-export const UserConnect = ({ onSubmit, roomIdHandler, roomId }: UserConnectProps) => {
+export const UserConnect = ({ onSubmit, roomIdHandler, roomId, isUserName }: UserConnectProps) => {
   return (
     <Form className={styles.form__connect} onSubmit={onSubmit}>
       <TextInput
@@ -20,7 +21,7 @@ export const UserConnect = ({ onSubmit, roomIdHandler, roomId }: UserConnectProp
           placeholder: 'Room ID',
         }}
       />
-      <Button attributes={{ type: 'submit' }}>Join</Button>
+      <Button attributes={{ disabled: isUserName, type: 'submit' }}>Join</Button>
     </Form>
   );
 };
