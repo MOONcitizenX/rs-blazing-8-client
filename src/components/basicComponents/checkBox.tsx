@@ -9,12 +9,10 @@ export const CheckBox = ({ isOn, onChange }: CheckBoxProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(isOn);
 
   const onClickHandler = () => {
-    setIsChecked(!isChecked);
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    onChange(newValue);
   };
-
-  useEffect(() => {
-    onChange(isChecked);
-  }, [isChecked, onChange]);
 
   return (
     <div className={styles.slider}>

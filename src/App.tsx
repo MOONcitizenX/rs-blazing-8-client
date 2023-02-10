@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
@@ -18,15 +18,17 @@ interface AppProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 }
 export const App = ({ socket }: AppProps) => {
-  const musicValue = usePlayerState((state) => state.music);
+  const setMusicValue = usePlayerState((state) => state.changeMusicValue);
+  useState(() => {
+    setMusicValue(false);
+  }, []);
 
-  useEffect(() => {
-    if (musicValue) {
-      musicPlayer.play();
-    } else {
-      musicPlayer.pause();
-    }
-  }, [musicValue]);
+  const musicValue = usePlayerState((state) => state.music);
+  if (musicValue) {
+    musicPlayer.play();
+  } else {
+    musicPlayer.pause();
+  }
 
   const status = useRoomState((state) => state.status);
   const background = usePlayerState((state) => state.background);

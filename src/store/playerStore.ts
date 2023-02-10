@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { SoundPlayer } from '../utils/SoundPlayer';
 import { avatarsArray, backgroundsArray, cardbacksArray } from './basicMedia';
 import { PlayerStoreTypes } from './types/interfaces/playerStoreTypes';
 
-export const usePlayerState = create(
+export const usePlayerState = create<PlayerStoreTypes>()(
   devtools(
-    persist<PlayerStoreTypes>(
+    persist(
       (set) => ({
         id: '',
         name: '',
@@ -15,13 +14,11 @@ export const usePlayerState = create(
         host: true,
         sound: false,
         music: false,
-        soundPlayer: new SoundPlayer(),
         background: backgroundsArray[0],
         cardback: cardbacksArray[0],
         emotion: null,
         timer: 0,
         cardsInHand: 0,
-
         changeAvatarImg: (avatarImg: string) =>
           set((state: PlayerStoreTypes) => {
             return { ...state, avatarImg };

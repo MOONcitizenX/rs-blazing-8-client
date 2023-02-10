@@ -1,5 +1,3 @@
-import { SoundPlayer } from '../../../utils/SoundPlayer';
-
 export interface PlayerStoreTypes {
   id: string;
   name: string;
@@ -7,7 +5,7 @@ export interface PlayerStoreTypes {
   host: boolean;
   sound: boolean;
   music: boolean;
-  soundPlayer: SoundPlayer;
+  avatarImg: string;
   background?: unknown;
   cardback?: unknown;
   emotion?: unknown;
