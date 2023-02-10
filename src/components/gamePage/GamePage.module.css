@@ -77,17 +77,11 @@
 
 .player:nth-of-type(3) {
   position: absolute;
-  top: -15rem;
-  left: -6rem;
-}
-
-.player:nth-of-type(4) {
-  position: absolute;
   top: -5rem;
   left: 21rem;
 }
 
-.player:nth-of-type(5) {
+.player:nth-of-type(4) {
   position: absolute;
   top: 20rem;
   left: 30rem;
