@@ -5,33 +5,25 @@ import thirdTrack from '../assets/sounds/music/03. The Last of Us.mp3';
 export class MusicPlayer {
   player = new Audio(firstTrack);
 
-  isPause = false;
-
   index = 0;
 
   musicArr = [firstTrack, secondTrack, thirdTrack];
 
   constructor() {
-    this.player.onended = () => this.nextTrack;
+    this.player.onended = () => this.nextTrack();
   }
 
   nextTrack() {
-    this.index = this.index < this.musicArr.length ? this.index + 1 : 0;
+    this.index = this.index < this.musicArr.length - 1 ? this.index + 1 : 0;
     this.player.src = this.musicArr[this.index];
+    this.player.play();
   }
 
   play() {
-    if (this.isPause) {
-      this.player.play();
-    } else {
-      this.index = Math.floor(Math.random() * this.musicArr.length);
-      this.player.src = this.musicArr[this.index];
-      this.player.play();
-    }
+    this.player.play();
   }
 
   pause() {
     this.player.pause();
-    this.isPause = true;
   }
 }
