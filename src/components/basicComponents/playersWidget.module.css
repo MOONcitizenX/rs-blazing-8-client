@@ -17,7 +17,6 @@
   gap: 0.7rem;
   height: 50%;
   border-radius: 0.5rem;
-  overflow: hidden;
 }
 
 .players {
@@ -65,11 +64,20 @@
   transition: all 0.2s ease-in-out;
 }
 
-.remove-button:hover ~ .hint {
+.player > .hint {
+  width: auto;
+  min-width: 10rem;
+  top: 0rem;
+  left: 7rem;
+}
+
+.remove-button:hover ~ .hint,
+.player:hover > .hint {
   opacity: 1;
 }
 
 .player {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +86,7 @@
   border-radius: 50%;
   border: 3px solid var(--green-color);
   background-color: var(--beige-color);
+  z-index: 2;
 }
 
 .avatar {

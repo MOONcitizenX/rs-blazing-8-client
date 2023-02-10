@@ -6,7 +6,7 @@ import { UserConnect } from '../startPageComponents/userConnectComponent/UserCon
 import { AvatarChooseComponent } from '../startPageComponents/userAvatarChooseComponent/userAvatarChooseComponent';
 import { Separator } from '../basicComponents/separator';
 import { usePlayerState } from '../../store/playerStore';
-import { ServerToClientEvents } from '../../API/ServerToClientEvents';
+import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 
 interface StartPageProps {
@@ -15,24 +15,20 @@ interface StartPageProps {
 
 export const StartPage = ({ socket }: StartPageProps) => {
   const addName = usePlayerState((state) => state.addName);
-  const userId = usePlayerState((state) => state.id);
-  const [userName, setUserName] = useState<string>('');
+  const [userName, setUserName] = useState<string>(usePlayerState((state) => state.name) || '');
   const [roomId, setRoomId] = useState<string>('');
-  const [avatarId, setAvatarId] = useState<string>('0');
+
+  const avatarId = usePlayerState((state) => state.avatarId);
 
   const createRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addName(userName);
-    socket.emit('create-room', { userName });
+    socket.emit('create-room', { userName, avatarId });
   };
 
   const joinRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     socket.emit('join-room', { userName, roomId, avatarId });
-  };
-
-  const changeAvatarHandler = (id: string) => {
-    setAvatarId(id);
   };
 
   const userNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +43,7 @@ export const StartPage = ({ socket }: StartPageProps) => {
     <div className={style.startPageWrapper}>
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
-          <AvatarChooseComponent onAvatarChange={changeAvatarHandler} />
+          <AvatarChooseComponent />
           <UserRegistration
             userName={userName}
             userNameHandler={userNameHandler}

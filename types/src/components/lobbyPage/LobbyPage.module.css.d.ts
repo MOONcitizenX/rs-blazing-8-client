@@ -2,6 +2,7 @@ declare const styles: {
   readonly "startPageWrapper": string;
   readonly "tableWrapper": string;
   readonly "startTable": string;
+  readonly "roomIdWrapper": string;
   readonly "hostMessage": string;
   readonly "guestMessage": string;
   readonly "hostTable": string;
