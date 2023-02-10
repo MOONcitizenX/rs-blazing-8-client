@@ -11,9 +11,9 @@ import { Menu } from './components/menuComponent/Menu';
 import { usePlayerState } from './store/playerStore';
 import { backgroundsArray } from './store/basicMedia';
 import { MusicPlayer } from './utils/MusicPlayer';
+import { GamePage } from './components/gamePage/GamePage';
 
 const musicPlayer = new MusicPlayer();
-
 
 interface AppProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
@@ -29,8 +29,18 @@ export const App = ({ socket }: AppProps) => {
     }
   }, [musicValue]);
 
-  const status = useRoomState((state) => state.status);
+  const mainView = (status: string) => {
+    if (!status) {
+      return <StartPage socket={socket} />;
+    }
+    if (status === 'lobby') {
+      return <LobbyPage socket={socket} />;
+    }
+    return <GamePage />;
+  };
+
   const background = usePlayerState((state) => state.background);
+  const status = useRoomState((state) => state.status);
 
   return (
     <div
@@ -39,7 +49,7 @@ export const App = ({ socket }: AppProps) => {
       }
     >
       <Menu />
-      {!status ? <StartPage socket={socket} /> : <LobbyPage socket={socket} />}
+      {mainView(status)}
     </div>
   );
 };
