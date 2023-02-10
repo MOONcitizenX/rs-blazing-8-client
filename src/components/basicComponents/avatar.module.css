@@ -1,13 +1,13 @@
 .avatar {
-  max-width: 10rem;
-  max-height: 10rem;
+  width: 15rem;
+  height: 15rem;
   padding: 1rem;
 }
 
 .avatar__bg {
   background-color: #ffffff;
   border-radius: 40%;
-  max-width: 10rem;
-  max-height: 10rem;
+  width: 15rem;
+  height: 15rem;
   overflow: hidden;
 }

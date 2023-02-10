@@ -14,6 +14,7 @@ import { backgroundsArray, cardbacksArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
+import { CopyButton } from '../basicComponents/copyButton';
 
 interface LobbyPageProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
@@ -24,6 +25,7 @@ const maxPlayers = 5;
 
 export const LobbyPage = ({ socket }: LobbyPageProps) => {
   const userId = usePlayerState((state) => state.id);
+  const roomId = useRoomState((state) => state.roomId);
 
   const players = useRoomState((state) => state.players);
   const isHost = userId === players[0].id;
@@ -50,6 +52,10 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
         <div className={style.startTable}>
           {isHost ? (
             <div className={style.hostTable}>
+              <div className={style.roomIdWrapper}>
+                <div className={style.roomId}>{roomId}</div>
+                <CopyButton />
+              </div>
               <div className={style.hostMessage}>
                 Wait for more players
                 <AnimatedDots />

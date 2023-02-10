@@ -1,12 +1,14 @@
 import styles from './arrow.module.css';
 
 interface ArrowProps {
+  onClick: () => void;
   className?: string;
 }
-export const Arrow = ({ className }: ArrowProps) => {
+export const Arrow = ({ className, onClick }: ArrowProps) => {
   // arrow directions in className: top, bottom, right. init state left
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       className={className ? [styles.arrow, styles[className]].join(' ') : styles.arrow}

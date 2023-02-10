@@ -1,7 +1,7 @@
 export interface PlayerStoreTypes {
   id: string;
   name: string;
-  avatarId: number;
+  avatarId: string;
   host: boolean;
   background?: unknown;
   cardback?: unknown;
@@ -13,4 +13,5 @@ export interface PlayerStoreTypes {
   addName: (name: string) => void;
   changeBackground: (background: string) => void;
   changeCardback: (cardback: string) => void;
+  changeAvatarImg: (img: string) => void;
 }

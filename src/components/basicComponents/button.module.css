@@ -15,6 +15,11 @@
   background-color: grey;
 }
 
+.button:disabled.button:hover {
+  transform: scale(1);
+  cursor: default;
+}
+
 .button:hover {
   transform: scale(1.05);
 }

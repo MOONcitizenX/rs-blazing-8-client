@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import { Avatar } from '../../basicComponents/avatar';
-import holder from '../../../assets/images/avatars/activist.svg';
 import { Arrow } from '../../basicComponents/arrow';
 import style from './userAvatarChooseComponent.module.css';
+import { usePlayerState } from '../../../store/playerStore';
+import { avatarsArray } from '../../../store/basicMedia';
 
 export const AvatarChooseComponent = () => {
+  const currentAvatar = usePlayerState((state) => state.avatarId);
+
   const [index, setIndex] = useState<number>(0);
-  const [avatarImg, setAvatarImg] = useState<string>(avatarsArray[0]);
+  const [avatarImg, setAvatarImg] = useState<string>(
+    avatarsArray[+currentAvatar] || avatarsArray[0],
+  );
   const changeAvatarId = usePlayerState((state) => state.changeAvatarId);
 
   const leftClickHandler = () => {
@@ -24,12 +30,11 @@ export const AvatarChooseComponent = () => {
     setAvatarImg(avatarsArray[newIndex]);
   };
 
-export const AvatarChooseComponent = ({ onAvatarChange }: AvatarChooseComponentProps) => {
   return (
     <div className={style.choose__wrapper}>
-      <Arrow />
-      <Avatar attributes={{ src: holder }} />
-      <Arrow className="right" />
+      <Arrow onClick={leftClickHandler} />
+      <Avatar attributes={{ src: avatarImg }} />
+      <Arrow onClick={rightClickHandler} className="right" />
     </div>
   );
 };
