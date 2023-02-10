@@ -14,7 +14,6 @@ import { MusicPlayer } from './utils/MusicPlayer';
 
 const musicPlayer = new MusicPlayer();
 
-
 interface AppProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 }

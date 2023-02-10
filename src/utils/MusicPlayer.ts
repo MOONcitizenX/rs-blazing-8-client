@@ -12,22 +12,17 @@ export class MusicPlayer {
   musicArr = [firstTrack, secondTrack, thirdTrack];
 
   constructor() {
-    this.player.onended = () => this.nextTrack;
+    this.player.onended = () => this.nextTrack();
   }
 
   nextTrack() {
-    this.index = this.index < this.musicArr.length ? this.index + 1 : 0;
+    this.index = this.index < this.musicArr.length - 1 ? this.index + 1 : 0;
     this.player.src = this.musicArr[this.index];
+    this.player.play();
   }
 
   play() {
-    if (this.isPause) {
-      this.player.play();
-    } else {
-      this.index = Math.floor(Math.random() * this.musicArr.length);
-      this.player.src = this.musicArr[this.index];
-      this.player.play();
-    }
+    this.player.play();
   }
 
   pause() {
