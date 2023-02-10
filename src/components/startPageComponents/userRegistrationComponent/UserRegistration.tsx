@@ -1,4 +1,3 @@
-import React from 'react';
 import { TextInput } from '../../basicComponents/textInput';
 import { Button } from '../../basicComponents/button';
 import styles from './UserRegistration.module.css';

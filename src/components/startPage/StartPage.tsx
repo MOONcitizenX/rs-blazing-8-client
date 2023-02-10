@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Socket } from 'socket.io-client';
 import style from './StartPage.module.css';
 import { UserRegistration } from '../startPageComponents/userRegistrationComponent/UserRegistration';
