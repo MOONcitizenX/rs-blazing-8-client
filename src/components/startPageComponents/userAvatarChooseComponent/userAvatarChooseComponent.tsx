@@ -6,9 +6,13 @@ import { usePlayerState } from '../../../store/playerStore';
 import { avatarsArray } from '../../../store/basicMedia';
 
 export const AvatarChooseComponent = () => {
+  const currentAvatar = usePlayerState((state) => state.avatarId);
+
   const [index, setIndex] = useState<number>(0);
-  const [avatarImg, setAvatarImg] = useState<string>(avatarsArray[0]);
-  const changeAvatarId = usePlayerState((state) => state.setId);
+  const [avatarImg, setAvatarImg] = useState<string>(
+    avatarsArray[+currentAvatar] || avatarsArray[0],
+  );
+  const changeAvatarId = usePlayerState((state) => state.changeAvatarId);
 
   const leftClickHandler = () => {
     let newIndex = index - 1;

@@ -24,6 +24,7 @@ export const Players = (/* accepts players data */) => {
           return (
             <div key={el.id} className={style.player}>
               <img className={style.avatar} src={avatarsArray[+el.avatarId]} alt="Players avatar" />
+              <div className={style.hint}>{el.name}</div>
             </div>
           );
         })}
