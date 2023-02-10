@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
+import { SoundPlayer } from '../utils/SoundPlayer';
 import { avatarsArray, backgroundsArray, cardbacksArray } from './basicMedia';
 import { PlayerStoreTypes } from './types/interfaces/playerStoreTypes';
 
@@ -12,6 +13,9 @@ export const usePlayerState = create(
         avatarId: '0',
         avatarImg: avatarsArray[0],
         host: true,
+        sound: false,
+        music: false,
+        soundPlayer: new SoundPlayer(),
         background: backgroundsArray[0],
         cardback: cardbacksArray[0],
         emotion: null,
@@ -47,21 +51,20 @@ export const usePlayerState = create(
           set((state: PlayerStoreTypes) => {
             return { ...state, cardback };
           }),
-      }),
 
-    changeMusicValue: (music: boolean) =>
-      set((state: PlayerStoreTypes) => {
-        return { ...state, music };
+        changeMusicValue: (music: boolean) =>
+          set((state: PlayerStoreTypes) => {
+            return { ...state, music };
+          }),
+
+        changeSoundValue: (sound: boolean) =>
+          set((state: PlayerStoreTypes) => {
+            return { ...state, sound };
+          }),
       }),
-    changeSoundValue: (sound: boolean) =>
-      set((state: PlayerStoreTypes) => {
-        return { ...state, sound };
-      }),
-  })),
       {
         name: 'playerState',
       },
     ),
   ),
-
 );
