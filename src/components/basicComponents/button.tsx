@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePlayerState } from '../../store/playerStore';
 import style from './button.module.css';
 
 interface ButtonProps {
@@ -11,10 +12,18 @@ interface ButtonProps {
 
 export const Button = ({ attributes, children }: ButtonProps) => {
   const { onClick, className, type, disabled } = attributes;
+  const player = usePlayerState((state) => state.soundPlayer);
+  const isSoundEffect = usePlayerState((state) => state.sound);
+  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isSoundEffect) player.play('click');
+    if (e && onClick) {
+      onClick(e);
+    }
+  };
   return (
     <button
       disabled={disabled}
-      onClick={onClick}
+      onClick={clickHandler}
       className={className ? `${style.button} ${className}` : style.button}
       type={type ? 'submit' : 'button'}
     >

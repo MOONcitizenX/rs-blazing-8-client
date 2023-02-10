@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { SoundPlayer } from '../utils/SoundPlayer';
 import { backgroundsArray, cardbacksArray } from './basicMedia';
 import { PlayerStoreTypes } from './types/interfaces/playerStoreTypes';
 
@@ -14,6 +15,9 @@ export const usePlayerState = create(
     emotion: null,
     timer: 0,
     cardsInHand: 0,
+    sound: false,
+    music: false,
+    soundPlayer: new SoundPlayer(),
 
     setId: (id: string) =>
       set((state: PlayerStoreTypes) => {
@@ -33,6 +37,14 @@ export const usePlayerState = create(
     changeCardback: (cardback: string) =>
       set((state: PlayerStoreTypes) => {
         return { ...state, cardback };
+      }),
+    changeMusicValue: (music: boolean) =>
+      set((state: PlayerStoreTypes) => {
+        return { ...state, music };
+      }),
+    changeSoundValue: (sound: boolean) =>
+      set((state: PlayerStoreTypes) => {
+        return { ...state, sound };
       }),
   })),
 );
