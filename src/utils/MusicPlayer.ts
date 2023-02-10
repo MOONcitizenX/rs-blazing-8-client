@@ -5,8 +5,6 @@ import thirdTrack from '../assets/sounds/music/03. The Last of Us.mp3';
 export class MusicPlayer {
   player = new Audio(firstTrack);
 
-  isPause = false;
-
   index = 0;
 
   musicArr = [firstTrack, secondTrack, thirdTrack];
@@ -27,6 +25,5 @@ export class MusicPlayer {
 
   pause() {
     this.player.pause();
-    this.isPause = true;
   }
 }
