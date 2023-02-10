@@ -18,7 +18,8 @@ export const StartPage = ({ socket }: StartPageProps) => {
   const userId = usePlayerState((state) => state.id);
   const [userName, setUserName] = useState<string>('');
   const [roomId, setRoomId] = useState<string>('');
-  const [avatarId, setAvatarId] = useState<string>('0');
+
+  const avatarId = usePlayerState((state) => state.avatarId);
 
   const createRoomHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
