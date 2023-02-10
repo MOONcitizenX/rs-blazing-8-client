@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Socket } from 'socket.io-client';
 import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
@@ -19,7 +19,7 @@ interface AppProps {
 }
 export const App = ({ socket }: AppProps) => {
   const setMusicValue = usePlayerState((state) => state.changeMusicValue);
-  useState(() => {
+  useEffect(() => {
     setMusicValue(false);
   }, []);
 
