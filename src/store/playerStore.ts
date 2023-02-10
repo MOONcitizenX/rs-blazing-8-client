@@ -48,9 +48,20 @@ export const usePlayerState = create(
             return { ...state, cardback };
           }),
       }),
+
+    changeMusicValue: (music: boolean) =>
+      set((state: PlayerStoreTypes) => {
+        return { ...state, music };
+      }),
+    changeSoundValue: (sound: boolean) =>
+      set((state: PlayerStoreTypes) => {
+        return { ...state, sound };
+      }),
+  })),
       {
         name: 'playerState',
       },
     ),
   ),
+
 );

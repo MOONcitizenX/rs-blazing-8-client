@@ -1,0 +1,35 @@
+.menu {
+  position: absolute;
+  top: -2000px;
+  transition: all 0.3s ease;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+}
+
+.menu__options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 4rem;
+  gap: 2rem;
+}
+
+.menu.opened {
+  top: 0;
+  opacity: 1;
+  z-index: 4;
+}
+
+.menu__item {
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+}
