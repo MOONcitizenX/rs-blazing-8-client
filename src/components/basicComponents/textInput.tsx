@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './textInput.module.css';
 
 interface TextInputProps {

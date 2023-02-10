@@ -1,4 +1,3 @@
-import React from 'react';
 import { usePlayerState } from '../../store/playerStore';
 import style from './button.module.css';
 
