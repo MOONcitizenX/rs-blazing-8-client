@@ -15,7 +15,7 @@ interface StartPageProps {
 
 export const StartPage = ({ socket }: StartPageProps) => {
   const addName = usePlayerState((state) => state.addName);
-  const [userName, setUserName] = useState<string>('');
+  const [userName, setUserName] = useState<string>(usePlayerState((state) => state.name) || '');
   const [roomId, setRoomId] = useState<string>('');
 
   const avatarId = usePlayerState((state) => state.avatarId);
