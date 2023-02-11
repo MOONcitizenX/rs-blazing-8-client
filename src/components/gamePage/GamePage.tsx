@@ -2,6 +2,7 @@ import { avatarsArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
+import arrow from '../../assets/images/arrow.png';
 
 export const GamePage = () => {
   const players = useRoomState((state) => state.players);
@@ -11,9 +12,17 @@ export const GamePage = () => {
       <Players />
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
+          <div className={style.arrowsWrapper}>
+            <img className={style.arrow} src={arrow} alt="Direction" />
+            <img className={style.arrow} src={arrow} alt="Direction" />
+            <img className={style.arrow} src={arrow} alt="Direction" />
+            <img className={style.arrow} src={arrow} alt="Direction" />
+            <img className={style.arrow} src={arrow} alt="Direction" />
+            <img className={style.arrow} src={arrow} alt="Direction" />
+          </div>
           <div className={style.players}>
-            {players.map((el) => {
-              if (+el.id !== 0) {
+            {players.map((el, index) => {
+              if (index !== 0) {
                 return (
                   <div key={el.id} className={style.player}>
                     <img

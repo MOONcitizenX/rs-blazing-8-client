@@ -5,6 +5,7 @@ declare const styles: {
   readonly "player": string;
   readonly "avatar": string;
   readonly "hint": string;
+  readonly "arrow": string;
 };
 export = styles;
 
