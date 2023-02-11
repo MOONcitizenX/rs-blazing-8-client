@@ -18,12 +18,17 @@ const soundEvents: ISoundEvents = {
 };
 
 export class SoundPlayer {
-  player: HTMLAudioElement;
+  instance: null | SoundPlayer = null;
+  player = new Audio();
 
   events = soundEvents;
 
   constructor() {
-    this.player = new Audio();
+    if (this.instance) {
+      return this.instance;
+    }
+
+    this.instance = this;
   }
 
   play(option: SoundEvents) {

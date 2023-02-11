@@ -1,3 +1,4 @@
+import { SoundPlayer } from '../../utils/SoundPlayer';
 import styles from './arrow.module.css';
 
 interface ArrowProps {
@@ -6,9 +7,14 @@ interface ArrowProps {
 }
 export const Arrow = ({ className, onClick }: ArrowProps) => {
   // arrow directions in className: top, bottom, right. init state left
+  const player = new SoundPlayer();
+  const clicKHandler = () => {
+    player.play('click');
+    onClick();
+  };
   return (
     <svg
-      onClick={onClick}
+      onClick={clicKHandler}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       className={className ? [styles.arrow, styles[className]].join(' ') : styles.arrow}
