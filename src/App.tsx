@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Socket } from 'socket.io-client';
 import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
@@ -18,11 +17,6 @@ interface AppProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 }
 export const App = ({ socket }: AppProps) => {
-  const setMusicValue = usePlayerState((state) => state.changeMusicValue);
-  useEffect(() => {
-    setMusicValue(false);
-  }, []);
-
   const musicValue = usePlayerState((state) => state.music);
   if (musicValue) {
     musicPlayer.play();
