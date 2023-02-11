@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import { usePlayerState } from '../../store/playerStore';
+import { SoundPlayer } from '../../utils/SoundPlayer';
 import { CheckBox } from '../basicComponents/checkBox';
 import styles from './Menu.module.css';
 import { SettingsIcon } from './SettingsIcon';
 
+const player = new SoundPlayer();
+
 export const Menu = () => {
-  const player = usePlayerState((state) => state.soundPlayer);
   const soundValue = usePlayerState((state) => state.sound);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const changeMusicValue = usePlayerState((state) => state.changeMusicValue);
   const changeSoundValue = usePlayerState((state) => state.changeSoundValue);
+
   const onSettingsClickHandler = () => {
+    if (soundValue) player.play('click');
     setIsMenuOpened(!isMenuOpened);
   };
   const closeClickHandler = () => {
+    if (soundValue) player.play('click');
     setIsMenuOpened(false);
   };
 
@@ -23,6 +28,7 @@ export const Menu = () => {
   };
 
   const soundValueChangeHandler = (value: boolean) => {
+    if (soundValue) player.play('click');
     changeSoundValue(value);
   };
 
@@ -45,7 +51,7 @@ export const Menu = () => {
           </li>
           <li className={styles.menu__item}>
             <span>Sound Effects</span>
-            <CheckBox isOn={false} onChange={soundValueChangeHandler} />
+            <CheckBox isOn={soundValue} onChange={soundValueChangeHandler} />
           </li>
         </ul>
       </div>
