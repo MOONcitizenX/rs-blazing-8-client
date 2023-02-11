@@ -12,8 +12,8 @@ export const GamePage = () => {
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
           <div className={style.players}>
-            {players.map((el, index) => {
-              if (index !== 0) {
+            {players.map((el) => {
+              if (+el.id !== 0) {
                 return (
                   <div key={el.id} className={style.player}>
                     <img
