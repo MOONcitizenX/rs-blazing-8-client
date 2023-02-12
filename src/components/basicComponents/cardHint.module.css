@@ -1,7 +1,7 @@
 .card-hint {
   position: absolute;
   top: 44.5rem;
-  left: -6rem;
+  left: -7rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,7 @@
   font-size: 3rem;
   background-color: var(--dark-red-color);
   border-radius: 4rem;
+  z-index: 3;
 }
 
 .value {
