@@ -1,1 +1,1 @@
-export type CardColor = 'green' | 'blue' | 'yellow' | 'red' | 'none';
+export type CardColor = 'G' | 'B' | 'Y' | 'R' | 'multi';
