@@ -17,10 +17,7 @@
   gap: 0.7rem;
   height: 50%;
   border-radius: 0.5rem;
-}
-
-.players {
-  background-color: var(--beige-color);
+  background-color: rgb(254, 239, 222, 0.4);
 }
 
 .remove-button {
@@ -96,7 +93,8 @@
 }
 
 .spectators {
-  background-color: rgb(254, 239, 222, 0.4);
+  display: none;
+  overflow: hidden;
 }
 
 .eye {

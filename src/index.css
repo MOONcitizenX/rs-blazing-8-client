@@ -29,6 +29,13 @@
   src: url('./assets/fonts/BlobSpongeyLowercase.ttf');
 }
 
+@font-face {
+  font-family: 'Casagrande';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/casagrande-grind-regular.ttf');
+}
+
 :root {
   --white-color: #ffffff;
   --beige-color: #feefde;

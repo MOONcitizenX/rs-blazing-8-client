@@ -41,9 +41,9 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
   //   socket.emit('leave-room');
   // };
 
-  // const startGameHandler = () => {
-  //   socket.emit("start-game")
-  // }
+  const startGameHandler = () => {
+    socket.emit('start-game');
+  };
 
   return (
     <div className={style.startPageWrapper}>
@@ -61,7 +61,15 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
                 <AnimatedDots />
               </div>
               <Separator />
-              <Button attributes={{ disabled: !isGameReady, className: 'start-button' }}>
+              <Button
+                attributes={{
+                  disabled: !isGameReady,
+                  className: 'start-button',
+                  onClick: () => {
+                    startGameHandler();
+                  },
+                }}
+              >
                 <p className={style.startMessage}>Start now!</p>
                 <p className={style.playersMessage}>
                   <span className={style.players}>{players.length}</span> players

@@ -7,7 +7,10 @@ export const useRoomState = create(
     players: [],
     roomId: '',
     winner: '',
-    status: '',
-    closedDeck: [],
+    status: null,
+    closedDeck: 0,
+    topCard: null,
+    direction: 'CW',
+    playerTurn: '1',
   })),
 );
