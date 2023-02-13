@@ -1,4 +1,4 @@
-import { CardColor } from '../cardColor';
+import { CardColor } from '../types/CardColor';
 
 export interface ICard {
   value: string;
