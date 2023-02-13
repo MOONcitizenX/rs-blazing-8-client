@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware';
 import { RoomStoreTypes } from './types/interfaces/roomStoreTypes';
 
 export const useRoomState = create(
-  devtools<RoomStoreTypes>(() => ({
+  devtools<RoomStoreTypes>((set) => ({
     players: [],
     roomId: '',
     winner: '',
@@ -12,5 +12,10 @@ export const useRoomState = create(
     topCard: null,
     direction: 'CW',
     playerTurn: '1',
+
+    changeDirection: (direction: 'CW' | 'ACW') =>
+      set((state: RoomStoreTypes) => {
+        return { ...state, direction };
+      }),
   })),
 );
