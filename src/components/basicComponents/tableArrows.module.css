@@ -48,16 +48,3 @@
   left: 28.1rem;
   transform: rotate(113deg);
 }
-
-.rotateCW {
-  animation: rotateCW 1s linear;
-}
-
-@keyframes rotateCW {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(540deg);
-  }
-}
