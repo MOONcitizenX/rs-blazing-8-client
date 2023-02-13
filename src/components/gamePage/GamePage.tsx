@@ -2,11 +2,11 @@ import { avatarsArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
-import arrow from '../../assets/images/arrow.png';
 import { usePlayerState } from '../../store/playerStore';
 import cards from '../../cards.json';
 import { CardHint } from '../basicComponents/cardHint';
 import tableFrontImage from '../../assets/images/table-front.png';
+import { TableArrows } from '../basicComponents/tableArrows';
 
 export const GamePage = () => {
   const players = useRoomState((state) => state.players);
@@ -29,14 +29,7 @@ export const GamePage = () => {
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
           <img className={style.tableFront} src={tableFrontImage} alt="Table" />
-          <div className={style.arrowsWrapper}>
-            <img className={style.arrow} src={arrow} alt="Direction" />
-            <img className={style.arrow} src={arrow} alt="Direction" />
-            <img className={style.arrow} src={arrow} alt="Direction" />
-            <img className={style.arrow} src={arrow} alt="Direction" />
-            <img className={style.arrow} src={arrow} alt="Direction" />
-            <img className={style.arrow} src={arrow} alt="Direction" />
-          </div>
+          <TableArrows />
           <div className={style.players}>
             {orderedPlayers.map((el, index) => {
               if (index !== 0) {
@@ -47,7 +40,7 @@ export const GamePage = () => {
                       src={avatarsArray[+el.avatarId]}
                       alt="Player avatar"
                     />
-                    <div className={style.hint}>{el.name}</div>
+                    <div className={style.name}>{el.name}</div>
                   </div>
                 );
               }

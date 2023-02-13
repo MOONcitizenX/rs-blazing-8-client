@@ -1,6 +1,7 @@
 .start-page-wrapper {
   min-width: 100vw;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .table-wrapper {
@@ -47,22 +48,29 @@
   border-radius: 50%;
 }
 
-.hint {
-  width: auto;
-  min-width: 10rem;
+.name {
+  width: 40rem;
   height: 5rem;
   position: absolute;
-  top: -6rem;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 8rem;
   padding: 0.5rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  background-color: var(--red-color);
   border-radius: 0.5rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   transition: all 0.2s ease-in-out;
+}
+
+.player:nth-of-type(1) > .name,
+.player:nth-of-type(2) > .name {
+  justify-content: flex-end;
+  left: -39rem;
+}
+
+.player:nth-of-type(3) > .name,
+.player:nth-of-type(4) > .name {
+  justify-content: flex-start;
+  left: 11rem;
 }
 
 .player:nth-of-type(1) {
@@ -87,52 +95,6 @@
   position: absolute;
   top: 20rem;
   left: 30rem;
-}
-
-.arrow {
-  width: 7rem;
-}
-
-.arrow:nth-of-type(1) {
-  position: absolute;
-  top: 36.2rem;
-  left: -35rem;
-  transform: rotate(71deg);
-}
-
-.arrow:nth-of-type(2) {
-  position: absolute;
-  top: 13.3rem;
-  left: -36.3rem;
-  transform: rotate(110deg);
-}
-
-.arrow:nth-of-type(3) {
-  position: absolute;
-  top: -5.5rem;
-  left: -18.3rem;
-  transform: rotate(157deg);
-}
-
-.arrow:nth-of-type(4) {
-  position: absolute;
-  top: -6.1rem;
-  left: 9.5rem;
-  transform: rotate(-161deg);
-}
-
-.arrow:nth-of-type(5) {
-  position: absolute;
-  top: 12.9rem;
-  left: 29.4rem;
-  transform: rotate(-108deg);
-}
-
-.arrow:nth-of-type(6) {
-  position: absolute;
-  top: 36.4rem;
-  left: 28.1rem;
-  transform: rotate(-68deg);
 }
 
 .cards-wrapper {

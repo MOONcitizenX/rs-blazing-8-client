@@ -8,6 +8,7 @@ import { Separator } from '../basicComponents/separator';
 import { usePlayerState } from '../../store/playerStore';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
+import { TableArrows } from '../basicComponents/tableArrows';
 
 interface StartPageProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
@@ -43,6 +44,7 @@ export const StartPage = ({ socket }: StartPageProps) => {
     <div className={style.startPageWrapper}>
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
+          <TableArrows />
           <AvatarChooseComponent />
           <UserRegistration
             userName={userName}
