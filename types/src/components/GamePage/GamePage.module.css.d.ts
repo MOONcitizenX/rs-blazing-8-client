@@ -5,7 +5,7 @@ declare const styles: {
   readonly "tableFront": string;
   readonly "player": string;
   readonly "avatar": string;
-  readonly "hint": string;
+  readonly "name": string;
   readonly "arrow": string;
   readonly "cardsWrapper": string;
   readonly "myCard": string;

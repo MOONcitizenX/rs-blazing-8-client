@@ -47,7 +47,7 @@ export const GamePage = () => {
                       src={avatarsArray[+el.avatarId]}
                       alt="Player avatar"
                     />
-                    <div className={style.hint}>{el.name}</div>
+                    <div className={style.name}>{el.name}</div>
                   </div>
                 );
               }
