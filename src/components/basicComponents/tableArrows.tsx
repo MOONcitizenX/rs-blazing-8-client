@@ -6,16 +6,8 @@ export const TableArrows = () => {
   const direction = useRoomState((state) => state.direction);
   const angles = [-109, -70, -23, 19, 74, 113];
 
-  const changeDirection = useRoomState((state) => state.changeDirection);
-
   return (
-    <button
-      type="button"
-      className={style.arrowsWrapper}
-      onClick={() => {
-        changeDirection('ACW');
-      }}
-    >
+    <div className={style.arrowsWrapper}>
       {angles.map((el) => {
         return (
           <img
@@ -31,6 +23,6 @@ export const TableArrows = () => {
           />
         );
       })}
-    </button>
+    </div>
   );
 };
