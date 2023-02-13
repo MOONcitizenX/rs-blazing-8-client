@@ -15,6 +15,7 @@ import { useRoomState } from '../../store/roomStore';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { CopyButton } from '../basicComponents/copyButton';
+import { TableArrows } from '../basicComponents/tableArrows';
 
 interface LobbyPageProps {
   socket: Socket<ServerToClientEvents, ClientToServerEvents>;
@@ -50,6 +51,7 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
       <Players />
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
+          <TableArrows />
           {isHost ? (
             <div className={style.hostTable}>
               <div className={style.roomIdWrapper}>
