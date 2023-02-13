@@ -50,7 +50,7 @@ export const GamePage = () => {
           <div className={style.cardsWrapper}>
             {myCards.map((el, index) => {
               return (
-                <div key={`${el.value}-${el.color}`}>
+                <div key={`${el.value}-${el.color}-${index + 1}`}>
                   <img
                     style={{
                       transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,

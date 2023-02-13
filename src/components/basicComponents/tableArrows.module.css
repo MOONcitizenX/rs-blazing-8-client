@@ -4,50 +4,8 @@
 
 .arrow {
   width: 7rem;
+  transition: all 1.5s ease;
 }
-/*
-.arrow:nth-of-type(1) {
-  position: absolute;
-  top: 36.2rem;
-  left: -35rem;
-  transform: rotate(71deg);
-}
-
-.arrow:nth-of-type(2) {
-  position: absolute;
-  top: 13.3rem;
-  left: -36.3rem;
-  transform: rotate(110deg);
-}
-
-.arrow:nth-of-type(3) {
-  position: absolute;
-  top: -5.5rem;
-  left: -18.3rem;
-  transform: rotate(157deg);
-}
-
-.arrow:nth-of-type(4) {
-  position: absolute;
-  top: -6.1rem;
-  left: 9.5rem;
-  transform: rotate(-161deg);
-}
-
-.arrow:nth-of-type(5) {
-  position: absolute;
-  top: 12.9rem;
-  left: 29.4rem;
-  transform: rotate(-108deg);
-}
-
-.arrow:nth-of-type(6) {
-  position: absolute;
-  top: 36.4rem;
-  left: 28.1rem;
-  transform: rotate(-68deg);
-}
-*/
 
 .arrow:nth-of-type(1) {
   position: absolute;
@@ -89,4 +47,17 @@
   top: 36.4rem;
   left: 28.1rem;
   transform: rotate(113deg);
+}
+
+.rotateCW {
+  animation: rotateCW 1s linear;
+}
+
+@keyframes rotateCW {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(540deg);
+  }
 }
