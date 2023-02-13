@@ -16,13 +16,14 @@ export const createSocket = () => {
   socket.on('get-me', (data) => {
     usePlayerState.setState({ id: data.id });
   });
-
+  // TODO Save all state?
   socket.on('room-state', (data) => {
     useRoomState.setState({ players: data.players });
     useRoomState.setState({ closedDeck: data.closedDeck });
     useRoomState.setState({ roomId: data.roomId });
     useRoomState.setState({ status: data.status });
     useRoomState.setState({ winner: data.winner });
+    useRoomState.setState({ topCard: data.topCard });
   });
 
   socket.on('error', (data) => {
