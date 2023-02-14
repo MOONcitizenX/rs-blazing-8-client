@@ -58,7 +58,7 @@ export const Chat = ({ socket }: ChatProps) => {
             {chatMessages.map((message, index, array) =>
               index === array.length - 1 ? (
                 <ChatItem
-                  key={Date.now()}
+                  key={message.messageId}
                   author={message.author}
                   timeStamp={message.timeStamp}
                   message={message.message}
