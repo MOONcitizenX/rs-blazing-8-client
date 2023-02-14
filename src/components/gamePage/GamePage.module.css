@@ -104,3 +104,9 @@
   top: 20rem;
   left: 30rem;
 }
+
+.skip-turn {
+  position: absolute;
+  z-index: 2;
+  bottom: 5%;
+}

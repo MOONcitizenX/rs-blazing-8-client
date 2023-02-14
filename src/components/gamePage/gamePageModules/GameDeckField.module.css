@@ -60,9 +60,16 @@
 
 .deck,
 .card {
-  cursor: pointer;
   height: 20vh;
   border-radius: 1rem;
+}
+
+.deck {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: auto;
 }
 
 .card.hidden {

@@ -3,8 +3,6 @@ import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
 import { useRoomState } from './store/roomStore';
 import style from './App.module.css';
-import { ServerToClientEvents } from './API/types/interfaces/ServerToClientEvents';
-import { ClientToServerEvents } from './API/types/interfaces/ClientToServerEvents';
 
 import { Menu } from './components/menuComponent/Menu';
 import { usePlayerState } from './store/playerStore';
@@ -15,7 +13,7 @@ import { GamePage } from './components/gamePage/GamePage';
 const musicPlayer = new MusicPlayer();
 
 interface AppProps {
-  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+  socket: Socket;
 }
 export const App = ({ socket }: AppProps) => {
   const musicValue = usePlayerState((state) => state.music);
