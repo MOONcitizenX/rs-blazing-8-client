@@ -66,7 +66,7 @@ export const Chat = ({ socket }: ChatProps) => {
                 />
               ) : (
                 <ChatItem
-                  key={Date.now()}
+                  key={message.messageId}
                   author={message.author}
                   timeStamp={message.timeStamp}
                   message={message.message}
