@@ -1,4 +1,4 @@
-import { ChatSMessage } from '../types/chatMessage';
+import { ChatSMessage } from '../types/ChatMessage';
 
 export interface ChatStoreTypes {
   messages: ChatSMessage[];
