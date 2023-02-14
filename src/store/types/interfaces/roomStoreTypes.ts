@@ -12,4 +12,5 @@ export interface RoomStoreTypes {
   playerTurn: string;
   winner: string | null;
   players: IPlayerResponse[];
+  changeDirection: (direction: 'CW' | 'ACW') => void;
 }
