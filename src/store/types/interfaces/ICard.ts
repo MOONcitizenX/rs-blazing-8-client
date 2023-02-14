@@ -4,4 +4,5 @@ export interface ICard {
   value: string;
   color: CardColor;
   image: string;
+  cardId: string;
 }

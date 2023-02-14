@@ -29,11 +29,17 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
   const cardPlayHandler = (
     e: React.MouseEvent<HTMLImageElement>,
     isPlayable: boolean,
+    cardId: string,
     cardValue: string,
-    cardColor: string,
   ) => {
     if (isPlayable) {
-      socket.emit('play-card', { card: `${cardValue}${cardColor}` });
+      socket.emit('play-card', { card: cardId });
+      if (cardValue === 'Q') {
+        // TODO reverse
+      }
+      if (cardValue === 'swap') {
+        // TODO swap
+      }
     }
   };
 
@@ -45,7 +51,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
           <div key={`${card.value}-${card.color}`}>
             <img
               aria-hidden
-              onClick={(e) => cardPlayHandler(e, isPlayable, card.value, card.color)}
+              onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
               style={{
                 transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,
               }}
