@@ -42,8 +42,8 @@ export const StartPage = ({ socket }: StartPageProps) => {
   return (
     <div className={style.startPageWrapper}>
       <div className={style.tableWrapper}>
+        <TableArrows />
         <div className={style.startTable}>
-          <TableArrows />
           <AvatarChooseComponent />
           <UserRegistration
             userName={userName}
