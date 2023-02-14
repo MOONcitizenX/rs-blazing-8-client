@@ -6,4 +6,5 @@ export interface ClientToServerEvents {
   'create-room': (data: IUserCreateRoom) => void;
   'leave-room': () => void;
   'start-game': () => void;
+  'add-chat-message': ({ message }: { message: string }) => void;
 }
