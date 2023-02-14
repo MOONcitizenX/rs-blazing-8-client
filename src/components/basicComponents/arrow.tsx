@@ -1,3 +1,5 @@
+import { stat } from 'fs';
+import { usePlayerState } from '../../store/playerStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
 import styles from './arrow.module.css';
 
@@ -7,9 +9,10 @@ interface ArrowProps {
 }
 export const Arrow = ({ className, onClick }: ArrowProps) => {
   // arrow directions in className: top, bottom, right. init state left
+  const isSoundOn = usePlayerState((state) => state.sound);
   const player = new SoundPlayer();
   const clicKHandler = () => {
-    player.play('click');
+    if (isSoundOn) player.play('click');
     onClick();
   };
   return (

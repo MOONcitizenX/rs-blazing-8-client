@@ -8,27 +8,27 @@ import { SettingsIcon } from './SettingsIcon';
 const player = new SoundPlayer();
 
 export const Menu = () => {
-  const soundValue = usePlayerState((state) => state.sound);
+  const isSoundOn = usePlayerState((state) => state.sound);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const changeMusicValue = usePlayerState((state) => state.changeMusicValue);
   const changeSoundValue = usePlayerState((state) => state.changeSoundValue);
 
   const onSettingsClickHandler = () => {
-    if (soundValue) player.play('click');
+    if (isSoundOn) player.play('click');
     setIsMenuOpened(!isMenuOpened);
   };
   const closeClickHandler = () => {
-    if (soundValue) player.play('click');
+    if (isSoundOn) player.play('click');
     setIsMenuOpened(false);
   };
 
   const musicValueChangeHandler = (value: boolean) => {
-    if (soundValue) player.play('click');
+    if (isSoundOn) player.play('click');
     changeMusicValue(value);
   };
 
   const soundValueChangeHandler = (value: boolean) => {
-    if (soundValue) player.play('click');
+    if (isSoundOn) player.play('click');
     changeSoundValue(value);
   };
 
@@ -51,7 +51,7 @@ export const Menu = () => {
           </li>
           <li className={styles.menu__item}>
             <span>Sound Effects</span>
-            <CheckBox isOn={soundValue} onChange={soundValueChangeHandler} />
+            <CheckBox isOn={isSoundOn} onChange={soundValueChangeHandler} />
           </li>
         </ul>
       </div>
