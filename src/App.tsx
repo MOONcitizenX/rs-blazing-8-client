@@ -32,7 +32,7 @@ export const App = ({ socket }: AppProps) => {
     if (status === 'lobby') {
       return <LobbyPage socket={socket} />;
     }
-    return <GamePage />;
+    return <GamePage socket={socket} />;
   };
 
   const background = usePlayerState((state) => state.background);

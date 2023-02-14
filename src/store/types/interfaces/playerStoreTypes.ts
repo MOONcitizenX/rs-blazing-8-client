@@ -6,8 +6,8 @@ export interface PlayerStoreTypes {
   sound: boolean;
   music: boolean;
   avatarImg: string;
-  background?: unknown;
-  cardback?: unknown;
+  background: string;
+  cardback: string;
   emotion?: unknown;
   timer?: unknown;
   cardsInHand?: unknown;

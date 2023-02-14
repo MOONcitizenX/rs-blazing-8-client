@@ -6,8 +6,6 @@ declare const styles: {
   readonly "player": string;
   readonly "avatar": string;
   readonly "name": string;
-  readonly "cardsWrapper": string;
-  readonly "myCard": string;
 };
 export = styles;
 

@@ -1,10 +1,15 @@
 import { IPlayerResponse } from './IPlayerResponse';
 import { ICard } from '../../../store/types/interfaces/ICard';
+import { TurnDirection } from '../../../store/types/types/TurnDirection';
+import { RoomStateStatus } from '../../../store/types/types/RoomStateStatus';
 
 export interface IRoomResponse {
   players: IPlayerResponse[];
+  topCard: ICard;
   roomId: string;
-  status: string;
+  status: RoomStateStatus;
   winner: string;
-  closedDeck: ICard[];
+  direction: TurnDirection;
+  playerTurn: string;
+  closedDeck: number;
 }
