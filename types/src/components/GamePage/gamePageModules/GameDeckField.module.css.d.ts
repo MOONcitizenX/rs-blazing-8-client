@@ -3,6 +3,7 @@ declare const styles: {
   readonly "deckField": string;
   readonly "deck": string;
   readonly "card": string;
+  readonly "disabled": string;
   readonly "hidden": string;
 };
 export = styles;

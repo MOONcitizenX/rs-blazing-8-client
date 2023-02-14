@@ -12,13 +12,12 @@ import cardback1 from '../../assets/images/cardback1.png';
 import cardback2 from '../../assets/images/cardback2.png';
 import { backgroundsArray, cardbacksArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
-import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { CopyButton } from '../basicComponents/copyButton';
 import { TableArrows } from '../basicComponents/tableArrows';
 
 interface LobbyPageProps {
-  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+  socket: Socket<ClientToServerEvents>;
 }
 
 const minPlayers = 2;
