@@ -14,9 +14,9 @@ interface ButtonProps {
 export const Button = ({ attributes, children }: ButtonProps) => {
   const { onClick, className, type, disabled } = attributes;
   const player = new SoundPlayer();
-  const isSoundEffect = usePlayerState((state) => state.sound);
+  const isSoundOn = usePlayerState((state) => state.sound);
   const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (isSoundEffect) player.play('click');
+    if (isSoundOn) player.play('click');
     if (e && onClick) {
       onClick(e);
     }

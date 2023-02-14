@@ -12,9 +12,7 @@ export const Arrow = ({ className, onClick }: ArrowProps) => {
   const isSoundOn = usePlayerState((state) => state.sound);
   const player = new SoundPlayer();
   const clicKHandler = () => {
-    if (isSoundOn) {
-      player.play('click');
-    }
+    if (isSoundOn) player.play('click');
     onClick();
   };
   return (
