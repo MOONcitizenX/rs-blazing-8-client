@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { avatarsArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
@@ -10,11 +11,15 @@ import tableFrontImage from '../../assets/images/table-front.png';
 import { TableArrows } from '../basicComponents/tableArrows';
 import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
+import { Button } from '../basicComponents/button';
+import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 
 interface GamePageProps {
-  socket: Socket;
+  socket: Socket<ClientToServerEvents>;
 }
+
 export const GamePage = ({ socket }: GamePageProps) => {
+  const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = usePlayerState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -27,7 +32,13 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const cardTakeHandler = () => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
+      setIsTurnCanBeSkipped(true);
     }
+  };
+
+  const endTurnHandler = () => {
+    socket.emit('pass-turn');
+    setIsTurnCanBeSkipped(false);
   };
 
   return (
@@ -56,6 +67,15 @@ export const GamePage = ({ socket }: GamePageProps) => {
             })}
           </div>
           <CardsInHand socket={socket} isPlayerTurn={isPlayerTurn} cardsInHand={myCards} />
+          <Button
+            attributes={{
+              disabled: !isTurnCanBeSkipped,
+              onClick: endTurnHandler,
+              className: style.skipTurn,
+            }}
+          >
+            Skip move
+          </Button>
           {topCard ? <CardHint card={topCard} /> : null}
         </div>
       </div>

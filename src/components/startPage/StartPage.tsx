@@ -6,12 +6,11 @@ import { UserConnect } from '../startPageComponents/userConnectComponent/UserCon
 import { AvatarChooseComponent } from '../startPageComponents/userAvatarChooseComponent/userAvatarChooseComponent';
 import { Separator } from '../basicComponents/separator';
 import { usePlayerState } from '../../store/playerStore';
-import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { TableArrows } from '../basicComponents/tableArrows';
 
 interface StartPageProps {
-  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+  socket: Socket<ClientToServerEvents>;
 }
 
 export const StartPage = ({ socket }: StartPageProps) => {
