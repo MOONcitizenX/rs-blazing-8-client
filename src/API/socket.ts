@@ -4,6 +4,7 @@ import { ServerToClientEvents } from './types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from './types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../store/playerStore';
 import { useRoomState } from '../store/roomStore';
+import { cardMap } from '../utils/cardsMap';
 
 export const createSocket = () => {
   const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('ws://localhost:5555', {
@@ -25,12 +26,12 @@ export const createSocket = () => {
     useRoomState.setState({ roomId: data.roomId });
     useRoomState.setState({ status: data.status });
     useRoomState.setState({ winner: data.winner });
-    useRoomState.setState({ topCard: data.topCard });
+    useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
   });
 
   socket.on('error', (data) => {
     // todo notification with error
-    alert(data.message);
+    alert(data?.message);
   });
 
   return socket;
