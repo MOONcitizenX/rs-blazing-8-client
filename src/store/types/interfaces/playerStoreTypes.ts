@@ -1,5 +1,4 @@
 export interface PlayerStoreTypes {
-  id: string;
   name: string;
   avatarId: string;
   host: boolean;

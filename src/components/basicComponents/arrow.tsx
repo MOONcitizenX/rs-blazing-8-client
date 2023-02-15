@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import { usePlayerState } from '../../store/playerStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
 import styles from './arrow.module.css';

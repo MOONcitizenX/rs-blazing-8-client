@@ -4,7 +4,6 @@ import { avatarsArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
-import { usePlayerState } from '../../store/playerStore';
 import { cardMap } from '../../utils/cardsMap';
 import { CardHint } from '../basicComponents/cardHint';
 import { TableArrows } from '../basicComponents/tableArrows';
@@ -20,7 +19,7 @@ interface GamePageProps {
 export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
-  const myId = usePlayerState((state) => state.id);
+  const myId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
   const myIndex = players.findIndex((el) => el.id === myId);
   const orderedPlayers = [...players.slice(myIndex), ...players.slice(0, myIndex)];

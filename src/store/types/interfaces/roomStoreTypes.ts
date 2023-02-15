@@ -13,6 +13,7 @@ export interface RoomStoreTypes {
   winner: string | null;
   players: IPlayerResponse[];
   isCardSuitChoose: boolean;
+  id: string;
   changeDirection: (direction: TurnDirection) => void;
   setIsCardSuitChoose: (isCardSuitChoose: boolean) => void;
 }
