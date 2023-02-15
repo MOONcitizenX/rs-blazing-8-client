@@ -26,10 +26,11 @@ export const Menu = () => {
   };
 
   const onSettingsClickHandler = () => {
-    if (isSoundOn) player.play('click');
     if (isMenuOpened) {
       closeClickHandler();
+      return;
     }
+    if (isSoundOn) player.play('click');
     setIsMenuOpened(!isMenuOpened);
   };
 

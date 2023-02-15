@@ -18,24 +18,16 @@ const soundEvents: ISoundEvents = {
 };
 
 export class SoundPlayer {
-  player = new Audio();
-
-  isPlay: boolean;
+  player: HTMLAudioElement;
 
   events = soundEvents;
 
   constructor() {
-    this.isPlay = false;
+    this.player = new Audio();
   }
 
   play(option: SoundEvents) {
-    if (!this.isPlay) {
-      this.isPlay = true;
-      this.player.src = this.events[option];
-      this.player.play();
-      this.player.onended = () => {
-        this.isPlay = false;
-      };
-    }
+    this.player.src = this.events[option];
+    this.player.play();
   }
 }
