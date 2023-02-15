@@ -27,8 +27,8 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const orderedPlayers = [...players.slice(myIndex), ...players.slice(0, myIndex)];
   const myCards = orderedPlayers[0].cards.map((el) => cardMap[el]);
   const topCard = useRoomState((state) => state.topCard);
-
   const isPlayerTurn = playerTurn === myId;
+
   const cardTakeHandler = () => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
@@ -46,7 +46,12 @@ export const GamePage = ({ socket }: GamePageProps) => {
       <Players />
       <div className={style.tableWrapper}>
         <div className={style.startTable}>
-          <GameDeckField cardTakeHandler={cardTakeHandler} />
+          <GameDeckField
+            socket={socket}
+            isCardTaken={isTurnCanBeSkipped}
+            isPlayerTurn={isPlayerTurn}
+            cardTakeHandler={cardTakeHandler}
+          />
           <img className={style.tableFront} src={tableFrontImage} alt="Table" />
           <TableArrows />
           <div className={style.players}>

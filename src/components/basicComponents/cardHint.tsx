@@ -18,7 +18,6 @@ interface CardHintProps {
 
 export const CardHint = ({ card }: CardHintProps) => {
   const { value, color } = card;
-
   if (card !== null) {
     return (
       <div className={style.cardHint}>

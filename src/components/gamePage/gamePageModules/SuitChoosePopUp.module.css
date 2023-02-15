@@ -1,0 +1,15 @@
+.choose-suit-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500vw;
+  height: 500vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 4;
+  backdrop-filter: blur(10px);
+}
+
+.choose-suit {
+  cursor: pointer;
+}

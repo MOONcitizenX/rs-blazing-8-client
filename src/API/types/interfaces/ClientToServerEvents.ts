@@ -1,6 +1,9 @@
 import { IUserCreateRoom } from './IUserCreateRoom';
 import { IJoinRoom } from './IJoinRoom';
 
+interface ICardSend {
+  card: string;
+}
 export interface ClientToServerEvents {
   'join-room': (data: IJoinRoom) => void;
   'create-room': (data: IUserCreateRoom) => void;
@@ -8,4 +11,6 @@ export interface ClientToServerEvents {
   'start-game': () => void;
   'pass-turn': () => void;
   'draw-card': () => void;
+  'play-card': (card: ICardSend) => void;
+  'choose-color': () => void;
 }

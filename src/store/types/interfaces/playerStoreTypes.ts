@@ -9,8 +9,7 @@ export interface PlayerStoreTypes {
   background: string;
   cardback: string;
   emotion?: unknown;
-  timer?: unknown;
-  cardsInHand?: unknown;
+
   setId: (id: string) => void;
   changeAvatarId: (avatarId: string) => void;
   addName: (name: string) => void;

@@ -7,4 +7,5 @@ export interface ServerToClientEvents {
   'get-me': (data: IGetMeResponse) => void;
   'leave-success': () => void;
   error: (message: string) => void;
+  'choose-color': (value: boolean) => void;
 }

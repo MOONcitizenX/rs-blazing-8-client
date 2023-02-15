@@ -29,6 +29,10 @@ export const createSocket = () => {
     useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
   });
 
+  socket.on('choose-color', (data) => {
+    useRoomState.setState({ isCardSuitChoose: data });
+  });
+
   socket.on('error', (data) => {
     // todo notification with error
     alert(data?.message);
