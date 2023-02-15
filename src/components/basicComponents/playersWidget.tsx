@@ -23,7 +23,7 @@ export const Players = (/* accepts players data */) => {
         {players.map((el) => {
           return (
             <div key={el.id} className={style.player}>
-              <img className={style.avatar} src={avatarsArray[+el.avatarId]} alt="Players avatar" />
+              <img className={style.avatar} src={avatarsArray[+el.avatarId]} alt="Player avatar" />
               <div className={style.hint}>{el.name}</div>
             </div>
           );
