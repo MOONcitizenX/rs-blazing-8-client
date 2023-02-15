@@ -14,6 +14,7 @@ export const useRoomState = create(
     direction: 'CW',
     playerTurn: '1',
     isCardSuitChoose: false,
+    id: '',
 
     changeDirection: (direction: TurnDirection) =>
       set((state: RoomStoreTypes) => {

@@ -7,7 +7,6 @@ export const usePlayerState = create<PlayerStoreTypes>()(
   devtools(
     persist(
       (set) => ({
-        id: '',
         name: '',
         avatarId: '0',
         avatarImg: avatarsArray[0],
