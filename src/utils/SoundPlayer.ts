@@ -19,20 +19,25 @@ const soundEvents: ISoundEvents = {
 
 export class SoundPlayer {
   instance: null | SoundPlayer = null;
+
   player = new Audio();
+
+  isPlay: boolean;
 
   events = soundEvents;
 
   constructor() {
-    if (this.instance) {
-      return this.instance;
-    }
-
-    this.instance = this;
+    this.isPlay = false;
   }
 
   play(option: SoundEvents) {
-    this.player.src = this.events[option];
-    this.player.play();
+    if (!this.isPlay) {
+      this.isPlay = true;
+      this.player.src = this.events[option];
+      this.player.play();
+      this.player.onended = () => {
+        this.isPlay = false;
+      };
+    }
   }
 }

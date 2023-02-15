@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { animated, useSpring } from '@react-spring/web';
 import { usePlayerState } from '../../store/playerStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
 import { CheckBox } from '../basicComponents/checkBox';
@@ -13,13 +14,23 @@ export const Menu = () => {
   const changeMusicValue = usePlayerState((state) => state.changeMusicValue);
   const changeSoundValue = usePlayerState((state) => state.changeSoundValue);
 
-  const onSettingsClickHandler = () => {
-    if (isSoundOn) player.play('click');
-    setIsMenuOpened(!isMenuOpened);
-  };
+  const props = useSpring({
+    opacity: isMenuOpened ? 1 : 0,
+    transform: isMenuOpened ? 'translateY(0)' : 'translateY(-200rem)',
+    config: { duration: 500 },
+  });
+
   const closeClickHandler = () => {
     if (isSoundOn) player.play('click');
     setIsMenuOpened(false);
+  };
+
+  const onSettingsClickHandler = () => {
+    if (isSoundOn) player.play('click');
+    if (isMenuOpened) {
+      closeClickHandler();
+    }
+    setIsMenuOpened(!isMenuOpened);
   };
 
   const musicValueChangeHandler = (value: boolean) => {
@@ -34,11 +45,12 @@ export const Menu = () => {
 
   return (
     <>
-      <div
-        className={isMenuOpened ? `${styles.menu} ${styles.opened}` : styles.menu}
+      <animated.div
+        className={styles.menu}
         onClick={closeClickHandler}
         onKeyDown={closeClickHandler}
         role="presentation"
+        style={{ ...props }}
       >
         <ul
           onClick={(e) => e.stopPropagation()}
@@ -54,7 +66,7 @@ export const Menu = () => {
             <CheckBox isOn={isSoundOn} onChange={soundValueChangeHandler} />
           </li>
         </ul>
-      </div>
+      </animated.div>
       <SettingsIcon onClick={onSettingsClickHandler} />
     </>
   );
