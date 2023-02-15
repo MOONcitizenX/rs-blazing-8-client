@@ -18,8 +18,6 @@ const soundEvents: ISoundEvents = {
 };
 
 export class SoundPlayer {
-  instance: null | SoundPlayer = null;
-
   player = new Audio();
 
   isPlay: boolean;
