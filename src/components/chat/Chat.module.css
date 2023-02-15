@@ -6,6 +6,7 @@
   max-width: 20%;
   max-height: 40%;
   overflow: hidden;
+  z-index: 5;
 
   display: flex;
   justify-content: flex-end;

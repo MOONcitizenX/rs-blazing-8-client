@@ -132,6 +132,6 @@
 
 .skip-turn {
   position: absolute;
-  z-index: 5;
+  z-index: 2;
   top: -7%;
 }

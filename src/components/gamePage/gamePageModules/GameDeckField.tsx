@@ -3,7 +3,6 @@ import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
-import { cardMap } from '../../../utils/cardsMap';
 import styles from './GameDeckField.module.css';
 import { SuitChooseAnimation } from './SuitChooseAnimation';
 import { SuitChoosePopUp } from './SuitChoosePopUp';
@@ -22,8 +21,7 @@ export const GameDeckField = ({
 }: GameDeckFieldProps) => {
   const isCardSuitChoose = useRoomState((state) => state.isCardSuitChoose);
   const cardBack = usePlayerState((state) => state.cardback);
-  const topCardValue = useRoomState((state) => state.topCard);
-  const topCardData = cardMap[`${topCardValue?.cardId}`];
+  const topCard = useRoomState((state) => state.topCard);
   const isSuitChooseAnimation = isCardSuitChoose && !isPlayerTurn;
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
 
@@ -49,7 +47,7 @@ export const GameDeckField = ({
           src={cardBack}
           alt="deck"
         />
-        <img className={styles.card} src={topCardData.image} alt="card" />
+        <img className={styles.card} src={topCard?.image || undefined} alt="card" />
       </div>
     </div>
   );
