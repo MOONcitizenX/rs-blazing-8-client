@@ -3,6 +3,7 @@ declare const styles: {
   readonly "tableWrapper": string;
   readonly "startTable": string;
   readonly "tableFront": string;
+  readonly "players": string;
   readonly "player": string;
   readonly "avatar": string;
   readonly "name": string;

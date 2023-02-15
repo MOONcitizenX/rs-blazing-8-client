@@ -1,5 +1,7 @@
 .players-wrapper {
   position: absolute;
+  top: 0;
+  left: 0;
   height: 95vh;
   width: 7rem;
   margin: 1rem;

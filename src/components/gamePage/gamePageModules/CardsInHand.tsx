@@ -48,7 +48,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
       {cardsInHand.map((card, index) => {
         const isPlayable = isCardPlayable(cardOnTop, card) && isPlayerTurn;
         return (
-          <div key={`${card.value}-${card.color}`}>
+          <div className={styles.cardWrapper} key={`${card.value}-${card.color}`}>
             <img
               aria-hidden
               onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
