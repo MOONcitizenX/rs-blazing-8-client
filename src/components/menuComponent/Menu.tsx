@@ -16,7 +16,7 @@ export const Menu = () => {
 
   const props = useSpring({
     opacity: isMenuOpened ? 1 : 0,
-    transform: isMenuOpened ? 'translateY(0)' : 'translateY(-200rem)',
+    transform: `translateY(${isMenuOpened ? '0' : '-220rem'})`,
     config: { duration: 500 },
   });
 
@@ -50,7 +50,7 @@ export const Menu = () => {
         onClick={closeClickHandler}
         onKeyDown={closeClickHandler}
         role="presentation"
-        style={{ ...props }}
+        style={props}
       >
         <ul
           onClick={(e) => e.stopPropagation()}
