@@ -7,7 +7,6 @@ import style from './GamePage.module.css';
 import { usePlayerState } from '../../store/playerStore';
 import { cardMap } from '../../utils/cardsMap';
 import { CardHint } from '../basicComponents/cardHint';
-import tableFrontImage from '../../assets/images/table-front.png';
 import { TableArrows } from '../basicComponents/tableArrows';
 import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
@@ -45,32 +44,32 @@ export const GamePage = ({ socket }: GamePageProps) => {
     <div className={style.startPageWrapper}>
       <Players />
       <div className={style.tableWrapper}>
+        <TableArrows />
+        <div className={style.tableFront}>{topCard ? <CardHint card={topCard} /> : null}</div>
+        <div className={style.players}>
+          {orderedPlayers.map((el, index) => {
+            if (index !== 0) {
+              return (
+                <div key={el.id} className={style.player}>
+                  <img
+                    className={style.avatar}
+                    src={avatarsArray[+el.avatarId]}
+                    alt="Player avatar"
+                  />
+                  <div className={style.name}>{el.name}</div>
+                </div>
+              );
+            }
+            return null;
+          })}
+        </div>
         <div className={style.startTable}>
           <GameDeckField
+            cardTakeHandler={cardTakeHandler}
             socket={socket}
             isCardTaken={isTurnCanBeSkipped}
             isPlayerTurn={isPlayerTurn}
-            cardTakeHandler={cardTakeHandler}
           />
-          <img className={style.tableFront} src={tableFrontImage} alt="Table" />
-          <TableArrows />
-          <div className={style.players}>
-            {orderedPlayers.map((el, index) => {
-              if (index !== 0) {
-                return (
-                  <div key={el.id} className={style.player}>
-                    <img
-                      className={style.avatar}
-                      src={avatarsArray[+el.avatarId]}
-                      alt="Player avatar"
-                    />
-                    <div className={style.name}>{el.name}</div>
-                  </div>
-                );
-              }
-              return null;
-            })}
-          </div>
           <CardsInHand socket={socket} isPlayerTurn={isPlayerTurn} cardsInHand={myCards} />
           <Button
             attributes={{
@@ -81,7 +80,6 @@ export const GamePage = ({ socket }: GamePageProps) => {
           >
             Skip move
           </Button>
-          {topCard ? <CardHint card={topCard} /> : null}
         </div>
       </div>
     </div>

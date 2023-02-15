@@ -1,14 +1,15 @@
 .deckFieldBorder {
-  background-color: #c15752;
+  background-color: var(--red-color);
   border: 0.2rem solid transparent;
   border-radius: 1rem;
-  top: 3vh;
+  top: 0;
   width: 25vw;
   height: 30vh;
   position: absolute;
   display: flex;
   padding: 2rem;
   flex-direction: column;
+  z-index: 3;
 }
 
 .deckFieldBorder::after,
@@ -49,7 +50,7 @@
 }
 
 .deckField {
-  background-color: #9d3a3b;
+  background-color: var(--dark-red-color);
   flex: 1;
   border-radius: 1rem;
   border: 0.3rem solid #fbf4a8;

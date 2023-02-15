@@ -19,5 +19,10 @@ export const useRoomState = create(
       set((state: RoomStoreTypes) => {
         return { ...state, direction };
       }),
+    setIsCardSuitChoose: (isCardSuitChoose: boolean) => {
+      set((state: RoomStoreTypes) => {
+        return { ...state, isCardSuitChoose };
+      });
+    },
   })),
 );

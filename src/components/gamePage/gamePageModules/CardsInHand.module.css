@@ -2,7 +2,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 36rem;
+  top: 5%;
   left: 5rem;
   transform: rotate(6deg);
 }
@@ -23,7 +23,7 @@
 }
 
 .my-card:hover {
-  top: -5rem;
+  top: 40%;
 }
 
 .active {

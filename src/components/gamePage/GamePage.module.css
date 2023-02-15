@@ -1,36 +1,65 @@
 .start-page-wrapper {
   min-width: 100vw;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
 }
 
 .table-wrapper {
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  background: no-repeat bottom/100vh url('../../assets/images/game-table.png');
+  background-image: url(/src/assets/images/game-table.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .start-table {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 30%;
+  top: 22%;
   left: 50%;
   transform: translate(-50%);
   gap: 1rem;
+  z-index: 1;
 }
 
 .table-front {
-  width: 73rem;
+  width: 90vw;
+  height: 15vh;
+  max-width: 148rem;
   position: absolute;
-  top: 42rem;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transform: translate(-50%);
+  background-image: url(/src/assets/images/table-front.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
   z-index: 2;
 }
 
+.players {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .player {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,31 +111,27 @@
 }
 
 .player:nth-of-type(1) {
-  position: absolute;
-  top: 20rem;
-  left: -42rem;
+  top: 46vh;
+  left: calc(50% - 43rem);
 }
 
 .player:nth-of-type(2) {
-  position: absolute;
-  top: -5rem;
-  left: -33rem;
+  top: 11vh;
+  left: calc(50% - 35rem);
 }
 
 .player:nth-of-type(3) {
-  position: absolute;
-  top: -5rem;
-  left: 21rem;
+  top: 11vh;
+  left: calc(50% + 23rem);
 }
 
 .player:nth-of-type(4) {
-  position: absolute;
-  top: 20rem;
-  left: 30rem;
+  top: 46vh;
+  left: calc(50% + 32rem);
 }
 
 .skip-turn {
   position: absolute;
-  z-index: 2;
-  bottom: 5%;
+  z-index: 5;
+  top: -7%;
 }

@@ -49,8 +49,8 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
     <div className={style.startPageWrapper}>
       <Players />
       <div className={style.tableWrapper}>
+        <TableArrows />
         <div className={style.startTable}>
-          <TableArrows />
           {isHost ? (
             <div className={style.hostTable}>
               <div className={style.roomIdWrapper}>

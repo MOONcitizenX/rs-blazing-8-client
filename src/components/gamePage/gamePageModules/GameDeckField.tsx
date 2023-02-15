@@ -23,7 +23,7 @@ export const GameDeckField = ({
   const isCardSuitChoose = useRoomState((state) => state.isCardSuitChoose);
   const cardBack = usePlayerState((state) => state.cardback);
   const topCardValue = useRoomState((state) => state.topCard);
-  const topCardData = cardMap[`${topCardValue?.value}${topCardValue?.color}`];
+  const topCardData = cardMap[`${topCardValue?.cardId}`];
   const isSuitChooseAnimation = isCardSuitChoose && !isPlayerTurn;
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
 
@@ -37,7 +37,7 @@ export const GameDeckField = ({
     <div className={styles.deckFieldBorder}>
       <div className={styles.deckField}>
         {isSuitChooseAnimation && <SuitChooseAnimation />}
-        {isSuitChoosePopUp && <SuitChoosePopUp />}
+        {isSuitChoosePopUp && <SuitChoosePopUp socket={socket} />}
         <img
           aria-hidden
           onClick={cardTakeClick}

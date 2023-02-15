@@ -6,10 +6,37 @@
   width: 500vw;
   height: 500vh;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 4;
+  z-index: 5;
   backdrop-filter: blur(10px);
 }
 
 .choose-suit {
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+}
+
+.middle {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.card-element {
+  width: 10vw;
+  height: 15vh;
   cursor: pointer;
 }

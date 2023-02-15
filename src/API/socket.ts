@@ -5,6 +5,7 @@ import { ClientToServerEvents } from './types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../store/playerStore';
 import { useRoomState } from '../store/roomStore';
 import { cardMap } from '../utils/cardsMap';
+import { useChatState } from '../store/chatStore';
 
 export const createSocket = () => {
   const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('ws://localhost:5555', {
@@ -29,13 +30,17 @@ export const createSocket = () => {
     useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
   });
 
+  socket.on('get-chat', (messages) => {
+    useChatState.setState({ messages });
+  });
+
   socket.on('choose-color', (data) => {
     useRoomState.setState({ isCardSuitChoose: data });
   });
 
   socket.on('error', (data) => {
     // todo notification with error
-    alert(data?.message);
+    alert(data);
   });
 
   return socket;
