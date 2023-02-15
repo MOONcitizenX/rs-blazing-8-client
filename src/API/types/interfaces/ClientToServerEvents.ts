@@ -8,4 +8,5 @@ export interface ClientToServerEvents {
   'start-game': () => void;
   'pass-turn': () => void;
   'draw-card': () => void;
+  'add-chat-message': ({ message }: { message: string }) => void;
 }

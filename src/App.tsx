@@ -9,6 +9,7 @@ import { usePlayerState } from './store/playerStore';
 import { backgroundsArray } from './store/basicMedia';
 import { MusicPlayer } from './utils/MusicPlayer';
 import { GamePage } from './components/gamePage/GamePage';
+import { Chat } from './components/chat/Chat';
 
 const musicPlayer = new MusicPlayer();
 
@@ -23,7 +24,7 @@ export const App = ({ socket }: AppProps) => {
     musicPlayer.pause();
   }
 
-  const mainView = (status: string) => {
+  const mainView = (status: string | null) => {
     if (!status) {
       return <StartPage socket={socket} />;
     }
@@ -44,6 +45,7 @@ export const App = ({ socket }: AppProps) => {
     >
       <Menu />
       {mainView(status)}
+      <Chat socket={socket} />
     </div>
   );
 };
