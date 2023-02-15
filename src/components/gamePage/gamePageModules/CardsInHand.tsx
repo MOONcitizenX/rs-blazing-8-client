@@ -9,10 +9,14 @@ interface CardsInHandProps {
   cardsInHand: ICard[];
   isPlayerTurn: boolean;
   socket: Socket<ClientToServerEvents>;
+  cardWasPlayed: () => void;
 }
-
-export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandProps) => {
-  const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
+export const CardsInHand = ({
+  socket,
+  cardsInHand,
+  isPlayerTurn,
+  cardWasPlayed,
+}: CardsInHandProps) => {
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
   const angle = 35;
@@ -36,6 +40,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
     cardValue: string,
   ) => {
     if (isPlayable) {
+      cardWasPlayed();
       if (cardValue === '8') {
         socket.emit('choose-color');
         return;
@@ -60,7 +65,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
                 transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,
               }}
               className={classNames(styles.myCard, { [styles.active]: isPlayable })}
-              src={card.value === '8' ? eightCardImage : card.image}
+              src={card.image}
               alt="Card"
             />
           </div>
