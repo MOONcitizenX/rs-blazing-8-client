@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { Socket } from 'socket.io-client';
+import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { useRoomState } from '../../../store/roomStore';
 import { ICard } from '../../../store/types/interfaces/ICard';
 import styles from './CardsInHand.module.css';
@@ -7,9 +8,11 @@ import styles from './CardsInHand.module.css';
 interface CardsInHandProps {
   cardsInHand: ICard[];
   isPlayerTurn: boolean;
-  socket: Socket;
+  socket: Socket<ClientToServerEvents>;
 }
+
 export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandProps) => {
+  const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
   const angle = 35;
@@ -17,28 +20,29 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
   const increment = angle / (count + 1);
 
   const isCardPlayable = (topCard: ICard | null, playerCard: ICard) => {
-    return topCard
-      ? topCard &&
-          (playerCard.value === topCard.value ||
-            playerCard.color === topCard.color ||
-            playerCard.value === '8' ||
-            playerCard.value === 'swap')
-      : true;
+    return (
+      topCard &&
+      (playerCard.value === topCard.value ||
+        playerCard.color === topCard.color ||
+        playerCard.value === '8' ||
+        playerCard.value === 'swap')
+    );
   };
 
   const cardPlayHandler = (
     e: React.MouseEvent<HTMLImageElement>,
-    isPlayable: boolean,
+    isPlayable: boolean | null,
     cardId: string,
     cardValue: string,
   ) => {
     if (isPlayable) {
-      socket.emit('play-card', { card: cardId });
-      if (cardValue === 'Q') {
-        // TODO reverse
+      if (cardValue === '8') {
+        socket.emit('choose-color');
+        return;
       }
+      socket.emit('play-card', { card: cardId });
       if (cardValue === 'swap') {
-        // TODO swap
+        // TODO swap animations
       }
     }
   };
@@ -56,7 +60,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
                 transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,
               }}
               className={classNames(styles.myCard, { [styles.active]: isPlayable })}
-              src={card.image}
+              src={card.value === '8' ? eightCardImage : card.image}
               alt="Card"
             />
           </div>

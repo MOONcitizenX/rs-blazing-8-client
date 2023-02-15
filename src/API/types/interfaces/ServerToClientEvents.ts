@@ -9,4 +9,5 @@ export interface ServerToClientEvents {
   'leave-success': () => void;
   'get-chat': (messages: ChatSMessage[]) => void;
   error: (message: string) => void;
+  'choose-color': (value: boolean) => void;
 }

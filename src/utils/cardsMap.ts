@@ -46,7 +46,7 @@ export const cardMap: Record<string, ICard> = {
   '8B': {
     value: '8',
     color: 'B',
-    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png',
+    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/blue/8.png',
     cardId: '8B',
   },
   '9B': {
@@ -124,7 +124,7 @@ export const cardMap: Record<string, ICard> = {
   '8G': {
     value: '8',
     color: 'G',
-    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png',
+    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/green/8.png',
     cardId: '8G',
   },
   '9G': {
@@ -202,7 +202,7 @@ export const cardMap: Record<string, ICard> = {
   '8R': {
     value: '8',
     color: 'R',
-    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png',
+    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/red/8.png',
     cardId: '8R',
   },
   '9R': {
@@ -280,7 +280,7 @@ export const cardMap: Record<string, ICard> = {
   '8Y': {
     value: '8',
     color: 'Y',
-    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png',
+    image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/yellow/8.png',
     cardId: '8Y',
   },
   '9Y': {

@@ -17,8 +17,7 @@ export const usePlayerState = create<PlayerStoreTypes>()(
         background: backgroundsArray[0],
         cardback: cardbacksArray[0],
         emotion: null,
-        timer: 0,
-        cardsInHand: 0,
+
         changeAvatarImg: (avatarImg: string) =>
           set((state: PlayerStoreTypes) => {
             return { ...state, avatarImg };
