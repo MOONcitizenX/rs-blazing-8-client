@@ -32,44 +32,21 @@ export const SuitChoosePopUp = ({ socket }: SuitChoosePopUpProps) => {
     <div className={styles.chooseSuitWrapper}>
       <div className={styles.chooseSuit}>
         <div className={styles.transitionsItem}>
-          <div className={styles.top}>
-            <img
-              aria-hidden
-              onClick={(e) => suitChangeHandler(e, cardsIconsDataArr[0].suit)}
-              className={styles.cardElement}
-              src={cardsIconsDataArr[0].icon}
-              alt="Card color"
-            />
-          </div>
-          <div className={styles.middle}>
-            <div>
-              <img
-                aria-hidden
-                onClick={(e) => suitChangeHandler(e, cardsIconsDataArr[1].suit)}
-                className={styles.cardElement}
-                src={cardsIconsDataArr[1].icon}
-                alt="Card color"
-              />
-            </div>
-            <div>
-              <img
-                aria-hidden
-                onClick={(e) => suitChangeHandler(e, cardsIconsDataArr[2].suit)}
-                className={styles.cardElement}
-                src={cardsIconsDataArr[2].icon}
-                alt="Card color"
-              />
-            </div>
-          </div>
-          <div className={styles.bottom}>
-            <img
-              aria-hidden
-              onClick={(e) => suitChangeHandler(e, cardsIconsDataArr[3].suit)}
-              className={styles.cardElement}
-              src={cardsIconsDataArr[3].icon}
-              alt="Card color"
-            />
-          </div>
+          {cardsIconsDataArr.map((el) => {
+            return (
+              <div key={el.suit} className={styles.suitWrapper}>
+                <div className={styles.suit}>
+                  <img
+                    aria-hidden
+                    onClick={(e) => suitChangeHandler(e, el.suit)}
+                    className={styles.cardElement}
+                    src={el.icon}
+                    alt="Card color"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
