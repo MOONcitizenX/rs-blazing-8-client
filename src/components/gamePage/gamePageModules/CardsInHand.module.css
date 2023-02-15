@@ -3,8 +3,6 @@
   width: 100%;
   height: 100%;
   top: 5%;
-  left: 5rem;
-  transform: rotate(6deg);
 }
 
 .my-card {
@@ -15,7 +13,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform-origin: center 450%;
+  transform-origin: center 350%;
   transition: transform 1s ease-out;
   box-shadow: 0 0 0 1px #dac9b6;
   cursor: pointer;
