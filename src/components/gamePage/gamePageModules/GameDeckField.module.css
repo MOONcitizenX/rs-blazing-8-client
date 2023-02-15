@@ -71,6 +71,7 @@
 
 .disabled {
   cursor: auto;
+  filter: brightness(50%);
 }
 
 .card.hidden {

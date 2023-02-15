@@ -34,6 +34,10 @@ export const createSocket = () => {
     useChatState.setState({ messages });
   });
 
+  socket.on('choose-color', (data) => {
+    useRoomState.setState({ isCardSuitChoose: data });
+  });
+
   socket.on('error', (data) => {
     // todo notification with error
     alert(data);

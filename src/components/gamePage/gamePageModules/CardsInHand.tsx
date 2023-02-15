@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { Socket } from 'socket.io-client';
+import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { useRoomState } from '../../../store/roomStore';
 import { ICard } from '../../../store/types/interfaces/ICard';
 import styles from './CardsInHand.module.css';
@@ -7,7 +8,7 @@ import styles from './CardsInHand.module.css';
 interface CardsInHandProps {
   cardsInHand: ICard[];
   isPlayerTurn: boolean;
-  socket: Socket;
+  socket: Socket<ClientToServerEvents>;
 }
 export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandProps) => {
   const cardOnTop = useRoomState((state) => state.topCard);
@@ -17,28 +18,29 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
   const increment = angle / (count + 1);
 
   const isCardPlayable = (topCard: ICard | null, playerCard: ICard) => {
-    return topCard
-      ? topCard &&
-          (playerCard.value === topCard.value ||
-            playerCard.color === topCard.color ||
-            playerCard.value === '8' ||
-            playerCard.value === 'swap')
-      : true;
+    return (
+      topCard &&
+      (playerCard.value === topCard.value ||
+        playerCard.color === topCard.color ||
+        playerCard.value === '8' ||
+        playerCard.value === 'swap')
+    );
   };
 
   const cardPlayHandler = (
     e: React.MouseEvent<HTMLImageElement>,
-    isPlayable: boolean,
+    isPlayable: boolean | null,
     cardId: string,
     cardValue: string,
   ) => {
     if (isPlayable) {
-      socket.emit('play-card', { card: cardId });
-      if (cardValue === 'Q') {
-        // TODO reverse
+      if (cardValue === '8') {
+        socket.emit('choose-color');
+        return;
       }
+      socket.emit('play-card', { card: cardId });
       if (cardValue === 'swap') {
-        // TODO swap
+        // TODO swap animations
       }
     }
   };
