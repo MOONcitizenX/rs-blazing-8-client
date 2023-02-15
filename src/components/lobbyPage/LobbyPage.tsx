@@ -24,7 +24,7 @@ const minPlayers = 2;
 const maxPlayers = 5;
 
 export const LobbyPage = ({ socket }: LobbyPageProps) => {
-  const userId = usePlayerState((state) => state.id);
+  const userId = useRoomState((state) => state.id);
   const roomId = useRoomState((state) => state.roomId);
 
   const players = useRoomState((state) => state.players);

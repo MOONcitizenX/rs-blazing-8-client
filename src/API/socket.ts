@@ -2,7 +2,6 @@ import { io, Socket } from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 import { ServerToClientEvents } from './types/interfaces/ServerToClientEvents';
 import { ClientToServerEvents } from './types/interfaces/ClientToServerEvents';
-import { usePlayerState } from '../store/playerStore';
 import { useRoomState } from '../store/roomStore';
 import { cardMap } from '../utils/cardsMap';
 import { useChatState } from '../store/chatStore';
@@ -16,9 +15,9 @@ export const createSocket = () => {
   });
 
   socket.on('get-me', (data) => {
-    usePlayerState.setState({ id: data.id });
+    useRoomState.setState({ id: data.id });
   });
-  // TODO Save all state?
+
   socket.on('room-state', (data) => {
     useRoomState.setState({ players: data.players });
     useRoomState.setState({ direction: data.direction });
@@ -40,7 +39,7 @@ export const createSocket = () => {
 
   socket.on('error', (data) => {
     // todo notification with error
-    alert(data);
+    alert(data.message);
   });
 
   return socket;

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { MutableRefObject } from 'react';
-import { usePlayerState } from '../../store/playerStore';
 import { useRoomState } from '../../store/roomStore';
 import styles from './ChatItem.module.css';
 
@@ -12,7 +11,7 @@ interface ChatItemProps {
 }
 
 export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProps) => {
-  const clientId = usePlayerState((state) => state.id);
+  const clientId = useRoomState((state) => state.id);
   const isClientMessage = clientId === author;
   const players = useRoomState((state) => state.players).map((player) => ({
     id: player.id,
