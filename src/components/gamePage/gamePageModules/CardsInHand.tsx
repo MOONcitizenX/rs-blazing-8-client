@@ -17,6 +17,7 @@ export const CardsInHand = ({
   isPlayerTurn,
   cardWasPlayed,
 }: CardsInHandProps) => {
+  const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
   const angle = 35;
@@ -65,7 +66,7 @@ export const CardsInHand = ({
                 transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,
               }}
               className={classNames(styles.myCard, { [styles.active]: isPlayable })}
-              src={card.image}
+              src={card.value === '8' ? eightCardImage : card.image}
               alt="Card"
             />
           </div>
