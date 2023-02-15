@@ -9,9 +9,14 @@ interface CardsInHandProps {
   cardsInHand: ICard[];
   isPlayerTurn: boolean;
   socket: Socket<ClientToServerEvents>;
+  cardWasPlayed: () => void;
 }
-
-export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandProps) => {
+export const CardsInHand = ({
+  socket,
+  cardsInHand,
+  isPlayerTurn,
+  cardWasPlayed,
+}: CardsInHandProps) => {
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
@@ -36,6 +41,7 @@ export const CardsInHand = ({ socket, cardsInHand, isPlayerTurn }: CardsInHandPr
     cardValue: string,
   ) => {
     if (isPlayable) {
+      cardWasPlayed();
       if (cardValue === '8') {
         socket.emit('choose-color');
         return;

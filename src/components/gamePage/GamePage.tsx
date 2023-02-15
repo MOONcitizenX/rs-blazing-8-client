@@ -40,6 +40,10 @@ export const GamePage = ({ socket }: GamePageProps) => {
     setIsTurnCanBeSkipped(false);
   };
 
+  const cardWasPlayedHandler = () => {
+    setIsTurnCanBeSkipped(false);
+  };
+
   return (
     <div className={style.startPageWrapper}>
       <Players />
@@ -70,7 +74,12 @@ export const GamePage = ({ socket }: GamePageProps) => {
             isCardTaken={isTurnCanBeSkipped}
             isPlayerTurn={isPlayerTurn}
           />
-          <CardsInHand socket={socket} isPlayerTurn={isPlayerTurn} cardsInHand={myCards} />
+          <CardsInHand
+            cardWasPlayed={cardWasPlayedHandler}
+            socket={socket}
+            isPlayerTurn={isPlayerTurn}
+            cardsInHand={myCards}
+          />
           <Button
             attributes={{
               disabled: !isTurnCanBeSkipped,
