@@ -11,6 +11,7 @@ import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
+import { usePlayerState } from '../../store/playerStore';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -20,6 +21,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = useRoomState((state) => state.id);
+  const cardback = usePlayerState((state) => state.cardback);
   const players = useRoomState((state) => state.players);
   const myIndex = players.findIndex((el) => el.id === myId);
   const orderedPlayers = [...players.slice(myIndex), ...players.slice(0, myIndex)];
@@ -53,13 +55,37 @@ export const GamePage = ({ socket }: GamePageProps) => {
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
               return (
-                <div key={el.id} className={style.player}>
-                  <img
-                    className={style.avatar}
-                    src={avatarsArray[+el.avatarId]}
-                    alt="Player avatar"
-                  />
-                  <div className={style.name}>{el.name}</div>
+                <div key={el.id} className={style.playerWrapper}>
+                  <div className={style.playerCards}>
+                    {[...new Array(+el.cards)].map((_, i) => {
+                      const count = +el.cards;
+                      const angle = 100;
+                      const offset = angle / 2;
+                      const increment = angle / (count + 1);
+
+                      return (
+                        <img
+                          key={`${el.id}-${i + 1}`}
+                          className={style.playerCard}
+                          style={{
+                            transform: `translate(-50%, -50%) rotate(${
+                              -offset + increment * (i + 1)
+                            }deg)`,
+                          }}
+                          src={cardback}
+                          alt="Card"
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className={style.player}>
+                    <img
+                      className={style.avatar}
+                      src={avatarsArray[+el.avatarId]}
+                      alt="Player avatar"
+                    />
+                    <div className={style.name}>{el.name}</div>
+                  </div>
                 </div>
               );
             }

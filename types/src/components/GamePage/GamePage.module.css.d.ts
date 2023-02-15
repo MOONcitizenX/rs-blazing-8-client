@@ -4,7 +4,10 @@ declare const styles: {
   readonly "startTable": string;
   readonly "tableFront": string;
   readonly "players": string;
+  readonly "playerWrapper": string;
   readonly "player": string;
+  readonly "playerCards": string;
+  readonly "playerCard": string;
   readonly "avatar": string;
   readonly "name": string;
   readonly "skipTurn": string;
