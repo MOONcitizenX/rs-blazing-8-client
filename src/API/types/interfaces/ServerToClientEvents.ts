@@ -1,6 +1,7 @@
 import { IRoomResponse } from './IRoomResponse';
 import { IGetMeResponse } from './IGetMeResponse';
-import { ChatSMessage } from '../../../store/types/types/chatMessage';
+import { IErrorMessage } from './IErrorMessage';
+import { ChatSMessage } from '../../../store/types/types/ChatMessage';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -8,6 +9,6 @@ export interface ServerToClientEvents {
   'get-me': (data: IGetMeResponse) => void;
   'leave-success': () => void;
   'get-chat': (messages: ChatSMessage[]) => void;
-  error: (message: string) => void;
+  error: (message: IErrorMessage) => void;
   'choose-color': (value: boolean) => void;
 }

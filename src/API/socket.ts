@@ -40,7 +40,7 @@ export const createSocket = () => {
 
   socket.on('error', (data) => {
     // todo notification with error
-    alert(data);
+    alert(data.message);
   });
 
   return socket;
