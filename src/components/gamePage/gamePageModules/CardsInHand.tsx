@@ -20,7 +20,7 @@ export const CardsInHand = ({
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
-  const angle = 35;
+  const angle = 40;
   const offset = angle / 2;
   const increment = angle / (count + 1);
 
@@ -63,7 +63,7 @@ export const CardsInHand = ({
               aria-hidden
               onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
               style={{
-                transform: `translate(-50%, -50%) rotate(${-offset + increment * index}deg)`,
+                transform: `translate(-50%, -50%) rotate(${-offset + increment * (index + 1)}deg)`,
               }}
               className={classNames(styles.myCard, { [styles.active]: isPlayable })}
               src={card.value === '8' ? eightCardImage : card.image}
