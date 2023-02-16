@@ -14,6 +14,7 @@ export interface RoomStoreTypes {
   players: IPlayerResponse[];
   isCardSuitChoose: boolean;
   id: string;
+  oneCardLeft: boolean;
   changeDirection: (direction: TurnDirection) => void;
   setIsCardSuitChoose: (isCardSuitChoose: boolean) => void;
   setStatus: (status: RoomStateStatus) => void;

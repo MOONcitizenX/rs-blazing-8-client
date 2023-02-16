@@ -61,6 +61,9 @@ export const createSocket = () => {
       playerTurn: '1',
       isCardSuitChoose: false,
     });
+    
+  socket.on('one-card-left', (isOneCardLeft) => {
+    useRoomState.setState({ oneCardLeft: isOneCardLeft });
   });
 
   return socket;

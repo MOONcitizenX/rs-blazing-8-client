@@ -1,0 +1,23 @@
+.one-card-alert {
+  position: fixed;
+  top: 150px;
+  right: 5%;
+
+  width: 150px;
+  max-width: 20%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 6px solid #fdfa99;
+}
+
+.gif {
+  width: 230px;
+  max-width: 170%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
