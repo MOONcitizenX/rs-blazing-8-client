@@ -1,57 +1,43 @@
 .slider {
-  width: 80px;
-  height: 26px;
-  background: #333;
-  margin: 20px auto;
+  display: block;
+  font-size: 10px;
   position: relative;
-  border-radius: 50px;
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
 
 .slider:after {
   content: 'OFF';
-  color: #000;
+  width: 25px;
+  height: 25px;
+  background-color: #e03c3c;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
   position: absolute;
-  right: 10px;
-  z-index: 0;
-  font: 12px/26px Arial, sans-serif;
-  font-weight: bold;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
-}
-
-.slider:before {
-  content: 'ON';
-  color: green;
-  position: absolute;
-  left: 10px;
-  z-index: 0;
-  font: 12px/26px Arial, sans-serif;
-  font-weight: bold;
+  top: -3px;
+  left: 0;
+  display: grid;
+  place-content: center;
+  line-height: 0;
+  transition: background-color 0.25s, transform 0.25s ease-in;
 }
 
 .label {
-  display: block;
-  width: 34px;
+  display: inline-block;
+  width: 50px;
   height: 20px;
+  background-color: #fff;
+  border-radius: 30px;
   cursor: pointer;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  z-index: 1;
-  background: #fcfff4;
-  border-radius: 50px;
-  transition: all 0.4s ease;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-.label.off {
-  left: 40px;
+  padding: 0;
 }
 
 .input {
   visibility: hidden;
+  display: none;
 }
 
-.input:checked + label {
-  left: 43px;
+.input:checked + .slider::after {
+  content: 'ON';
+  background-color: #05ae3e;
+  transform: translateX(25px) rotate(360deg);
 }

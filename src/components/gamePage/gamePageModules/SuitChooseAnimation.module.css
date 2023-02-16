@@ -11,6 +11,9 @@
 }
 
 .choose-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   width: 40vw;
   height: 40vh;
@@ -20,22 +23,51 @@
   transform: translate(-50%, -50%);
 }
 
-.top {
+.transitions-item {
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 35rem;
+  height: 35rem;
 }
 
-.middle {
-  display: flex;
-  justify-content: space-around;
+.suit:nth-of-type(1) {
+  position: absolute;
+  top: 0;
 }
 
-.bottom {
-  display: flex;
-  justify-content: center;
+.suit:nth-of-type(2) {
+  position: absolute;
+  left: 0;
+}
+.suit:nth-of-type(3) {
+  position: absolute;
+  right: 0;
+}
+
+.suit:nth-of-type(4) {
+  position: absolute;
+  bottom: 0;
 }
 
 .card-element {
-  width: 10vw;
-  height: 15vh;
+  width: 12rem;
+  height: 12rem;
+}
+
+.pulse {
+  animation: pulse 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
 }
