@@ -4,7 +4,7 @@ import { useRoomState } from '../../store/roomStore';
 
 export const TableArrows = () => {
   const direction = useRoomState((state) => state.direction);
-  const angles = [-109, -70, -23, 19, 74, 113];
+  const angles = [-109, -65, -23, 19, 70, 113];
 
   return (
     <div className={style.arrowsWrapper}>
