@@ -6,7 +6,7 @@ export const useRoomState = create(
   devtools<RoomStoreTypes>((set) => ({
     players: [],
     roomId: '',
-    winner: '',
+    winner: null,
     status: null,
     closedDeck: 0,
     topCard: null,

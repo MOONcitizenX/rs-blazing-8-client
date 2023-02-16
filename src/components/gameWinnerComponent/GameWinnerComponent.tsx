@@ -15,22 +15,21 @@ interface IGameWinnerComponentProps {
 }
 
 export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
-  const setStatus = useRoomState((state) => state.setStatus);
-  const setWinner = useRoomState((state) => state.setWinner);
+  // const status = useRoomState((state) => state.status);
   const winnerId = useRoomState((state) => state.winner);
-  const playersArr = useRoomState((state) => state.players);
-  const hostId = useRoomState((state) => state.players[0].id);
+  const players = useRoomState((state) => state.players);
+  const winner = players.find((player) => player.id === winnerId);
+  const host = players.find((_, i) => i === 0);
+  const hostId = host?.id;
   const userId = useRoomState((state) => state.id);
-  const isSoundOn = usePlayerState((state) => state.sound);
-  const winnerData = playersArr.filter((player) => player.id === winnerId);
-  const { name, avatarId } = winnerData[0];
   const isHost = hostId === userId;
+  const isSoundOn = usePlayerState((state) => state.sound);
 
   const runDownRef = useSpringRef();
   const runDownAnimation = useSpring({
     ref: runDownRef,
     from: { transform: 'translateY(-220rem)' },
-    to: { transform: `translateY(${winnerId ? '0' : '-220rem'})` },
+    to: { transform: `translateY(${winner ? '0' : '-220rem'})` },
     config: { duration: 500 },
   });
 
@@ -58,24 +57,18 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
   }
 
   const leaveRoomHandler = () => {
-    setStatus(null);
-    setWinner(null);
     socket.emit('leave-room');
   };
 
   const convertToLobbyHandler = () => {
-    setStatus('lobby');
-    setWinner(null);
     socket.emit('convert-to-lobby');
   };
 
   const startNewGameHandler = () => {
-    setStatus('playing');
-    setWinner(null);
     socket.emit('start-game');
   };
 
-  return (
+  return winner && winnerId ? (
     <>
       <ConfettiExplosion
         {...{
@@ -88,11 +81,11 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
       />
       <animated.div className={styles.wrapper} style={runDownAnimation}>
         <animated.div style={scaleAnimation} className={styles.imagWrapper}>
-          <img src={avatarsArray[+avatarId]} alt="winner" />
+          <img src={avatarsArray[Number(winner?.avatarId)]} alt="winner" />
           <img src={sloth} alt="congratulations" />
         </animated.div>
         <animated.div style={opacityAnimation} className={styles.winnerName}>
-          {name}
+          {winner?.name}
         </animated.div>
         <animated.div className={styles.buttonsWrapper} style={opacityAnimation}>
           {isHost && (
@@ -105,5 +98,5 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
         </animated.div>
       </animated.div>
     </>
-  );
+  ) : null;
 };
