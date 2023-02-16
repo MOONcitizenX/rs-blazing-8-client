@@ -28,24 +28,22 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
   const runDownRef = useSpringRef();
   const runDownAnimation = useSpring({
     ref: runDownRef,
-    from: { transform: 'translateY(-220rem)' },
-    to: { transform: `translateY(${winner ? '0' : '-220rem'})` },
+    transform: `translateY(${winner ? '0' : '-220rem'})`,
     config: { duration: 500 },
   });
 
   const opacityRef = useSpringRef();
   const opacityAnimation = useSpring({
     ref: opacityRef,
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+
+    opacity: winner ? 1 : 0,
     config: { duration: 1000 },
   });
 
   const scaleRef = useSpringRef();
   const scaleAnimation = useSpring({
     ref: scaleRef,
-    from: { scale: '0.3' },
-    to: { scale: '1' },
+    scale: winner ? 1 : 0,
     config: { duration: 500 },
   });
 
