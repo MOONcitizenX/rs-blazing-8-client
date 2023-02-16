@@ -18,7 +18,7 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
     name: player.name,
   }));
   const authorName = players.find((player) => player.id === author)?.name;
-  const colors = ['#ffffff', '#4385c3', '#39ab89', '#f15743', '#f69c3e'];
+  const colors = ['#4385c3', '#39ab89', '#f15743', '#f69c3e', '#4385c3'];
   const playerIndex = players.findIndex((player) => player.id === author);
 
   return (
@@ -34,10 +34,8 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
         })}
       >
         <span
-          className={classNames(styles.authorName, {
-            [styles.myName]: isClientMessage,
-          })}
-          style={{ color: colors[playerIndex] }}
+          className={styles.authorName}
+          style={!isClientMessage ? { color: colors[playerIndex] } : { color: 'white' }}
         >
           {authorName}
         </span>
