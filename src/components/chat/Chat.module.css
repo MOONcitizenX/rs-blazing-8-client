@@ -3,8 +3,8 @@
   right: 2rem;
   bottom: 2rem;
   width: 100%;
-  max-width: 20%;
-  max-height: 40%;
+  max-width: 25%;
+  max-height: 50%;
   overflow: hidden;
   z-index: 5;
 
@@ -81,4 +81,9 @@
 .chat-icon-button-top {
   width: 100%;
   max-width: 100%;
+}
+
+.chat-icon-button-top:hover {
+  transform: scale(1);
+  font-size: 2.5rem;
 }

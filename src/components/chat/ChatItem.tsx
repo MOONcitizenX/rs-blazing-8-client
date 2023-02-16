@@ -18,6 +18,8 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
     name: player.name,
   }));
   const authorName = players.find((player) => player.id === author)?.name;
+  const colors = ['#ffffff', '#4385c3', '#39ab89', '#f15743', '#f69c3e'];
+  const playerIndex = players.findIndex((player) => player.id === author);
 
   return (
     <div
@@ -31,10 +33,29 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
           [styles.clientMessage]: isClientMessage,
         })}
       >
-        <span>{authorName}</span>
-        <span className={styles.timeStamp}>at {timeStamp}</span>
+        <span
+          className={classNames(styles.authorName, {
+            [styles.myName]: isClientMessage,
+          })}
+          style={{ color: colors[playerIndex] }}
+        >
+          {authorName}
+        </span>
+        <span
+          className={classNames(styles.timeStamp, {
+            [styles.myTime]: isClientMessage,
+          })}
+        >
+          at {timeStamp}
+        </span>
       </div>
-      <div className={styles.message}>{message}</div>
+      <div
+        className={classNames(styles.message, {
+          [styles.myMessage]: isClientMessage,
+        })}
+      >
+        {message}
+      </div>
     </div>
   );
 };
