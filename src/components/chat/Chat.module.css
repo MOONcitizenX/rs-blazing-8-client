@@ -18,6 +18,7 @@
 }
 
 .messages {
+  padding-right: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -38,12 +39,12 @@
 }
 
 .messages::-webkit-scrollbar-thumb {
-  background: #e15250;
+  background: var(--beige-color);
   border-radius: 10px;
 }
 
 .messages::-webkit-scrollbar-thumb:hover {
-  background: #b73839;
+  background: var(--beige-color);
 }
 
 .chat-input {
