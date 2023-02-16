@@ -4,3 +4,55 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.image-wrapper {
+  display: flex;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  padding: 5rem;
+  justify-content: space-around;
+}
+
+.winner-img {
+  width: 40vw;
+  height: 40vw;
+}
+
+.winner-name {
+  text-align: center;
+  font-size: 5rem;
+  background-color: var(--dark-red-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: rgba(251, 244, 168, 0.3) 0px 2px 8px 0px;
+  color: var(--beige-color);
+  font-family: 'BlobSpongey';
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 5%;
+  z-index: 1;
+  gap: 2rem;
+}
+
+.container {
+  display: flex;
+}

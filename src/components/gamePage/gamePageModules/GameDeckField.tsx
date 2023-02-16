@@ -3,6 +3,7 @@ import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
+import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './GameDeckField.module.css';
 import { SuitChooseAnimation } from './SuitChooseAnimation';
 import { SuitChoosePopUp } from './SuitChoosePopUp';
@@ -19,14 +20,17 @@ export const GameDeckField = ({
   isPlayerTurn,
   isCardTaken,
 }: GameDeckFieldProps) => {
+  const isSoundOn = usePlayerState((state) => state.sound);
   const isCardSuitChoose = useRoomState((state) => state.isCardSuitChoose);
   const cardBack = usePlayerState((state) => state.cardback);
   const topCard = useRoomState((state) => state.topCard);
   const isSuitChooseAnimation = isCardSuitChoose && !isPlayerTurn;
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
+  const player = new SoundPlayer();
 
   const cardTakeClick = () => {
     if (!isCardTaken) {
+      if (isSoundOn) player.play('playCard');
       cardTakeHandler();
     }
   };

@@ -7,6 +7,8 @@ import greenIcon from '../../../assets/icons/green.png';
 import redIcon from '../../../assets/icons/red.png';
 import yellowIcon from '../../../assets/icons/yellow.png';
 import { useRoomState } from '../../../store/roomStore';
+import { usePlayerState } from '../../../store/playerStore';
+import { SoundPlayer } from '../../../utils/SoundPlayer';
 
 export interface IIconsArr {
   icon: string;
@@ -23,8 +25,11 @@ interface SuitChoosePopUpProps {
   socket: Socket<ClientToServerEvents>;
 }
 export const SuitChoosePopUp = ({ socket }: SuitChoosePopUpProps) => {
+  const isSoundOn = usePlayerState((state) => state.sound);
+  const player = new SoundPlayer();
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const suitChangeHandler = (e: React.MouseEvent<HTMLImageElement>, suit: CardColor) => {
+    if (isSoundOn) player.play('click');
     socket.emit('play-card', { card: `8${suit}` });
     setIsCardSuitChoose(false);
   };

@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
+import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
 import { ICard } from '../../../store/types/interfaces/ICard';
+import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './CardsInHand.module.css';
 
 interface CardsInHandProps {
@@ -17,6 +19,8 @@ export const CardsInHand = ({
   isPlayerTurn,
   cardWasPlayed,
 }: CardsInHandProps) => {
+  const isSoundOn = usePlayerState((state) => state.sound);
+  const player = new SoundPlayer();
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
@@ -41,6 +45,7 @@ export const CardsInHand = ({
     cardValue: string,
   ) => {
     if (isPlayable) {
+      if (isSoundOn) player.play('playCard');
       cardWasPlayed();
       if (cardValue === '8') {
         socket.emit('choose-color');

@@ -26,6 +26,7 @@ export const createSocket = () => {
     useRoomState.setState({ roomId: data.roomId });
     useRoomState.setState({ status: data.status });
     useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
+    useRoomState.setState({ winner: null });
   });
 
   socket.on('get-chat', (messages) => {
@@ -42,9 +43,21 @@ export const createSocket = () => {
   });
 
   socket.on('winner-winner', (data) => {
-    // todo notification with winner and clear room state after host
-    alert(data.winner);
     useRoomState.setState({ winner: data.winner });
+  });
+
+  socket.on('leave-success', () => {
+    useRoomState.setState({
+      players: [],
+      roomId: '',
+      winner: null,
+      status: null,
+      closedDeck: 0,
+      topCard: null,
+      direction: 'CW',
+      playerTurn: '1',
+      isCardSuitChoose: false,
+    });
   });
 
   socket.on('one-card-left', (isOneCardLeft) => {
