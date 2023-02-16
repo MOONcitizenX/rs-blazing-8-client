@@ -15,7 +15,7 @@ export const CheckBox = ({ isOn, onChange }: CheckBoxProps) => {
   };
 
   return (
-    <label className={isChecked ? styles.label : `${styles.label} ${styles.off}`}>
+    <label className={styles.label}>
       <input
         onChange={onClickHandler}
         className={styles.input}
