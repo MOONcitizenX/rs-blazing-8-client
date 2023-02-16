@@ -59,11 +59,13 @@
 
 .player-wrapper:nth-of-type(2) > .player > .name {
   justify-content: flex-end;
+  top: 5rem;
   left: -42rem;
 }
 
 .player-wrapper:nth-of-type(3) > .player > .name {
   justify-content: flex-start;
+  top: 5rem;
   left: 13rem;
 }
 
