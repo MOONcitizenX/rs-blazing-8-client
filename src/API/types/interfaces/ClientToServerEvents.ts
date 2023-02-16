@@ -14,4 +14,5 @@ export interface ClientToServerEvents {
   'play-card': (card: ICardSend) => void;
   'choose-color': () => void;
   'add-chat-message': ({ message }: { message: string }) => void;
+  'convert-to-lobby': () => void;
 }

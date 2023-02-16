@@ -1,21 +1,26 @@
+import { Socket } from 'socket.io-client';
 import style from './playersWidget.module.css';
 import eyeIcon from '../../assets/icons/eye.svg';
 import { useRoomState } from '../../store/roomStore';
 import { avatarsArray } from '../../store/basicMedia';
+import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 
-export const Players = (/* accepts players data */) => {
+interface PlayersProps {
+  socket: Socket<ClientToServerEvents>;
+}
+export const Players = ({ socket }: PlayersProps) => {
   const players = useRoomState((state) => state.players);
+  const setStatus = useRoomState((state) => state.setStatus);
+
+  const leaveRoomHandler = () => {
+    socket.emit('leave-room');
+    setStatus(null);
+  };
 
   return (
     <div className={style.playersWrapper}>
       <div className={style.players}>
-        <button
-          className={style.removeButton}
-          type="button"
-          onClick={() => {
-            /* TODO move player to spectators */
-          }}
-        >
+        <button className={style.removeButton} type="button" onClick={leaveRoomHandler}>
           <p className={style.buttonText}>-</p>
         </button>
         <div className={style.hint}>Select to not play</div>

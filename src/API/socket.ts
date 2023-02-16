@@ -25,7 +25,6 @@ export const createSocket = () => {
     useRoomState.setState({ closedDeck: data.closedDeck });
     useRoomState.setState({ roomId: data.roomId });
     useRoomState.setState({ status: data.status });
-    useRoomState.setState({ winner: data.winner });
     useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
   });
 
@@ -40,6 +39,12 @@ export const createSocket = () => {
   socket.on('error', (data) => {
     // todo notification with error
     alert(data.message);
+  });
+
+  socket.on('winner-winner', (data) => {
+    // todo notification with winner and clear room state after host
+    alert(data.winner);
+    useRoomState.setState({ winner: data.winner });
   });
 
   return socket;

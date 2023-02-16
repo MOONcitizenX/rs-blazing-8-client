@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { RoomStoreTypes } from './types/interfaces/roomStoreTypes';
-import { TurnDirection } from './types/types/TurnDirection';
 
 export const useRoomState = create(
   devtools<RoomStoreTypes>((set) => ({
@@ -16,11 +15,18 @@ export const useRoomState = create(
     isCardSuitChoose: false,
     id: '',
 
-    changeDirection: (direction: TurnDirection) =>
+    changeDirection: (direction) =>
       set((state: RoomStoreTypes) => {
         return { ...state, direction };
       }),
-    setIsCardSuitChoose: (isCardSuitChoose: boolean) => {
+
+    setStatus(status) {
+      set((state: RoomStoreTypes) => {
+        return { ...state, status };
+      });
+    },
+
+    setIsCardSuitChoose: (isCardSuitChoose) => {
       set((state: RoomStoreTypes) => {
         return { ...state, isCardSuitChoose };
       });
