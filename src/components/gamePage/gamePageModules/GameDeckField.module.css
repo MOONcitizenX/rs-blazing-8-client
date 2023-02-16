@@ -63,6 +63,7 @@
 .card {
   height: 20vh;
   border-radius: 1rem;
+  transition: filter 0.3s ease;
 }
 
 .deck {

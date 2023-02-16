@@ -17,4 +17,5 @@ export interface RoomStoreTypes {
   changeDirection: (direction: TurnDirection) => void;
   setIsCardSuitChoose: (isCardSuitChoose: boolean) => void;
   setStatus: (status: RoomStateStatus) => void;
+  setWinner: (winner: string | null) => void;
 }

@@ -42,8 +42,6 @@ export const createSocket = () => {
   });
 
   socket.on('winner-winner', (data) => {
-    // todo notification with winner and clear room state after host
-    alert(data.winner);
     useRoomState.setState({ winner: data.winner });
   });
 

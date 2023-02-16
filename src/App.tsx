@@ -45,7 +45,7 @@ export const App = ({ socket }: AppProps) => {
         background === backgroundsArray[0] ? style.firstBackground : style.secondBackground
       }
     >
-      {winner && <GameWinnerComponent />}
+      {winner && status === 'playing' && <GameWinnerComponent socket={socket} />}
       <Menu />
       {mainView(status)}
       <Chat socket={socket} />

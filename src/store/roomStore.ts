@@ -26,6 +26,12 @@ export const useRoomState = create(
       });
     },
 
+    setWinner(winner) {
+      set((state: RoomStoreTypes) => {
+        return { ...state, winner };
+      });
+    },
+
     setIsCardSuitChoose: (isCardSuitChoose) => {
       set((state: RoomStoreTypes) => {
         return { ...state, isCardSuitChoose };
