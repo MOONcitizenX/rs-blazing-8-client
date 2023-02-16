@@ -13,4 +13,5 @@ export interface ServerToClientEvents {
   error: (message: IErrorMessage) => void;
   'choose-color': (value: boolean) => void;
   'winner-winner': (value: IWinnerResponse) => void;
+  'one-card-left': (value: boolean) => void;
 }

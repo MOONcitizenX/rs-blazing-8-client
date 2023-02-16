@@ -47,5 +47,9 @@ export const createSocket = () => {
     useRoomState.setState({ winner: data.winner });
   });
 
+  socket.on('one-card-left', (isOneCardLeft) => {
+    useRoomState.setState({ oneCardLeft: isOneCardLeft });
+  });
+
   return socket;
 };
