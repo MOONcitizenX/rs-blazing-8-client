@@ -15,15 +15,14 @@ export const CheckBox = ({ isOn, onChange }: CheckBoxProps) => {
   };
 
   return (
-    <div className={styles.slider}>
-      <label className={isChecked ? styles.label : `${styles.label} ${styles.off}`}>
-        <input
-          onChange={onClickHandler}
-          className={styles.input}
-          defaultChecked={isChecked}
-          type="checkbox"
-        />
-      </label>
-    </div>
+    <label className={isChecked ? styles.label : `${styles.label} ${styles.off}`}>
+      <input
+        onChange={onClickHandler}
+        className={styles.input}
+        defaultChecked={isChecked}
+        type="checkbox"
+      />
+      <span className={styles.slider} />
+    </label>
   );
 };
