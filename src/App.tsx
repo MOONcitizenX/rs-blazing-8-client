@@ -10,6 +10,7 @@ import { backgroundsArray } from './store/basicMedia';
 import { MusicPlayer } from './utils/MusicPlayer';
 import { GamePage } from './components/gamePage/GamePage';
 import { Chat } from './components/chat/Chat';
+import { GameWinnerComponent } from './components/gameWinnerComponent/GameWinnerComponent';
 
 const musicPlayer = new MusicPlayer();
 
@@ -36,6 +37,7 @@ export const App = ({ socket }: AppProps) => {
 
   const background = usePlayerState((state) => state.background);
   const status = useRoomState((state) => state.status);
+  const winner = useRoomState((state) => state.winner);
 
   return (
     <div
@@ -43,6 +45,7 @@ export const App = ({ socket }: AppProps) => {
         background === backgroundsArray[0] ? style.firstBackground : style.secondBackground
       }
     >
+      {winner && <GameWinnerComponent />}
       <Menu />
       {mainView(status)}
       <Chat socket={socket} />

@@ -45,7 +45,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
 
   return (
     <div className={style.startPageWrapper}>
-      <Players />
+      <Players socket={socket} />
       <div className={style.tableWrapper}>
         <TableArrows />
         <div className={style.tableFront}>{topCard ? <CardHint card={topCard} /> : null}</div>

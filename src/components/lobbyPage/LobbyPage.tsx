@@ -37,17 +37,13 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
   const stateCardback = usePlayerState((state) => state.cardback);
   const isGameReady = players.length >= minPlayers && players.length <= maxPlayers;
 
-  // const leaveRoomHandler = () => {
-  //   socket.emit('leave-room');
-  // };
-
   const startGameHandler = () => {
     socket.emit('start-game');
   };
 
   return (
     <div className={style.startPageWrapper}>
-      <Players />
+      <Players socket={socket} />
       <div className={style.tableWrapper}>
         <TableArrows />
         <div className={style.startTable}>
