@@ -3,8 +3,8 @@
   border: 0.2rem solid transparent;
   border-radius: 1rem;
   top: 0;
-  width: 25vw;
-  height: 30vh;
+  width: 35%;
+  height: fit-content;
   position: absolute;
   display: flex;
   padding: 2rem;
@@ -61,7 +61,8 @@
 
 .deck,
 .card {
-  height: 20vh;
+  width: 37%;
+  margin: 1rem 0;
   border-radius: 1rem;
   transition: filter 0.3s ease;
 }

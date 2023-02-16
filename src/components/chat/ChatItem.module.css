@@ -5,8 +5,8 @@
   gap: 0.4rem;
 
   padding: 1rem;
-  background-color: #b73839;
-  color: #fce183;
+  background-color: var(--beige-color);
+  color: #565656;
   border-radius: 0.5rem;
 }
 
@@ -22,9 +22,21 @@
   justify-content: flex-start;
 }
 
+.author-name {
+  color: var(--dark-red-color);
+}
+
+.my-name {
+  color: white;
+}
+
 .time-stamp {
   color: rgb(204, 202, 202);
   font-size: 1.2rem;
+}
+
+.my-time {
+  color: rgb(217 217 217);
 }
 
 .client-message {
@@ -34,4 +46,8 @@
 .message {
   width: 100%;
   text-align: left;
+}
+
+.my-message {
+  text-align: right;
 }

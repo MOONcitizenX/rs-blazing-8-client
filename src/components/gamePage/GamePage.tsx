@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Socket } from 'socket.io-client';
-import { avatarsArray } from '../../store/basicMedia';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
@@ -11,6 +10,7 @@ import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
+import { Player } from '../basicComponents/player';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -52,16 +52,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return (
-                <div key={el.id} className={style.player}>
-                  <img
-                    className={style.avatar}
-                    src={avatarsArray[+el.avatarId]}
-                    alt="Player avatar"
-                  />
-                  <div className={style.name}>{el.name}</div>
-                </div>
-              );
+              return <Player key={el.id} player={el} />;
             }
             return null;
           })}
