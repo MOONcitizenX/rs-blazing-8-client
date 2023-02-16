@@ -7,7 +7,7 @@
   padding: 1rem;
   background-color: var(--beige-color);
   color: #565656;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 }
 
 .my-box {
@@ -23,7 +23,7 @@
 }
 
 .author-name {
-  color: var(--dark-red-color);
+  color: #f15743;
 }
 
 .my-name {
