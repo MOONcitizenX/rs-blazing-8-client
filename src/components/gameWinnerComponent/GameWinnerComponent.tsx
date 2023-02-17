@@ -15,7 +15,6 @@ interface IGameWinnerComponentProps {
 }
 
 export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
-  // const status = useRoomState((state) => state.status);
   const winnerId = useRoomState((state) => state.winner);
   const players = useRoomState((state) => state.players);
   const winner = players.find((player) => player.id === winnerId);
@@ -28,22 +27,24 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
   const runDownRef = useSpringRef();
   const runDownAnimation = useSpring({
     ref: runDownRef,
-    transform: `translateY(${winner ? '0' : '-220rem'})`,
+    from: { transform: 'translateY(-220rem)' },
+    to: { transform: `translateY(${winnerId ? '0' : '-220rem'})` },
     config: { duration: 500 },
   });
 
   const opacityRef = useSpringRef();
   const opacityAnimation = useSpring({
     ref: opacityRef,
-
-    opacity: winner ? 1 : 0,
+    from: { opacity: 0 },
+    to: { opacity: 1 },
     config: { duration: 1000 },
   });
 
   const scaleRef = useSpringRef();
   const scaleAnimation = useSpring({
     ref: scaleRef,
-    scale: winner ? 1 : 0,
+    from: { scale: '0.3' },
+    to: { scale: '1' },
     config: { duration: 500 },
   });
 
@@ -78,7 +79,7 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
         }}
       />
       <animated.div className={styles.wrapper} style={runDownAnimation}>
-        <animated.div style={scaleAnimation} className={styles.imagWrapper}>
+        <animated.div style={scaleAnimation} className={styles.imageWrapper}>
           <img src={avatarsArray[Number(winner?.avatarId)]} alt="winner" />
           <img src={sloth} alt="congratulations" />
         </animated.div>
