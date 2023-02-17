@@ -8,8 +8,8 @@ interface TimerProps {
 export const Timer = ({ className, skipTurnHandler }: TimerProps) => {
   return (
     <div className={[style.timerWrapper, style[className]].join(' ')}>
-      <div className={style.timer} onAnimationEnd={skipTurnHandler}>
-        <div className={style.shadow} />
+      <div className={style.timer}>
+        <div className={style.shadow} onAnimationEnd={skipTurnHandler} />
       </div>
     </div>
   );
