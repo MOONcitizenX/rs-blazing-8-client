@@ -11,6 +11,7 @@ export class MusicPlayer {
 
   constructor() {
     this.player.onended = () => this.nextTrack();
+    this.player.volume = 0.7;
   }
 
   nextTrack() {

@@ -27,18 +27,17 @@ export const App = ({ socket }: AppProps) => {
   }
 
   const mainView = (status: string | null) => {
-    if (!status) {
-      return <StartPage socket={socket} />;
+    if (status === 'playing') {
+      return <GamePage socket={socket} />;
     }
     if (status === 'lobby') {
       return <LobbyPage socket={socket} />;
     }
-    return <GamePage socket={socket} />;
+    return <StartPage socket={socket} />;
   };
 
   const background = usePlayerState((state) => state.background);
   const status = useRoomState((state) => state.status);
-  const winner = useRoomState((state) => state.winner);
 
   return (
     <div
@@ -46,7 +45,7 @@ export const App = ({ socket }: AppProps) => {
         background === backgroundsArray[0] ? style.firstBackground : style.secondBackground
       }
     >
-      {winner && <GameWinnerComponent />}
+      <GameWinnerComponent socket={socket} />
       <Menu />
       {mainView(status)}
       <Chat socket={socket} />

@@ -6,7 +6,7 @@ export const useRoomState = create(
   devtools<RoomStoreTypes>((set) => ({
     players: [],
     roomId: '',
-    winner: '',
+    winner: null,
     status: null,
     closedDeck: 0,
     topCard: null,
@@ -24,6 +24,12 @@ export const useRoomState = create(
     setStatus(status) {
       set((state: RoomStoreTypes) => {
         return { ...state, status };
+      });
+    },
+
+    setWinner(winner) {
+      set((state: RoomStoreTypes) => {
+        return { ...state, winner };
       });
     },
 
