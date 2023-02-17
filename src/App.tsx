@@ -38,6 +38,7 @@ export const App = ({ socket }: AppProps) => {
 
   const background = usePlayerState((state) => state.background);
   const status = useRoomState((state) => state.status);
+  const winner = useRoomState((state) => state.winner);
 
   return (
     <div
@@ -45,7 +46,7 @@ export const App = ({ socket }: AppProps) => {
         background === backgroundsArray[0] ? style.firstBackground : style.secondBackground
       }
     >
-      <GameWinnerComponent socket={socket} />
+      {winner && <GameWinnerComponent socket={socket} />}
       <Menu />
       {mainView(status)}
       <Chat socket={socket} />
