@@ -11,6 +11,7 @@ import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { Player } from '../basicComponents/player';
+import { Timer } from '../basicComponents/timer';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -18,6 +19,7 @@ interface GamePageProps {
 
 export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
+  const [isCardTaken, setIsCardTaken] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -31,22 +33,42 @@ export const GamePage = ({ socket }: GamePageProps) => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
       setIsTurnCanBeSkipped(true);
+      setIsCardTaken(true);
     }
   };
 
   const endTurnHandler = () => {
     socket.emit('pass-turn');
     setIsTurnCanBeSkipped(false);
+    setIsCardTaken(false);
+  };
+
+  const skipTurnHandler = () => {
+    if (!isCardTaken && isPlayerTurn) {
+      socket.emit('draw-card');
+    }
+    socket.emit('pass-turn');
+    setIsTurnCanBeSkipped(false);
+    setIsCardTaken(false);
   };
 
   const cardWasPlayedHandler = () => {
     setIsTurnCanBeSkipped(false);
+    setIsCardTaken(false);
   };
 
   return (
     <div className={style.startPageWrapper}>
       <Players socket={socket} />
       <div className={style.tableWrapper}>
+        {orderedPlayers.map((el, index) => {
+          if (el.id === playerTurn) {
+            return (
+              <Timer key={el.id} skipTurnHandler={skipTurnHandler} className={`timer-${index}`} />
+            );
+          }
+          return null;
+        })}
         <TableArrows />
         <div className={style.tableFront}>{topCard ? <CardHint card={topCard} /> : null}</div>
         <div className={style.players}>

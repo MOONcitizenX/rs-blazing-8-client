@@ -79,6 +79,14 @@
   height: auto;
 }
 
+.chat-icon-button:hover {
+  transform: scale(1);
+}
+
+.chat-icon-button:hover .chat-icon {
+  width: 4.5rem;
+}
+
 .chat-icon-button-top {
   width: 100%;
   max-width: 100%;
