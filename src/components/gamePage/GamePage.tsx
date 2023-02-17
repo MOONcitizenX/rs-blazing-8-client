@@ -63,9 +63,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
       <div className={style.tableWrapper}>
         {orderedPlayers.map((el, index) => {
           if (el.id === playerTurn) {
-            return (
-              <Timer key={el.id} skipTurnHandler={skipTurnHandler} className={`timer-${index}`} />
-            );
+            return <Timer key={el.id} skipTurnHandler={skipTurnHandler} index={index} />;
           }
           return null;
         })}
