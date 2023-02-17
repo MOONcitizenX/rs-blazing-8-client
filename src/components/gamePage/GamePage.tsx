@@ -74,7 +74,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return <Player key={el.id} player={el} />;
+              return <Player key={el.id} player={el} index={index} />;
             }
             return null;
           })}
