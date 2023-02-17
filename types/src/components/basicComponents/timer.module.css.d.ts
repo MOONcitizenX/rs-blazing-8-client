@@ -1,26 +1,6 @@
 declare const styles: {
   readonly "timerWrapper": string;
   readonly "timer0": string;
-  readonly "switchCw0": string;
-  readonly "switchCw0": string;
-  readonly "switchCw1": string;
-  readonly "switchCw1": string;
-  readonly "switchCw2": string;
-  readonly "switchCw2": string;
-  readonly "switchCw3": string;
-  readonly "switchCw3": string;
-  readonly "switchCw4": string;
-  readonly "switchCw4": string;
-  readonly "switchAcw0": string;
-  readonly "switchAcw0": string;
-  readonly "switchAcw1": string;
-  readonly "switchAcw1": string;
-  readonly "switchAcw2": string;
-  readonly "switchAcw2": string;
-  readonly "switchAcw3": string;
-  readonly "switchAcw3": string;
-  readonly "switchAcw4": string;
-  readonly "switchAcw4": string;
   readonly "timer1": string;
   readonly "timer2": string;
   readonly "timer3": string;

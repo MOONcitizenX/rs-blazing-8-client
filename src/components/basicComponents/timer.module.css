@@ -7,12 +7,7 @@
   z-index: 5;
 }
 
-.timer-0 {
-  bottom: 2rem;
-  left: 32rem;
-  z-index: 10;
-}
-
+/*
 .switchCW-0 {
   animation: switchCW0 1s linear;
   animation-delay: 30s;
@@ -331,7 +326,7 @@
     top: calc(50% - 5rem);
     right: calc(50% - 46rem);
   }
-}
+} */
 
 .timer-0 {
   top: calc(50% + 43rem);
@@ -350,12 +345,12 @@
 
 .timer-3 {
   top: calc(50% - 5rem);
-  right: calc(50% - 46rem);
+  left: calc(50% + 40rem);
 }
 
 .timer-4 {
   top: calc(50% + 29rem);
-  right: calc(50% - 48rem);
+  left: calc(50% + 40rem);
 }
 
 .timer {
