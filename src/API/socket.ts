@@ -27,6 +27,7 @@ export const createSocket = () => {
     useRoomState.setState({ status: data.status });
     useRoomState.setState({ topCard: data.topCard ? cardMap[data.topCard] : null });
     useRoomState.setState({ winner: null });
+    useRoomState.setState({ closedDeck: data.closedDeck });
   });
 
   socket.on('get-chat', (messages) => {
