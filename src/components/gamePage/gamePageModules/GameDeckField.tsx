@@ -27,6 +27,8 @@ export const GameDeckField = ({
   const isSuitChooseAnimation = isCardSuitChoose && !isPlayerTurn;
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
   const player = new SoundPlayer();
+  const cardsQuantity = useRoomState((state) => state.closedDeck);
+  const isLastCard = cardsQuantity === 0;
 
   const cardTakeClick = () => {
     if (!isCardTaken) {
@@ -45,6 +47,8 @@ export const GameDeckField = ({
           onClick={cardTakeClick}
           className={classNames(
             styles.deck,
+            { [styles.disabled]: isLastCard },
+            { [styles.hidden]: isLastCard },
             { [styles.disabled]: isCardTaken },
             { [styles.disabled]: !isPlayerTurn },
           )}
