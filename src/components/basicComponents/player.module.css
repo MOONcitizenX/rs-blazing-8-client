@@ -15,24 +15,6 @@
   z-index: 2;
 }
 
-.player-cards {
-  position: absolute;
-  display: flex;
-  left: 6rem;
-  bottom: 1rem;
-}
-
-.player-card {
-  border-radius: 4px;
-  width: 6rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform-origin: center 120%;
-  transition: transform 1s ease-out;
-  box-shadow: 0 0 0 1px #dac9b6;
-}
-
 .avatar {
   width: 11rem;
   height: 11rem;

@@ -1,0 +1,42 @@
+.player-cards {
+  position: absolute;
+  display: flex;
+  left: 6rem;
+  bottom: 1rem;
+}
+
+.player-card {
+  border-radius: 4px;
+  width: 6rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center 120%;
+  transition: transform 1s ease-out;
+  box-shadow: 0 0 0 1px #dac9b6;
+}
+
+.player-cards-0 {
+  top: calc(50% + 38rem);
+  left: calc(50% + 0rem);
+}
+
+.player-cards-1 {
+  top: calc(50% + -19rem);
+  left: calc(50% + -40rem);
+}
+
+.player-cards-2 {
+  top: calc(50% + -81rem);
+  left: calc(50% + -29rem);
+}
+
+.player-cards-3 {
+  top: calc(50% + -81rem);
+  left: calc(50% + 29rem);
+}
+
+.player-cards-4 {
+  top: calc(50% + -19rem);
+  left: calc(50% + 40rem);
+}

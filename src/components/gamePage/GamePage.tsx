@@ -12,6 +12,7 @@ import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { Player } from '../basicComponents/player';
 import { Timer } from '../basicComponents/timer';
+import { PlayerCards } from '../basicComponents/playerCards';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -74,8 +75,15 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return <Player key={el.id} player={el} index={index} />;
+              return <Player key={el.id} player={el} />;
             }
+            return null;
+          })}
+        </div>
+        <div className={style.playersCards}>
+          {orderedPlayers.map((el, index) => {
+            return <PlayerCards key={el.id} player={el} index={index} />;
+
             return null;
           })}
         </div>
