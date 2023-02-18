@@ -14,21 +14,21 @@ export const Timer = ({ index, players, skipTurnHandler }: TimerProps) => {
 
   const timerPosition0 = {
     top: 'calc(50% + 43rem)',
-    left: 'calc(50% - 16rem)',
+    left: 'calc(50% + -16rem)',
   };
 
   const timerPosition1 = {
     top: 'calc(50% + 29rem)',
-    left: 'calc(50% - 48rem)',
+    left: 'calc(50% + -48rem)',
   };
 
   const timerPosition2 = {
-    top: 'calc(50% - 5rem)',
-    left: 'calc(50% - 46rem)',
+    top: 'calc(50% + -5rem)',
+    left: 'calc(50% + -46rem)',
   };
 
   const timerPosition3 = {
-    top: 'calc(50% - 5rem)',
+    top: 'calc(50% + -5rem)',
     left: 'calc(50% + 40rem)',
   };
 
@@ -53,10 +53,8 @@ export const Timer = ({ index, players, skipTurnHandler }: TimerProps) => {
         : positionsArray[index === 0 ? players.length - 1 : index - 1],
 
     duration: 1000,
-    delay: 30000,
+    delay: 30000, // TODO when turn is skipped, card is laid out or the timer has expired
   });
-
-  // direction === 'CW' ? style[`switchCW-${index}`] : style[`switchACW-${index}`]
 
   return (
     <animated.div className={[style.timerWrapper, style[`timer-${index}`]].join(' ')} style={swap}>
