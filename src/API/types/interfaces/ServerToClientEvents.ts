@@ -3,6 +3,7 @@ import { IGetMeResponse } from './IGetMeResponse';
 import { IErrorMessage } from './IErrorMessage';
 import { ChatSMessage } from '../../../store/types/types/ChatMessage';
 import { IWinnerResponse } from './IWinnerResponse';
+import { IDrawCardResponse } from './IDrawCardResponse';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -14,4 +15,5 @@ export interface ServerToClientEvents {
   'choose-color': (value: boolean) => void;
   'winner-winner': (value: IWinnerResponse) => void;
   'one-card-left': (value: boolean) => void;
+  'draw-card': (cardId?: IDrawCardResponse) => void;
 }

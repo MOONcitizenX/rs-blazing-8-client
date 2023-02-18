@@ -1,0 +1,17 @@
+.card-wrapper {
+  position: fixed;
+  z-index: -1;
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  /* transform: translateY(-50%); */
+}
+
+.my-card {
+  background: white;
+  background-size: cover;
+  width: 110px;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 1px #dac9b6;
+  z-index: 3;
+}

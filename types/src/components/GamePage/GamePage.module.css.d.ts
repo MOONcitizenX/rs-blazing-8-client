@@ -5,6 +5,7 @@ declare const styles: {
   readonly "tableFront": string;
   readonly "players": string;
   readonly "skipTurn": string;
+  readonly "div": string;
 };
 export = styles;
 

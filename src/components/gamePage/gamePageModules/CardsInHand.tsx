@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { ForwardedRef, forwardRef } from 'react';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
@@ -13,12 +14,10 @@ interface CardsInHandProps {
   socket: Socket<ClientToServerEvents>;
   cardWasPlayed: () => void;
 }
-export const CardsInHand = ({
-  socket,
-  cardsInHand,
-  isPlayerTurn,
-  cardWasPlayed,
-}: CardsInHandProps) => {
+const CardsInHand1 = (
+  { socket, cardsInHand, isPlayerTurn, cardWasPlayed }: CardsInHandProps,
+  ref: ForwardedRef<HTMLImageElement>,
+) => {
   const isSoundOn = usePlayerState((state) => state.sound);
   const player = new SoundPlayer();
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
@@ -62,7 +61,21 @@ export const CardsInHand = ({
     <div className={styles.cardsWrapper}>
       {cardsInHand.map((card, index) => {
         const isPlayable = isCardPlayable(cardOnTop, card) && isPlayerTurn;
-        return (
+        return index === 0 ? (
+          <div className={styles.cardWrapper} key={card.cardId}>
+            <img
+              ref={ref}
+              aria-hidden
+              onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
+              style={{
+                transform: `translate(-50%, -50%) rotate(${-offset + increment * (index + 1)}deg)`,
+              }}
+              className={classNames(styles.myCard, { [styles.active]: isPlayable })}
+              src={card.value === '8' ? eightCardImage : card.image}
+              alt="Card"
+            />
+          </div>
+        ) : (
           <div className={styles.cardWrapper} key={card.cardId}>
             <img
               aria-hidden
@@ -80,3 +93,5 @@ export const CardsInHand = ({
     </div>
   );
 };
+
+export const CardsInHand = forwardRef(CardsInHand1);

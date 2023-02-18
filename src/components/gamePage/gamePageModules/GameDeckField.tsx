@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { ForwardedRef, forwardRef } from 'react';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
@@ -14,12 +15,11 @@ interface GameDeckFieldProps {
   isPlayerTurn: boolean;
   isCardTaken: boolean;
 }
-export const GameDeckField = ({
-  socket,
-  cardTakeHandler,
-  isPlayerTurn,
-  isCardTaken,
-}: GameDeckFieldProps) => {
+
+const GameDeckField1 = (
+  { socket, cardTakeHandler, isPlayerTurn, isCardTaken }: GameDeckFieldProps,
+  ref: ForwardedRef<HTMLImageElement>,
+) => {
   const isSoundOn = usePlayerState((state) => state.sound);
   const isCardSuitChoose = useRoomState((state) => state.isCardSuitChoose);
   const cardBack = usePlayerState((state) => state.cardback);
@@ -43,6 +43,7 @@ export const GameDeckField = ({
         {isSuitChooseAnimation && <SuitChooseAnimation />}
         {isSuitChoosePopUp && <SuitChoosePopUp socket={socket} />}
         <img
+          ref={ref}
           aria-hidden
           onClick={cardTakeClick}
           className={classNames(
@@ -60,3 +61,5 @@ export const GameDeckField = ({
     </div>
   );
 };
+
+export const GameDeckField = forwardRef(GameDeckField1);

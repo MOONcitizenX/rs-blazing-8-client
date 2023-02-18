@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
@@ -12,9 +12,11 @@ import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { Player } from '../basicComponents/player';
 import { Timer } from '../basicComponents/timer';
+import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
+import { MyCardAnimated } from './gamePageModules/MyCardAnimated';
 
 interface GamePageProps {
-  socket: Socket<ClientToServerEvents>;
+  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
 }
 
 export const GamePage = ({ socket }: GamePageProps) => {
@@ -28,6 +30,54 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const myCards = orderedPlayers[0].cards.map((el) => cardMap[el]);
   const topCard = useRoomState((state) => state.topCard);
   const isPlayerTurn = playerTurn === myId;
+
+  const closedDeckRef = useRef<HTMLImageElement>(null);
+  const myHandRef = useRef<HTMLImageElement>(null);
+
+  const [closedDeckX, setClosedDeckX] = useState<number>(0);
+  const [closedDeckY, setClosedDeckY] = useState<number>(0);
+  const [myHandX, setMyHandX] = useState<number>(0);
+  const [myHandY, setMyHandY] = useState<number>(0);
+
+  const [isDrawMyCard, setIsDrawMyCard] = useState<string | null>(null);
+
+  socket.on('draw-card', (cardId) => {
+    if (cardId) {
+      if (cardId.cardId) {
+        setIsDrawMyCard(cardId.cardId);
+      }
+    }
+  });
+
+  const getStartAndFinishCoords = () => {
+    const closedDeck = closedDeckRef.current;
+    if (closedDeck) {
+      const rect = closedDeck.getBoundingClientRect();
+      setClosedDeckX(rect.left);
+      setClosedDeckY(rect.top);
+    }
+
+    const myHand = myHandRef.current;
+    if (myHand) {
+      const rect = myHand.getBoundingClientRect();
+      setMyHandX(rect.left);
+      setMyHandY(rect.top);
+    }
+  };
+
+  useEffect(() => {
+    getStartAndFinishCoords();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', getStartAndFinishCoords);
+
+    return () => {
+      window.removeEventListener('resize', getStartAndFinishCoords);
+    };
+  });
+
+  console.log(closedDeckX, closedDeckY, myHandX, myHandY);
 
   const cardTakeHandler = () => {
     if (isPlayerTurn) {
@@ -70,6 +120,16 @@ export const GamePage = ({ socket }: GamePageProps) => {
           return null;
         })}
         <TableArrows />
+
+        {isDrawMyCard && (
+          <MyCardAnimated
+            card={cardMap[isDrawMyCard]}
+            coords={{ closedDeckX, closedDeckY, myHandX, myHandY }}
+            cb={setIsDrawMyCard}
+          />
+        )}
+
+        {/* Remove */}
         <div className={style.tableFront}>{topCard ? <CardHint card={topCard} /> : null}</div>
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
@@ -81,12 +141,14 @@ export const GamePage = ({ socket }: GamePageProps) => {
         </div>
         <div className={style.startTable}>
           <GameDeckField
+            ref={closedDeckRef}
             cardTakeHandler={cardTakeHandler}
             socket={socket}
             isCardTaken={isTurnCanBeSkipped}
             isPlayerTurn={isPlayerTurn}
           />
           <CardsInHand
+            ref={myHandRef}
             cardWasPlayed={cardWasPlayedHandler}
             socket={socket}
             isPlayerTurn={isPlayerTurn}

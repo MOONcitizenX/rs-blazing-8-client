@@ -62,3 +62,7 @@
   z-index: 2;
   top: -7%;
 }
+
+.div {
+  position: fixed;
+}
