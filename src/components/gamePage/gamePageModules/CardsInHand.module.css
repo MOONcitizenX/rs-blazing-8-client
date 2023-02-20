@@ -14,15 +14,18 @@
   left: 50%;
   top: 50%;
   transform-origin: center 350%;
-  transition: transform 1s ease-out;
+  transition: transform 0.3s ease, transform-origin 0.3s ease;
   box-shadow: 0 0 0 1px #dac9b6;
   cursor: pointer;
   filter: brightness(50%);
   z-index: 3;
+  --card-y: -50%;
 }
 
 .my-card:hover {
-  top: 40%;
+  /* top: 40%; */
+  --card-y: -100%;
+  transform-origin: center 400%;
 }
 
 .active {

@@ -68,7 +68,9 @@ export const CardsInHand = ({
               aria-hidden
               onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
               style={{
-                transform: `translate(-50%, -50%) rotate(${-offset + increment * (index + 1)}deg)`,
+                transform: `translate(-50%, var(--card-y)) rotate(${
+                  -offset + increment * (index + 1)
+                }deg)`,
               }}
               className={classNames(styles.myCard, { [styles.active]: isPlayable })}
               src={card.value === '8' ? eightCardImage : card.image}
