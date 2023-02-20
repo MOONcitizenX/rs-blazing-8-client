@@ -1,4 +1,5 @@
 import { useState, FormEvent, useRef, MutableRefObject, useEffect } from 'react';
+import { animated, useSpring } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
 import { useChatState } from '../../store/chatStore';
 import { ChatItem } from './ChatItem';
@@ -49,8 +50,15 @@ export const Chat = ({ socket }: ChatProps) => {
     }
   }, [chatMessages, isChatOpen]);
 
+  const fadeAnimation = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 500 },
+    reset: !isChatOpen,
+  });
+
   return (
-    <div className={styles.chatWrapper}>
+    <animated.div style={fadeAnimation} className={styles.chatWrapper}>
       {isChatOpen ? (
         <div className={styles.wrapper}>
           <Button attributes={closeChatButtonAttributes}>Close Chat</Button>
@@ -88,6 +96,6 @@ export const Chat = ({ socket }: ChatProps) => {
           <img src={chatIcon} alt="Chat" className={styles.chatIcon} />
         </Button>
       )}
-    </div>
+    </animated.div>
   );
 };
