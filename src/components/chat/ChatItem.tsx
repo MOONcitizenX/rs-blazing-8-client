@@ -1,3 +1,4 @@
+import { animated, useSpring } from '@react-spring/web';
 import classNames from 'classnames';
 import { MutableRefObject } from 'react';
 import { useRoomState } from '../../store/roomStore';
@@ -21,8 +22,14 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
   const colors = ['#4385c3', '#39ab89', '#f15743', '#f69c3e'];
   const playerIndex = players.findIndex((player) => player.id === author);
 
+  const animation = useSpring({
+    from: { width: '0%' },
+    to: { width: '100%' },
+  });
+
   return (
-    <div
+    <animated.div
+      style={animation}
       ref={scrollRef}
       className={classNames(styles.messageBox, {
         [styles.myBox]: isClientMessage,
@@ -37,7 +44,9 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
           className={styles.authorName}
           style={
             !isClientMessage
-              ? { color: colors[playerIndex < colors.length - 1 ? playerIndex - 1 : playerIndex] }
+              ? {
+                  color: colors[playerIndex < colors.length - 1 ? playerIndex - 1 : playerIndex],
+                }
               : { color: 'white' }
           }
         >
@@ -58,6 +67,6 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
       >
         {message}
       </div>
-    </div>
+    </animated.div>
   );
 };
