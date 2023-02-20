@@ -82,7 +82,15 @@ export const GamePage = ({ socket }: GamePageProps) => {
         </div>
         <div className={style.playersCards}>
           {orderedPlayers.map((el, index) => {
-            return <PlayerCards key={el.id} player={el} index={index} />;
+            return (
+              <PlayerCards
+                key={el.id}
+                socket={socket}
+                player={el}
+                orderedPlayers={orderedPlayers}
+                index={index}
+              />
+            );
 
             return null;
           })}

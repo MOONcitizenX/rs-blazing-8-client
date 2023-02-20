@@ -3,6 +3,7 @@
   display: flex;
   left: 6rem;
   bottom: 1rem;
+  transition: 5s;
 }
 
 .player-card {

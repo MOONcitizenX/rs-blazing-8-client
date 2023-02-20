@@ -1,21 +1,48 @@
 import { animated, useSpring } from '@react-spring/web';
+import { Socket } from 'socket.io-client';
+import { useState } from 'react';
 import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
 import style from './playerCards.module.css';
 import { usePlayerState } from '../../store/playerStore';
 import { useRoomState } from '../../store/roomStore';
+import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 
 interface PlayerCardsProps {
   player: IPlayerResponse;
+  orderedPlayers: IPlayerResponse[];
   index: number;
+  socket: Socket<ServerToClientEvents>;
 }
 
-export const PlayerCards = ({ player, index }: PlayerCardsProps) => {
+export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCardsProps) => {
   const { cards, id } = player;
+  const [isCardsSwap, setIsCardsSwap] = useState(false);
+  const [swapPlayerIndex, setSwapPlayerIndex] = useState<number | null>(null);
+  const [swapNextPlayerIndex, setNextSwapPlayerIndex] = useState<number | null>(null);
+
   const cardback = usePlayerState((state) => state.cardback);
-  const direction = useRoomState((state) => state.direction);
-  const players = useRoomState((state) => state.players);
   const cardsArray = index === 0 ? cards : [...new Array(cards)];
-  const topCard = useRoomState((state) => state.topCard);
+  const setNewCards = useRoomState((state) => state.setNewCards);
+
+  /* const findNextPlayerIndex = (currentIndex: number | null) => {
+    let nextPlayerIndex;
+    if (currentIndex !== undefined && currentIndex !== null) {
+      if (direction === 'CW') {
+        if (currentIndex === players.length - 1) {
+          nextPlayerIndex = 0;
+        } else {
+          nextPlayerIndex = currentIndex + 1;
+        }
+      } else if (currentIndex === 0) {
+        nextPlayerIndex = players.length - 1;
+      } else {
+        nextPlayerIndex = currentIndex - 1;
+      }
+    } else {
+      nextPlayerIndex = 0;
+    }
+    return nextPlayerIndex;
+  }; */
 
   const cardsPosition0 = {
     top: 'calc(50% + 38rem)',
@@ -51,22 +78,42 @@ export const PlayerCards = ({ player, index }: PlayerCardsProps) => {
   ];
 
   const swap = useSpring({
-    from: positionsArray[index],
-    to:
-      direction === 'CW'
-        ? positionsArray[index === players.length - 1 ? 0 : index + 1]
-        : positionsArray[index === 0 ? players.length - 1 : index - 1],
-
-    duration: 1000,
+    from: positionsArray[swapPlayerIndex],
+    to: positionsArray[swapNextPlayerIndex],
+    duration: 5000,
   });
 
-  // TODO cancel animation on end
-  // TODO check if swap is laid out - change 'style' in animated.div
+  const swap2 = useSpring({
+    from: positionsArray[swapNextPlayerIndex],
+    to: positionsArray[swapPlayerIndex],
+    duration: 5000,
+  });
+
+  socket.on('swap-cards', ({ playerId, nextPlayerId, playerCards, nextPlayerCards }) => {
+    setIsCardsSwap(true);
+    setSwapPlayerIndex(orderedPlayers.findIndex((el) => el.id === playerId));
+    setNextSwapPlayerIndex(orderedPlayers.findIndex((el) => el.id === nextPlayerId));
+
+    setNewCards({ playerId, nextPlayerId, playerCards, nextPlayerCards });
+    setTimeout(() => {
+      setIsCardsSwap(false);
+    }, 3000);
+  });
+
+  const checkSwapAnimation = () => {
+    if (isCardsSwap && swapPlayerIndex === index) {
+      return swap;
+    }
+    if (isCardsSwap && swapNextPlayerIndex === index) {
+      return swap2;
+    }
+    return undefined;
+  };
 
   return (
     <animated.div
       className={[style.playerCards, style[`player-cards-${index}`]].join(' ')}
-      style={topCard?.value === 'swap' ? swap : undefined}
+      style={checkSwapAnimation()}
     >
       {cardsArray.map((_, i) => {
         const count = index === 0 ? cards.length : +cards;
