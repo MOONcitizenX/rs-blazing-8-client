@@ -12,6 +12,7 @@ import { GamePage } from './components/gamePage/GamePage';
 import { Chat } from './components/chat/Chat';
 import { GameWinnerComponent } from './components/gameWinnerComponent/GameWinnerComponent';
 import { OneCardAlert } from './components/oneCardAlert/OneCardAlert';
+import { NotificationPopUp } from './components/notificationPopUp/NotificationPopUp';
 
 const musicPlayer = new MusicPlayer();
 
@@ -48,6 +49,7 @@ export const App = ({ socket }: AppProps) => {
     >
       {winner && <GameWinnerComponent socket={socket} />}
       <Menu />
+      <NotificationPopUp />
       {mainView(status)}
       <Chat socket={socket} />
       <OneCardAlert />
