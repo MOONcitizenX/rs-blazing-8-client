@@ -3,6 +3,8 @@ import secondTrack from '../assets/sounds/music/1-01. Wake Up, Get Up, Get Out T
 import thirdTrack from '../assets/sounds/music/03. The Last of Us.mp3';
 
 export class MusicPlayer {
+  private static instance: MusicPlayer;
+
   player = new Audio(firstTrack);
 
   index = 0;
@@ -11,7 +13,14 @@ export class MusicPlayer {
 
   constructor() {
     this.player.onended = () => this.nextTrack();
-    this.player.volume = 0.7;
+  }
+
+  public static getInstance(): MusicPlayer {
+    if (!MusicPlayer.instance) {
+      MusicPlayer.instance = new MusicPlayer();
+    }
+
+    return MusicPlayer.instance;
   }
 
   nextTrack() {
@@ -26,5 +35,9 @@ export class MusicPlayer {
 
   pause() {
     this.player.pause();
+  }
+
+  set volume(value: number) {
+    this.player.volume = value;
   }
 }

@@ -51,7 +51,7 @@ export const GameWinnerComponent = ({ socket }: IGameWinnerComponentProps) => {
   useChain([runDownRef, scaleRef, opacityRef]);
 
   if (isSoundOn) {
-    const player = new SoundPlayer();
+    const player = SoundPlayer.getInstance();
     player.play('win');
   }
 

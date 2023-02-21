@@ -24,17 +24,30 @@ const soundEvents: ISoundEvents = {
 };
 
 export class SoundPlayer {
+  private static instance: SoundPlayer;
+
   player: HTMLAudioElement;
 
   events = soundEvents;
 
   constructor() {
     this.player = new Audio();
-    this.player.volume = 0.4;
+  }
+
+  public static getInstance(): SoundPlayer {
+    if (!SoundPlayer.instance) {
+      SoundPlayer.instance = new SoundPlayer();
+    }
+
+    return SoundPlayer.instance;
   }
 
   play(option: SoundEvents) {
     this.player.src = this.events[option];
     this.player.play();
+  }
+
+  set volume(value: number) {
+    this.player.volume = value;
   }
 }

@@ -1,0 +1,40 @@
+.menu__options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 4rem;
+  gap: 2rem;
+}
+
+.menu__item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.menu__item:first-child {
+  justify-content: center;
+}
+
+.volume-input {
+  width: 100%;
+}
+
+.game-rules {
+  font-family: 'BlobSpongey';
+  font-size: 5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.game-rules:hover {
+  color: var(--green-color);
+}
