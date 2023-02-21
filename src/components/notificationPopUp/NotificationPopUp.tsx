@@ -2,8 +2,11 @@ import { animated, useTransition } from '@react-spring/web';
 import { useRoomState } from '../../store/roomStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
 import styles from './NotificationPopUp.module.css';
+import warningIcon from '../../../public/warning-icon.svg';
+import { usePlayerState } from '../../store/playerStore';
 
 export const NotificationPopUp = () => {
+  const isSoundOn = usePlayerState((state) => state.soundVolume);
   const error = useRoomState((state) => state.error);
   const setError = useRoomState((state) => state.setError);
 
@@ -14,8 +17,6 @@ export const NotificationPopUp = () => {
   };
 
   if (error) {
-    const player = new SoundPlayer();
-    player.play('notification');
     interval = setTimeout(() => {
       clearNotification();
     }, 3000);
@@ -28,14 +29,22 @@ export const NotificationPopUp = () => {
     config: { duration: 300 },
   });
 
+  const closePopUp = () => {
+    clearNotification();
+    if (isSoundOn) {
+      const player = SoundPlayer.getInstance();
+      player.play('click');
+    }
+  };
+
   return transition(
     (style, item) =>
       item && (
         <animated.div style={style} className={styles.container}>
           <div className={styles.wrapper}>
-            <div>Icon</div>
-            <p className={styles.text}>{error}text</p>
-            <button className={styles.button} onClick={clearNotification} type="button">
+            <img src={warningIcon} alt="warning" />
+            <p className={styles.text}>{error}</p>
+            <button className={styles.button} onClick={closePopUp} type="button">
               X
             </button>
           </div>
