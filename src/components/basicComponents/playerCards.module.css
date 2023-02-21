@@ -3,7 +3,7 @@
   display: flex;
   left: 6rem;
   bottom: 1rem;
-  transition: 5s;
+  transition: 1s ease-in;
 }
 
 .player-card {
@@ -13,7 +13,7 @@
   left: 50%;
   top: 50%;
   transform-origin: center 120%;
-  transition: transform 1s ease-out;
+  transition: transform 0.5s ease-out;
   box-shadow: 0 0 0 1px #dac9b6;
 }
 

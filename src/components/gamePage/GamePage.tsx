@@ -91,8 +91,6 @@ export const GamePage = ({ socket }: GamePageProps) => {
                 index={index}
               />
             );
-
-            return null;
           })}
         </div>
         <div className={style.startTable}>

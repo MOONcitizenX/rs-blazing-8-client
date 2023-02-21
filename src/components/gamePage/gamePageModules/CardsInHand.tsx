@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
@@ -6,11 +7,13 @@ import { useRoomState } from '../../../store/roomStore';
 import { ICard } from '../../../store/types/interfaces/ICard';
 import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './CardsInHand.module.css';
+import { useState } from 'react';
+import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
 
 interface CardsInHandProps {
   cardsInHand: ICard[];
   isPlayerTurn: boolean;
-  socket: Socket<ClientToServerEvents>;
+  socket: Socket<ServerToClientEvents, ClientToServerEvents>;
   cardWasPlayed: () => void;
 }
 export const CardsInHand = ({
@@ -58,8 +61,26 @@ export const CardsInHand = ({
     }
   };
 
+  const [isCardsSwap, setIsCardsSwap] = useState(false);
+
+  socket.on('swap-cards', () => {
+    setIsCardsSwap(true);
+    setTimeout(() => {
+      setIsCardsSwap(false);
+    }, 1000);
+  });
+
+  const swap = useSpring({
+    from: { transform: 'translateY(0rem) scale(1)' },
+    to: [
+      { transform: 'translateY(15rem) scale(0.5)', delay: 1000 },
+      { transform: 'translateY(0rem) scale(1)', delay: 1000 },
+    ],
+    duration: 2000,
+  });
+
   return (
-    <div className={styles.cardsWrapper}>
+    <animated.div className={styles.cardsWrapper} style={isCardsSwap ? swap : undefined}>
       {cardsInHand.map((card, index) => {
         const isPlayable = isCardPlayable(cardOnTop, card) && isPlayerTurn;
         return (
@@ -79,6 +100,6 @@ export const CardsInHand = ({
           </div>
         );
       })}
-    </div>
+    </animated.div>
   );
 };
