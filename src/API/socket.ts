@@ -7,12 +7,15 @@ import { cardMap } from '../utils/cardsMap';
 import { useChatState } from '../store/chatStore';
 
 export const createSocket = () => {
-  const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('ws://localhost:5555', {
-    transports: ['websocket'],
-    auth: {
-      token: localStorage.token ?? (localStorage.token = uuidv4()),
+  const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
+    'rs-blazing-8-server-production.up.railway.app',
+    {
+      transports: ['websocket'],
+      auth: {
+        token: localStorage.token ?? (localStorage.token = uuidv4()),
+      },
     },
-  });
+  );
 
   socket.on('get-me', (data) => {
     useRoomState.setState({ id: data.id });
