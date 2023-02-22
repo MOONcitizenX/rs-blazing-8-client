@@ -9,7 +9,7 @@ interface ArrowProps {
 export const Arrow = ({ className, onClick }: ArrowProps) => {
   // arrow directions in className: top, bottom, right. init state left
   const isSoundOn = usePlayerState((state) => state.sound);
-  const player = new SoundPlayer();
+  const player = SoundPlayer.getInstance();
   const clicKHandler = () => {
     if (isSoundOn) player.play('click');
     onClick();

@@ -15,8 +15,10 @@ export interface RoomStoreTypes {
   isCardSuitChoose: boolean;
   id: string;
   oneCardLeft: boolean;
+  error: string;
   changeDirection: (direction: TurnDirection) => void;
   setIsCardSuitChoose: (isCardSuitChoose: boolean) => void;
   setStatus: (status: RoomStateStatus) => void;
   setWinner: (winner: string | null) => void;
+  setError: (text: string) => void;
 }

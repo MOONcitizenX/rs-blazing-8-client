@@ -2,6 +2,7 @@ import styles from './UserConnect.module.css';
 import { TextInput } from '../../basicComponents/textInput';
 import { Button } from '../../basicComponents/button';
 import { Form } from '../../basicComponents/form';
+import { useRoomState } from '../../../store/roomStore';
 
 interface UserConnectProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -9,8 +10,9 @@ interface UserConnectProps {
   roomId: string;
   isUserName: boolean;
 }
-// TODO use state for room id, required input and check for wrong inputs
+
 export const UserConnect = ({ onSubmit, roomIdHandler, roomId, isUserName }: UserConnectProps) => {
+  const error = useRoomState((state) => state.error);
   return (
     <Form className={styles.form__connect} onSubmit={onSubmit}>
       <TextInput
@@ -21,7 +23,9 @@ export const UserConnect = ({ onSubmit, roomIdHandler, roomId, isUserName }: Use
           placeholder: 'Room ID',
         }}
       />
-      <Button attributes={{ disabled: isUserName, type: 'submit' }}>Join</Button>
+      <Button attributes={{ disabled: isUserName || (!isUserName && !!error), type: 'submit' }}>
+        Join
+      </Button>
     </Form>
   );
 };

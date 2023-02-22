@@ -27,7 +27,7 @@ export const GameDeckField = ({
   const topCard = useRoomState((state) => state.topCard);
   const isSuitChooseAnimation = isCardSuitChoose && !isPlayerTurn;
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
-  const player = new SoundPlayer();
+  const player = SoundPlayer.getInstance();
   const cardsQuantity = useRoomState((state) => state.closedDeck);
   const isLastCard = cardsQuantity === 0;
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);

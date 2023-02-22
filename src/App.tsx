@@ -12,13 +12,21 @@ import { GamePage } from './components/gamePage/GamePage';
 import { Chat } from './components/chat/Chat';
 import { GameWinnerComponent } from './components/gameWinnerComponent/GameWinnerComponent';
 import { OneCardAlert } from './components/oneCardAlert/OneCardAlert';
+import { NotificationPopUp } from './components/notificationPopUp/NotificationPopUp';
+import { SoundPlayer } from './utils/SoundPlayer';
 
-const musicPlayer = new MusicPlayer();
+const musicPlayer = MusicPlayer.getInstance();
+const audioPlayer = SoundPlayer.getInstance();
 
 interface AppProps {
   socket: Socket;
 }
 export const App = ({ socket }: AppProps) => {
+  const musicVolume = usePlayerState((state) => state.musicVolume);
+  const audioVolume = usePlayerState((state) => state.soundVolume);
+  musicPlayer.volume = musicVolume;
+  audioPlayer.volume = audioVolume;
+
   const musicValue = usePlayerState((state) => state.music);
   if (musicValue) {
     musicPlayer.play();
@@ -48,6 +56,7 @@ export const App = ({ socket }: AppProps) => {
     >
       {winner && <GameWinnerComponent socket={socket} />}
       <Menu />
+      <NotificationPopUp />
       {mainView(status)}
       <Chat socket={socket} />
       <OneCardAlert />

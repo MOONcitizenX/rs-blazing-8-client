@@ -15,6 +15,7 @@ export const useRoomState = create(
     isCardSuitChoose: false,
     id: '',
     oneCardLeft: false,
+    error: '',
 
     changeDirection: (direction) =>
       set((state: RoomStoreTypes) => {
@@ -30,6 +31,12 @@ export const useRoomState = create(
     setWinner(winner) {
       set((state: RoomStoreTypes) => {
         return { ...state, winner };
+      });
+    },
+
+    setError(error) {
+      set((state: RoomStoreTypes) => {
+        return { ...state, error };
       });
     },
 

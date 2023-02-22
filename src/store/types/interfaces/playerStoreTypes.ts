@@ -7,6 +7,8 @@ export interface PlayerStoreTypes {
   avatarImg: string;
   background: string;
   cardback: string;
+  musicVolume: number;
+  soundVolume: number;
   emotion?: unknown;
 
   setId: (id: string) => void;
@@ -16,5 +18,7 @@ export interface PlayerStoreTypes {
   changeCardback: (cardback: string) => void;
   changeMusicValue: (value: boolean) => void;
   changeSoundValue: (value: boolean) => void;
+  changeMusicVolume: (value: number) => void;
+  changeSoundVolume: (value: number) => void;
   changeAvatarImg: (img: string) => void;
 }
