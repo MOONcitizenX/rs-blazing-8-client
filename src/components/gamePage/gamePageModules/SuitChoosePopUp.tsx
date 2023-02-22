@@ -26,7 +26,7 @@ interface SuitChoosePopUpProps {
 }
 export const SuitChoosePopUp = ({ socket }: SuitChoosePopUpProps) => {
   const isSoundOn = usePlayerState((state) => state.sound);
-  const player = new SoundPlayer();
+  const player = SoundPlayer.getInstance();
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const suitChangeHandler = (e: React.MouseEvent<HTMLImageElement>, suit: CardColor) => {
     if (isSoundOn) player.play('click');

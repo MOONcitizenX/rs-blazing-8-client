@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { cardMap } from '../utils/cardsMap';
 import { RoomStoreTypes } from './types/interfaces/roomStoreTypes';
 
 export const useRoomState = create(
@@ -16,6 +15,7 @@ export const useRoomState = create(
     isCardSuitChoose: false,
     id: '',
     oneCardLeft: false,
+    error: '',
 
     changeDirection: (direction) =>
       set((state: RoomStoreTypes) => {
@@ -34,30 +34,15 @@ export const useRoomState = create(
       });
     },
 
-    setIsCardSuitChoose: (isCardSuitChoose) => {
+    setError(error) {
       set((state: RoomStoreTypes) => {
-        return { ...state, isCardSuitChoose };
+        return { ...state, error };
       });
     },
 
-    setNewCards: ({ playerId, nextPlayerId, playerCards, nextPlayerCards }) => {
+    setIsCardSuitChoose: (isCardSuitChoose) => {
       set((state: RoomStoreTypes) => {
-        const newPlayers = state.players.map((el) => {
-          if (el.id === playerId) {
-            return {
-              ...el,
-              cards: playerCards,
-            };
-          }
-          if (el.id === nextPlayerId) {
-            return {
-              ...el,
-              cards: nextPlayerCards,
-            };
-          }
-          return el;
-        });
-        return { ...state, players: newPlayers };
+        return { ...state, isCardSuitChoose };
       });
     },
   })),

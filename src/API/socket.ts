@@ -39,8 +39,7 @@ export const createSocket = () => {
   });
 
   socket.on('error', (data) => {
-    // todo notification with error
-    alert(data.message);
+    useRoomState.setState({ error: data.message });
   });
 
   socket.on('winner-winner', (data) => {

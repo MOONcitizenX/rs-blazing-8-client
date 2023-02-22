@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { animated, useSpring } from '@react-spring/web';
+import { animated, useSpring, useTransition } from '@react-spring/web';
 import { usePlayerState } from '../../store/playerStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
-import { CheckBox } from '../basicComponents/checkBox';
 import styles from './Menu.module.css';
 import { SettingsIcon } from './SettingsIcon';
+import { GameRules } from './GameRules';
+import { MenuOptions } from './MenuOptions';
 
-const player = new SoundPlayer();
+const soundPlayer = SoundPlayer.getInstance();
 
 export const Menu = () => {
   const isSoundOn = usePlayerState((state) => state.sound);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-  const changeMusicValue = usePlayerState((state) => state.changeMusicValue);
-  const changeSoundValue = usePlayerState((state) => state.changeSoundValue);
+  const [isRuleOpen, setIsRuleOpen] = useState<boolean>(false);
 
   const props = useSpring({
     opacity: isMenuOpened ? 1 : 0,
@@ -21,27 +21,24 @@ export const Menu = () => {
   });
 
   const closeClickHandler = () => {
-    if (isSoundOn) player.play('click');
+    if (isSoundOn) soundPlayer.play('click');
     setIsMenuOpened(false);
+    setIsRuleOpen(false);
   };
 
   const onSettingsClickHandler = () => {
-    if (isMenuOpened) {
-      closeClickHandler();
-      return;
-    }
-    if (isSoundOn) player.play('click');
+    if (isSoundOn) soundPlayer.play('click');
     setIsMenuOpened(!isMenuOpened);
   };
 
-  const musicValueChangeHandler = (value: boolean) => {
-    if (isSoundOn) player.play('click');
-    changeMusicValue(value);
-  };
+  const ruleOptionChange = useTransition(isRuleOpen, {
+    from: { x: -200, opacity: 0 },
+    enter: { x: 0, opacity: 1 },
+    leave: { x: 200, opacity: 0 },
+  });
 
-  const soundValueChangeHandler = (value: boolean) => {
-    if (isSoundOn) player.play('click');
-    changeSoundValue(value);
+  const rulesChangeHandler = () => {
+    setIsRuleOpen(!isRuleOpen);
   };
 
   return (
@@ -49,24 +46,20 @@ export const Menu = () => {
       <animated.div
         className={styles.menu}
         onClick={closeClickHandler}
-        onKeyDown={closeClickHandler}
         role="presentation"
         style={props}
       >
-        <ul
-          onClick={(e) => e.stopPropagation()}
-          role="presentation"
-          className={styles.menu__options}
-        >
-          <li className={styles.menu__item}>
-            <span>Music</span>
-            <CheckBox isOn={false} onChange={musicValueChangeHandler} />
-          </li>
-          <li className={styles.menu__item}>
-            <span>Sound Effects</span>
-            <CheckBox isOn={isSoundOn} onChange={soundValueChangeHandler} />
-          </li>
-        </ul>
+        {ruleOptionChange((style, item) =>
+          item ? (
+            <animated.div style={style} className={styles.option}>
+              <GameRules rulesChangeHandler={rulesChangeHandler} />
+            </animated.div>
+          ) : (
+            <animated.div style={style} className={styles.option}>
+              <MenuOptions rulesChangeHandler={rulesChangeHandler} />
+            </animated.div>
+          ),
+        )}
       </animated.div>
       <SettingsIcon onClick={onSettingsClickHandler} />
     </>

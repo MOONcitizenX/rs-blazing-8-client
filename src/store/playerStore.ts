@@ -17,6 +17,20 @@ export const usePlayerState = create<PlayerStoreTypes>()(
         cardback: cardbacksArray[0],
         emotion: null,
         cardsSort: '',
+        musicVolume: 1,
+        soundVolume: 1,
+
+        changeMusicVolume(musicVolume) {
+          set((state: PlayerStoreTypes) => {
+            return { ...state, musicVolume };
+          });
+        },
+
+        changeSoundVolume(soundVolume) {
+          set((state: PlayerStoreTypes) => {
+            return { ...state, soundVolume };
+          });
+        },
 
         changeAvatarImg: (avatarImg: string) =>
           set((state: PlayerStoreTypes) => {

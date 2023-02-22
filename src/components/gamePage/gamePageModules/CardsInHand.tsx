@@ -25,7 +25,7 @@ export const CardsInHand = ({
   const sortValue = usePlayerState((state) => state.cardsSort);
   const [isLoaded, setIsLoaded] = useState(false);
   const isSoundOn = usePlayerState((state) => state.sound);
-  const player = new SoundPlayer();
+  const player = SoundPlayer.getInstance();
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
   const cardOnTop = useRoomState((state) => state.topCard);
   const count = cardsInHand.length;
