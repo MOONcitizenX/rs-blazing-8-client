@@ -1,3 +1,5 @@
+import { CardSort } from '../types/CardSort';
+
 export interface PlayerStoreTypes {
   name: string;
   avatarId: string;
@@ -7,6 +9,7 @@ export interface PlayerStoreTypes {
   avatarImg: string;
   background: string;
   cardback: string;
+  cardsSort: CardSort;
   emotion?: unknown;
 
   setId: (id: string) => void;
@@ -17,4 +20,5 @@ export interface PlayerStoreTypes {
   changeMusicValue: (value: boolean) => void;
   changeSoundValue: (value: boolean) => void;
   changeAvatarImg: (img: string) => void;
+  changeCardsSort: (value: CardSort) => void;
 }

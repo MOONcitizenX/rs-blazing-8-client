@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
@@ -22,6 +22,7 @@ export const CardsInHand = ({
   isPlayerTurn,
   cardWasPlayed,
 }: CardsInHandProps) => {
+  const sortValue = usePlayerState((state) => state.cardsSort);
   const [isLoaded, setIsLoaded] = useState(false);
   const isSoundOn = usePlayerState((state) => state.sound);
   const player = new SoundPlayer();
@@ -33,6 +34,15 @@ export const CardsInHand = ({
   const increment = angle / (count + 1);
   const myId = useRoomState((state) => state.id);
 
+  const sortedCardsArr = useMemo(() => {
+    if (sortValue === 'value') {
+      return [...cardsInHand].sort((a, b) => a.sortValue - b.sortValue);
+    }
+    if (sortValue === 'suit') {
+      return [...cardsInHand].sort((a, b) => a.color.localeCompare(b.color));
+    }
+    return cardsInHand;
+  }, [cardsInHand, sortValue]);
   const isCardPlayable = (topCard: ICard | null, playerCard: ICard) => {
     return (
       topCard &&
@@ -77,7 +87,7 @@ export const CardsInHand = ({
 
   return (
     <animated.div className={styles.cardsWrapper} style={isCardsSwap ? swap : undefined}>
-      {cardsInHand.map((card, index) => {
+      {sortedCardsArr.map((card, index) => {
         const isPlayable = isCardPlayable(cardOnTop, card) && isPlayerTurn;
         return (
           <div className={styles.cardWrapper} key={card.cardId}>
