@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
@@ -37,6 +37,10 @@ export const GamePage = ({ socket }: GamePageProps) => {
       // setIsCardTaken(true);
     }
   };
+
+  useEffect(() => {
+    setIsTurnCanBeSkipped(false);
+  }, [playerTurn]);
 
   const endTurnHandler = () => {
     socket.emit('pass-turn');

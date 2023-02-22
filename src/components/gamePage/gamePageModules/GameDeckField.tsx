@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useEffect } from 'react';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
@@ -29,6 +30,8 @@ export const GameDeckField = ({
   const player = new SoundPlayer();
   const cardsQuantity = useRoomState((state) => state.closedDeck);
   const isLastCard = cardsQuantity === 0;
+  const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
+  const playerTurn = useRoomState((state) => state.playerTurn);
 
   const cardTakeClick = () => {
     if (!isCardTaken) {
@@ -36,6 +39,10 @@ export const GameDeckField = ({
       cardTakeHandler();
     }
   };
+
+  useEffect(() => {
+    setIsCardSuitChoose(false);
+  }, [playerTurn, setIsCardSuitChoose]);
 
   return (
     <div className={styles.deckFieldBorder}>
