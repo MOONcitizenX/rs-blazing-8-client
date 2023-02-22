@@ -35,16 +35,12 @@ export const GameRules = ({ rulesChangeHandler }: GameRulesProps) => {
           If an eight is played, the player who played the eight chooses the suit of the next card
           to be played. The eight can be played at any time, and the player can choose any suit.
         </li>
-        <li>
-          If a player plays a two, the next player must draw two cards from the draw pile and skip
-          their turn.
-        </li>
         <li>If a player plays a jack, the next player`s turn is skipped.</li>
+        <li>If a player plays a queen, play direction is change</li>
         <li>
-          If a player plays a queen, the player following them must play a card of the same suit, or
-          draw until they have a card that can be played.
+          If a player plays a king, every player take a random card, except a player who played
+          king.
         </li>
-        <li>If a player plays a king, the player can choose any player to take another turn.</li>
       </ol>
       <h2>Winning</h2>
       <p>
