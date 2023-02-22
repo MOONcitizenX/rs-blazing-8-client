@@ -40,7 +40,8 @@ export const CardsInHand = ({
     }
     if (sortValue === 'suit') {
       const order = ['B', 'G', 'Y', 'R'];
-      const sorted = cardsInHand
+      const sorted = [...cardsInHand]
+        .sort((a, b) => a.sortValue - b.sortValue)
         .filter((v) => order.includes(v.color) && !v.sortSuit)
         .sort((a, b) => order.indexOf(a.color) - order.indexOf(b.color));
       const multi = cardsInHand.filter((v) => v.color === 'multi');
