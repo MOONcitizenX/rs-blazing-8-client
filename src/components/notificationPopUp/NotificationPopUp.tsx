@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import { useRoomState } from '../../store/roomStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
@@ -10,17 +11,19 @@ export const NotificationPopUp = () => {
   const error = useRoomState((state) => state.error);
   const setError = useRoomState((state) => state.setError);
 
-  let interval: NodeJS.Timeout;
-  const clearNotification = () => {
-    clearInterval(interval);
-    setError('');
-  };
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
 
-  if (error) {
-    interval = setTimeout(() => {
-      clearNotification();
-    }, 3000);
-  }
+    if (error) {
+      interval = setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(interval);
+    };
+  }, [error, setError]);
 
   const transition = useTransition(error, {
     from: { x: -200, opacity: 0 },
@@ -30,7 +33,7 @@ export const NotificationPopUp = () => {
   });
 
   const closePopUp = () => {
-    clearNotification();
+    setError('');
     if (isSoundOn) {
       const player = SoundPlayer.getInstance();
       player.play('click');
