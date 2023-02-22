@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
+import { useState } from 'react';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
 import { ICard } from '../../../store/types/interfaces/ICard';
 import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './CardsInHand.module.css';
-import { useState } from 'react';
 import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
 
 interface CardsInHandProps {
@@ -30,6 +30,7 @@ export const CardsInHand = ({
   const angle = 40;
   const offset = angle / 2;
   const increment = angle / (count + 1);
+  const myId = useRoomState((state) => state.id);
 
   const isCardPlayable = (topCard: ICard | null, playerCard: ICard) => {
     return (
@@ -55,16 +56,13 @@ export const CardsInHand = ({
         return;
       }
       socket.emit('play-card', { card: cardId });
-      if (cardValue === 'swap') {
-        // TODO swap animations
-      }
     }
   };
 
   const [isCardsSwap, setIsCardsSwap] = useState(false);
 
-  socket.on('swap-cards', () => {
-    setIsCardsSwap(true);
+  socket.on('swap-cards', ({ playerId, nextPlayerId }) => {
+    setIsCardsSwap(() => playerId === myId || nextPlayerId === myId);
     setTimeout(() => {
       setIsCardsSwap(false);
     }, 1000);
@@ -72,11 +70,8 @@ export const CardsInHand = ({
 
   const swap = useSpring({
     from: { transform: 'translateY(0rem) scale(1)' },
-    to: [
-      { transform: 'translateY(15rem) scale(0.5)', delay: 1000 },
-      { transform: 'translateY(0rem) scale(1)', delay: 1000 },
-    ],
-    duration: 2000,
+    to: [{ transform: 'translateY(15rem) scale(0.5)' }, { transform: 'translateY(0rem) scale(1)' }],
+    duration: 1000,
   });
 
   return (

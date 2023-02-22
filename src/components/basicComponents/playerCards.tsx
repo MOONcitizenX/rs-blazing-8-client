@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
 import style from './playerCards.module.css';
 import { usePlayerState } from '../../store/playerStore';
-import { useRoomState } from '../../store/roomStore';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
+import { getPlayerIndex } from '../../utils/getPlayerIndex';
 
 interface PlayerCardsProps {
   player: IPlayerResponse;
@@ -16,32 +16,37 @@ interface PlayerCardsProps {
 
 export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCardsProps) => {
   const { cards, id } = player;
-  const [isCardsSwap, setIsCardsSwap] = useState(false);
+  const [playerIndex, setPlayerIndex] = useState<number | null>(null);
+  const [nextPlayerIndex, setNextPlayerIndex] = useState<number | null>(null);
   const cardback = usePlayerState((state) => state.cardback);
   const cardsArray = index === 0 ? cards : [...new Array(cards)];
-  const setNewCards = useRoomState((state) => state.setNewCards);
 
-  socket.on('swap-cards', ({ playerId, nextPlayerId, playerCards, nextPlayerCards }) => {
-    setIsCardsSwap(true);
-    setTimeout(() => {
-      setNewCards({ playerId, nextPlayerId, playerCards, nextPlayerCards });
-      setIsCardsSwap(false);
-    }, 1000);
+  socket.on('swap-cards', ({ playerId, nextPlayerId }) => {
+    setPlayerIndex(getPlayerIndex(orderedPlayers, playerId));
+    setNextPlayerIndex(getPlayerIndex(orderedPlayers, nextPlayerId));
   });
 
   const swap = useSpring({
     from: { transform: 'translateY(0px) scale(1)' },
-    to: [
-      { transform: 'translateY(40px) scale(0.5)', delay: 1000 },
-      { transform: 'translateY(0px) scale(1)', delay: 1000 },
-    ],
-    duration: 2000,
+    to: [{ transform: 'translateY(40px) scale(0.5)' }, { transform: 'translateY(0px) scale(1)' }],
+    duration: 1000,
+    onRest: () => {
+      setPlayerIndex(null);
+      setNextPlayerIndex(null);
+    },
   });
+
+  const checkSwapIndex = (handIndex: number) => {
+    if (playerIndex === handIndex || nextPlayerIndex === handIndex) {
+      return swap;
+    }
+    return undefined;
+  };
 
   return (
     <animated.div
       className={[style.playerCards, style[`player-cards-${index}`]].join(' ')}
-      style={isCardsSwap ? swap : undefined}
+      style={checkSwapIndex(index)}
     >
       {cardsArray.map((_, i) => {
         const count = index === 0 ? cards.length : +cards;
