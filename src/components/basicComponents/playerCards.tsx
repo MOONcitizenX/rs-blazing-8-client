@@ -1,11 +1,12 @@
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
 import style from './playerCards.module.css';
 import { usePlayerState } from '../../store/playerStore';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
 import { getPlayerIndex } from '../../utils/getPlayerIndex';
+import { useRoomState } from '../../store/roomStore';
 
 interface PlayerCardsProps {
   player: IPlayerResponse;
@@ -20,6 +21,8 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   const [nextPlayerIndex, setNextPlayerIndex] = useState<number | null>(null);
   const cardback = usePlayerState((state) => state.cardback);
   const cardsArray = index === 0 ? cards : [...new Array(cards)];
+  const topCard = useRoomState((state) => state.topCard?.image);
+  const [cardPlayedIndex, setCardPlayedIndex] = useState<number | null>(null);
 
   socket.on('swap-cards', ({ playerId, nextPlayerId }) => {
     setPlayerIndex(getPlayerIndex(orderedPlayers, playerId));
@@ -36,6 +39,13 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     },
   });
 
+  useEffect(() => {
+    setCardPlayedIndex(index);
+    setTimeout(() => {
+      setCardPlayedIndex(null);
+    }, 1000);
+  }, [topCard, index]);
+
   const checkSwapIndex = (handIndex: number) => {
     if (playerIndex === handIndex || nextPlayerIndex === handIndex) {
       return swap;
@@ -43,11 +53,32 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     return undefined;
   };
 
+  const topCardXPositions = [7.5, 47.5, 36.5, -21.5, -32.5];
+  const topCardYPositions = [-41.5, -12.5, 18.5, 18.5, -12.5];
+
+  const layCardAnimation = useSpring({
+    from: {
+      transform: 'translate(0rem, 0rem) rotate(0deg)',
+      opacity: 1,
+    },
+    to: {
+      transform: `translate(${topCardXPositions[index]}rem, ${topCardYPositions[index]}rem) rotate(360deg)`,
+      opacity: 1,
+    },
+    duration: 1000,
+  });
+
   return (
     <animated.div
       className={[style.playerCards, style[`player-cards-${index}`]].join(' ')}
       style={checkSwapIndex(index)}
     >
+      <animated.img
+        className={style.topCard}
+        src={topCard}
+        alt="Card"
+        style={cardPlayedIndex ? layCardAnimation : undefined}
+      />
       {cardsArray.map((_, i) => {
         const count = index === 0 ? cards.length : +cards;
         const angle = 100;
