@@ -2,7 +2,7 @@ import { Socket } from 'socket.io-client';
 import { LobbyPage } from './components/lobbyPage/LobbyPage';
 import { StartPage } from './components/startPage/StartPage';
 import { useRoomState } from './store/roomStore';
-import style from './App.module.css';
+import style from './app.module.css';
 
 import { Menu } from './components/menuComponent/Menu';
 import { usePlayerState } from './store/playerStore';
