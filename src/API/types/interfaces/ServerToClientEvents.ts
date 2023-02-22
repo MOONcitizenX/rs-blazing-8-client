@@ -4,6 +4,7 @@ import { IErrorMessage } from './IErrorMessage';
 import { ChatSMessage } from '../../../store/types/types/ChatMessage';
 import { IWinnerResponse } from './IWinnerResponse';
 import { ISwapCardsResponce } from './ISwapCardsResponce';
+import { ITimerOutResponce, ITimerUpdateResponce } from './ITimerResponse';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -16,4 +17,6 @@ export interface ServerToClientEvents {
   'winner-winner': (value: IWinnerResponse) => void;
   'one-card-left': (value: boolean) => void;
   'swap-cards': (value: ISwapCardsResponce) => void;
+  'timer-update': (value: ITimerUpdateResponce) => void;
+  'timer-out': (value: ITimerOutResponce) => void;
 }

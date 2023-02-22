@@ -8,7 +8,7 @@ declare const styles: {
   readonly "timer": string;
   readonly "gradient": string;
   readonly "shadow": string;
-  readonly "countdown": string;
+  readonly "timerCount": string;
 };
 export = styles;
 
