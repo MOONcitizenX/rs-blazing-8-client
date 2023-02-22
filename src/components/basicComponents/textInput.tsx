@@ -8,7 +8,8 @@ interface TextInputProps {
 }
 
 export const TextInput = ({ attributes }: TextInputProps) => {
-  const { onChange, placeholder, className, type, disabled, value, required } = attributes;
+  const { onChange, placeholder, className, type, disabled, value, required, maxLength } =
+    attributes;
   return (
     <input
       required={required}
@@ -18,6 +19,8 @@ export const TextInput = ({ attributes }: TextInputProps) => {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      minLength={1}
+      maxLength={maxLength}
     />
   );
 };

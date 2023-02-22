@@ -56,6 +56,7 @@ export const cardMap: Record<string, ICard> = {
     image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/blue/8.png',
     cardId: '8B',
     sortValue: 15,
+    sortSuit: 'multi8',
   },
   '9B': {
     value: '9',
@@ -147,6 +148,7 @@ export const cardMap: Record<string, ICard> = {
     image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/green/8.png',
     cardId: '8G',
     sortValue: 15,
+    sortSuit: 'multi8',
   },
   '9G': {
     value: '9',
@@ -238,6 +240,7 @@ export const cardMap: Record<string, ICard> = {
     image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/red/8.png',
     cardId: '8R',
     sortValue: 15,
+    sortSuit: 'multi8',
   },
   '9R': {
     value: '9',
@@ -329,6 +332,7 @@ export const cardMap: Record<string, ICard> = {
     image: 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/yellow/8.png',
     cardId: '8Y',
     sortValue: 15,
+    sortSuit: 'multi8',
   },
   '9Y': {
     value: '9',
