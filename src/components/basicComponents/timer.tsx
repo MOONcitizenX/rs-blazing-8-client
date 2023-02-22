@@ -36,7 +36,7 @@ export const Timer = ({ socket, index, players }: TimerProps) => {
 
   const timerPosition3 = {
     top: 'calc(50% + -5rem)',
-    left: 'calc(50% + 40rem)',
+    left: 'calc(50% + 42rem)',
   };
 
   const timerPosition4 = {
@@ -62,13 +62,6 @@ export const Timer = ({ socket, index, players }: TimerProps) => {
     }, 1000);
   });
 
-  /* socket.on('timer-out', ({ id }) => {
-    setIsTimerSwap(true);
-    setTimeout(() => {
-      setIsTimerSwap(false);
-    }, 1000);
-  }); */
-
   const currentIndex = players.findIndex((el) => el.id === currentId);
 
   useEffect(() => {
@@ -81,35 +74,24 @@ export const Timer = ({ socket, index, players }: TimerProps) => {
   }, [timerContent]);
 
   const swap = useSpring({
-    from: positionsArray[index],
+    from:
+      direction === 'CW'
+        ? positionsArray[currentIndex === 0 ? players.length - 1 : currentIndex - 1]
+        : positionsArray[currentIndex === players.length - 1 ? 0 : currentIndex + 1],
     to: positionsArray[currentIndex],
-    // to:
-    //  direction === 'CW'
-    //    ? positionsArray[index === players.length - 1 ? 0 : index + 1]
-    //    : positionsArray[index === 0 ? players.length - 1 : index - 1],
-
     duration: 1000,
-    // TODO when turn is skipped, card is laid out or the timer has expired
   });
-
-  const currentTranslate = (updatedTimerCount / 30) * 100;
-  const currenDuration = currentTranslate * 1000;
-
-  const shadowAnimation = useSpring({
-    from: { transform: `translateY(${currentTranslate}%)` },
-    to: { transform: `translateY(100%)` },
-    duration: currenDuration,
-  });
-
-  // isTimerSwap ? swap : undefined
 
   return (
     <animated.div
       className={[style.timerWrapper, style[`timer-${index}`]].join(' ')}
       style={isTimerSwap ? swap : undefined}
     >
-      <div className={style.timer}>
-        <animated.div className={style.shadow} style={shadowAnimation} />
+      <div className={style.timer} style={{ animationDuration: `${updatedTimerCount}s` }}>
+        <animated.div
+          className={style.shadow}
+          style={{ animationDuration: `${updatedTimerCount}s` }}
+        />
         <p className={style.timerCount}>{timerContent}</p>
       </div>
     </animated.div>
