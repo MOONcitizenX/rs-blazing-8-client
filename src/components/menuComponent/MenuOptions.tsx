@@ -1,4 +1,5 @@
 import { animated, useTransition } from '@react-spring/web';
+import { CSSProperties } from 'react';
 import styles from './MenuOptions.module.css';
 import { CheckBox } from '../basicComponents/checkBox';
 import { usePlayerState } from '../../store/playerStore';
@@ -40,6 +41,19 @@ export const MenuOptions = ({ rulesChangeHandler }: MenuOptionsProps) => {
   const musicTransition = useTransition(isMusicOn, transitionOptions);
   const soundTransition = useTransition(isSoundOn, transitionOptions);
 
+  const changeSliderBackground = (type: string) => {
+    if (type === 'sound') {
+      const percentage = ((soundVolume - 0) / (100 - 0)) * 100;
+      return {
+        '--volume-before-width': `${percentage * 100}%`,
+      } as CSSProperties;
+    }
+    const percentage = ((musicVolume - 0) / (100 - 0)) * 100;
+    return {
+      '--music-before-width': `${percentage * 100}%`,
+    } as CSSProperties;
+  };
+
   const changeVolumeHandler = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     const newValue = +e.target.value / 100;
     if (type === 'music') {
@@ -69,10 +83,13 @@ export const MenuOptions = ({ rulesChangeHandler }: MenuOptionsProps) => {
           item && (
             <animated.li style={style} className={styles.menu__item}>
               <input
+                min="0"
+                max="100"
                 value={musicVolume * 100}
-                className={styles.volumeInput}
+                className={styles.musicInput}
                 onChange={(e) => changeVolumeHandler(e, 'music')}
                 type="range"
+                style={changeSliderBackground('music')}
               />
             </animated.li>
           ),
@@ -86,10 +103,13 @@ export const MenuOptions = ({ rulesChangeHandler }: MenuOptionsProps) => {
           item && (
             <animated.li style={style} className={styles.menu__item}>
               <input
+                min="0"
+                max="100"
                 value={soundVolume * 100}
                 className={styles.volumeInput}
                 onChange={(e) => changeVolumeHandler(e, 'sound')}
                 type="range"
+                style={changeSliderBackground('sound')}
               />
             </animated.li>
           ),

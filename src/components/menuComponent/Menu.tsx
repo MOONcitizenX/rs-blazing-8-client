@@ -23,6 +23,7 @@ export const Menu = () => {
   const closeClickHandler = () => {
     if (isSoundOn) soundPlayer.play('click');
     setIsMenuOpened(false);
+    setIsRuleOpen(false);
   };
 
   const onSettingsClickHandler = () => {
