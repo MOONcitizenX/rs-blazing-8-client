@@ -22,6 +22,7 @@ export const CardsInHand = ({
   isPlayerTurn,
   cardWasPlayed,
 }: CardsInHandProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const isSoundOn = usePlayerState((state) => state.sound);
   const player = new SoundPlayer();
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
@@ -72,6 +73,9 @@ export const CardsInHand = ({
     from: { transform: 'translateY(0rem) scale(1)' },
     to: [{ transform: 'translateY(15rem) scale(0.5)' }, { transform: 'translateY(0rem) scale(1)' }],
     duration: 1000,
+    onRest: () => {
+      setIsCardsSwap(false);
+    },
   });
 
   return (
@@ -81,6 +85,9 @@ export const CardsInHand = ({
         return (
           <div className={styles.cardWrapper} key={card.cardId}>
             <img
+              onLoad={() => {
+                setIsLoaded(true);
+              }}
               aria-hidden
               onClick={(e) => cardPlayHandler(e, isPlayable, card.cardId, card.value)}
               style={{
@@ -88,7 +95,10 @@ export const CardsInHand = ({
                   -offset + increment * (index + 1)
                 }deg)`,
               }}
-              className={classNames(styles.myCard, { [styles.active]: isPlayable })}
+              className={classNames(styles.myCard, {
+                [styles.active]: isPlayable,
+                [styles.loaded]: isLoaded,
+              })}
               src={card.value === '8' ? eightCardImage : card.image}
               alt="Card"
             />
