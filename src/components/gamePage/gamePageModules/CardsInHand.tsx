@@ -73,9 +73,6 @@ export const CardsInHand = ({
     from: { transform: 'translateY(0rem) scale(1)' },
     to: [{ transform: 'translateY(15rem) scale(0.5)' }, { transform: 'translateY(0rem) scale(1)' }],
     duration: 1000,
-    onRest: () => {
-      setIsCardsSwap(false);
-    },
   });
 
   return (
