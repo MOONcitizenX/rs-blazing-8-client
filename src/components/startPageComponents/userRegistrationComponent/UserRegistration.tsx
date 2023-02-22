@@ -21,6 +21,7 @@ export const UserRegistration = ({
           onChange: userNameHandler,
           required: true,
           placeholder: 'User Name',
+          maxLength: 12,
         }}
       />
       <Button attributes={{ type: 'submit' }}>Create Room</Button>

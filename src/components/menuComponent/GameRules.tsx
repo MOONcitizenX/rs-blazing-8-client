@@ -55,7 +55,7 @@ export const GameRules = ({ rulesChangeHandler }: GameRulesProps) => {
           rulesChangeHandler();
         }}
       >
-        Return tu Menu
+        Return to Menu
       </h2>
     </div>
   );
