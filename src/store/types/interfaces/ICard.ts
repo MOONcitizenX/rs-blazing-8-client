@@ -5,4 +5,5 @@ export interface ICard {
   color: CardColor;
   image: string;
   cardId: string;
+  sortValue: number;
 }

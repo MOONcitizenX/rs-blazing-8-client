@@ -1,0 +1,14 @@
+.wrapper {
+  position: fixed;
+  bottom: 2rem;
+  z-index: 2;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-family: 'BlobSpongey';
+  font-size: 2rem;
+}

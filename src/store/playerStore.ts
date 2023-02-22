@@ -16,6 +16,7 @@ export const usePlayerState = create<PlayerStoreTypes>()(
         background: backgroundsArray[0],
         cardback: cardbacksArray[0],
         emotion: null,
+        cardsSort: '',
         musicVolume: 1,
         soundVolume: 1,
 
@@ -35,6 +36,12 @@ export const usePlayerState = create<PlayerStoreTypes>()(
           set((state: PlayerStoreTypes) => {
             return { ...state, avatarImg };
           }),
+
+        changeCardsSort(cardsSort) {
+          set((state: PlayerStoreTypes) => {
+            return { ...state, cardsSort };
+          });
+        },
 
         setId: (id: string) =>
           set((state: PlayerStoreTypes) => {

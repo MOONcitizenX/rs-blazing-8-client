@@ -13,6 +13,7 @@ import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerE
 import { Player } from '../basicComponents/player';
 import { Timer } from '../basicComponents/timer';
 import { PlayerCards } from '../basicComponents/playerCards';
+import { CardsSortButtons } from './gamePageModules/CardsSortButtons';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -118,6 +119,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
             Skip move
           </Button>
         </div>
+        <CardsSortButtons />
       </div>
     </div>
   );
