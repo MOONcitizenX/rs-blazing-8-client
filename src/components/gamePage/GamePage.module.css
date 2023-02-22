@@ -57,6 +57,12 @@
   height: 100%;
 }
 
+.players-cards {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .skip-turn {
   position: absolute;
   z-index: 2;
