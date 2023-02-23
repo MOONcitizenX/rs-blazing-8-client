@@ -1,6 +1,6 @@
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
 import style from './playerCards.module.css';
 import { usePlayerState } from '../../store/playerStore';
@@ -16,7 +16,7 @@ interface PlayerCardsProps {
 }
 
 export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCardsProps) => {
-  const { cards, id } = player;
+  const { cards } = player;
   const [playerIndex, setPlayerIndex] = useState<number | null>(null);
   const [nextPlayerIndex, setNextPlayerIndex] = useState<number | null>(null);
   const cardback = usePlayerState((state) => state.cardback);
@@ -29,6 +29,14 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     setNextPlayerIndex(getPlayerIndex(orderedPlayers, nextPlayerId));
   });
 
+  socket.on('get-me', ({ id }) => {
+    // сюда ивент, который даст айди сыгравшего
+    setCardPlayedIndex(getPlayerIndex(orderedPlayers, id));
+    setTimeout(() => {
+      setCardPlayedIndex(null);
+    }, 1000);
+  });
+
   const swap = useSpring({
     from: { transform: 'translateY(0px) scale(1)' },
     to: [{ transform: 'translateY(40px) scale(0.5)' }, { transform: 'translateY(0px) scale(1)' }],
@@ -39,12 +47,12 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     },
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     setCardPlayedIndex(index);
     setTimeout(() => {
       setCardPlayedIndex(null);
     }, 1000);
-  }, [topCard, index]);
+  }, [topCard, index]); */
 
   const checkSwapIndex = (handIndex: number) => {
     if (playerIndex === handIndex || nextPlayerIndex === handIndex) {
@@ -77,9 +85,9 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
         className={style.topCard}
         src={topCard}
         alt="Card"
-        style={cardPlayedIndex ? layCardAnimation : undefined}
+        style={cardPlayedIndex === index ? layCardAnimation : undefined}
       />
-      {cardsArray.map((_, i) => {
+      {cardsArray.map((el, i) => {
         const count = index === 0 ? cards.length : +cards;
         const angle = 100;
         const offset = angle / 2;
@@ -87,7 +95,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
 
         return (
           <img
-            key={`${id}-${i + 1}`}
+            key={`${el}-${i + 1}`}
             className={style.playerCard}
             style={{
               transform: `translate(-50%, -50%) rotate(${-offset + increment * (i + 1)}deg)`,
