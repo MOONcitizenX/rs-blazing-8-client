@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
 import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './GameDeckField.module.css';
+import { LayCardAnimation } from './LayCardAnimation';
 import { SuitChoosePopUp } from './SuitChoosePopUp';
 
 interface GameDeckFieldProps {
@@ -31,6 +32,8 @@ export const GameDeckField = ({
   const isLastCard = cardsQuantity === 0;
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const playerTurn = useRoomState((state) => state.playerTurn);
+  const [isTopCardChanged, setIsTopCardChanged] = useState(false);
+  const [topCardImage, setTopCardImage] = useState<string | undefined>(undefined);
 
   const cardTakeClick = () => {
     if (!isCardTaken) {
@@ -42,6 +45,17 @@ export const GameDeckField = ({
   useEffect(() => {
     setIsCardSuitChoose(false);
   }, [playerTurn, setIsCardSuitChoose]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsTopCardChanged(true);
+      setTopCardImage(topCard?.image);
+    }, 900);
+
+    setTimeout(() => {
+      setIsTopCardChanged(false);
+    }, 1500);
+  }, [topCard]);
 
   return (
     <div className={styles.deckFieldBorder}>
@@ -61,7 +75,8 @@ export const GameDeckField = ({
           src={cardBack}
           alt="deck"
         />
-        <img className={styles.card} src={topCard?.image || undefined} alt="card" />
+        <LayCardAnimation condition={isTopCardChanged} />
+        <img className={styles.card} src={topCardImage} alt="card" />
       </div>
     </div>
   );

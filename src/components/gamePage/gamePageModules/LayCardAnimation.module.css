@@ -1,0 +1,49 @@
+.dust-wrapper {
+  display: none;
+  position: absolute;
+  top: calc(50% - 8.5rem);
+  left: calc(50% + 1.5rem);
+  width: 12rem;
+  height: 17rem;
+  z-index: 100;
+}
+
+.dust1,
+.dust2,
+.dust3,
+.dust4,
+.dust5 {
+  position: absolute;
+  width: 15rem;
+}
+
+.dust1 {
+  top: 11rem;
+  left: -8rem;
+  transform: rotate(-130deg) scale(1.5);
+}
+
+.dust2 {
+  top: -6rem;
+  left: -8rem;
+  transform: rotate(-37deg) scale(0.7);
+}
+
+.dust3 {
+  top: -6rem;
+  left: 5rem;
+  transform: rotate(66deg) scale(0.7);
+}
+
+.dust4 {
+  top: 10rem;
+  left: 5rem;
+  transform: rotate(115deg) scale(1.5);
+}
+
+.dust5 {
+  top: -5rem;
+  left: 0rem;
+  height: 7rem;
+  transform: rotate(11deg) scale(1.1);
+}
