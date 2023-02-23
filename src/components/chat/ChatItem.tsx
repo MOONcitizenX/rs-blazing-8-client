@@ -23,8 +23,8 @@ export const ChatItem = ({ author, timeStamp, message, scrollRef }: ChatItemProp
   const playerIndex = players.findIndex((player) => player.id === author);
 
   const animation = useSpring({
-    from: { width: '0%' },
-    to: { width: '100%' },
+    from: { x: -300 },
+    to: { x: 0 },
   });
 
   return (
