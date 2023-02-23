@@ -5,6 +5,7 @@ import { ChatSMessage } from '../../../store/types/types/ChatMessage';
 import { IWinnerResponse } from './IWinnerResponse';
 import { ISwapCardsResponce } from './ISwapCardsResponce';
 import { ITimerUpdateResponce } from './ITimerResponse';
+import { IPlayedCardPlayer } from './IPlayedCardPlayer';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -18,4 +19,5 @@ export interface ServerToClientEvents {
   'one-card-left': (value: boolean) => void;
   'swap-cards': (value: ISwapCardsResponce) => void;
   'timer-update': (value: ITimerUpdateResponce) => void;
+  'player-played-card': (value: IPlayedCardPlayer) => void;
 }

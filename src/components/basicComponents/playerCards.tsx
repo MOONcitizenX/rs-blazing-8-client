@@ -29,8 +29,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     setNextPlayerIndex(getPlayerIndex(orderedPlayers, nextPlayerId));
   });
 
-  socket.on('get-me', ({ id }) => {
-    // сюда ивент, который даст айди сыгравшего
+  socket.on('player-played-card', ({ id }) => {
     setCardPlayedIndex(getPlayerIndex(orderedPlayers, id));
     setTimeout(() => {
       setCardPlayedIndex(null);
@@ -47,13 +46,6 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     },
   });
 
-  /* useEffect(() => {
-    setCardPlayedIndex(index);
-    setTimeout(() => {
-      setCardPlayedIndex(null);
-    }, 1000);
-  }, [topCard, index]); */
-
   const checkSwapIndex = (handIndex: number) => {
     if (playerIndex === handIndex || nextPlayerIndex === handIndex) {
       return swap;
@@ -61,8 +53,8 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     return undefined;
   };
 
-  const topCardXPositions = [7.5, 47.5, 36.5, -21.5, -32.5];
-  const topCardYPositions = [-41.5, -12.5, 18.5, 18.5, -12.5];
+  const topCardXPositions = [7, 47, 36, -22, -33];
+  const topCardYPositions = [-42, -13.5, 17.5, 17.5, -13.5];
 
   const layCardAnimation = useSpring({
     from: {

@@ -47,7 +47,7 @@
   position: absolute;
   top: calc(50% - 4rem);
   left: calc(50% - 5rem);
-  width: 10rem;
+  width: 11rem;
   height: fit-content;
   border-radius: 1rem;
   z-index: 10;
