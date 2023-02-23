@@ -21,7 +21,6 @@ interface GamePageProps {
 
 export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
-  // const [isCardTaken, setIsCardTaken] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -30,37 +29,30 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const myCards = orderedPlayers[0].cards.map((el) => cardMap[el]);
   const topCard = useRoomState((state) => state.topCard);
   const isPlayerTurn = playerTurn === myId;
+  const cardsInDeck = useRoomState((state) => state.closedDeck);
+  const isDeckEmpty = cardsInDeck === 0;
 
   const cardTakeHandler = () => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
       setIsTurnCanBeSkipped(true);
-      // setIsCardTaken(true);
     }
   };
 
   useEffect(() => {
     setIsTurnCanBeSkipped(false);
-  }, [playerTurn]);
+    if (isDeckEmpty && isPlayerTurn) {
+      setIsTurnCanBeSkipped(true);
+    }
+  }, [playerTurn, isDeckEmpty, isPlayerTurn]);
 
   const endTurnHandler = () => {
     socket.emit('pass-turn');
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
-
-  /* const skipTurnHandler = () => {
-    if (!isCardTaken && isPlayerTurn) {
-      socket.emit('draw-card');
-    }
-    socket.emit('pass-turn');
-    setIsTurnCanBeSkipped(false);
-    setIsCardTaken(false);
-  }; */
 
   const cardWasPlayedHandler = () => {
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
 
   return (
