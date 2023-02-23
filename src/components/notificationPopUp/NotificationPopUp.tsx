@@ -3,7 +3,7 @@ import { animated, useTransition } from '@react-spring/web';
 import { useRoomState } from '../../store/roomStore';
 import { SoundPlayer } from '../../utils/SoundPlayer';
 import styles from './NotificationPopUp.module.css';
-import warningIcon from '../../../public/warning-icon.svg';
+import warningIcon from '../../assets/icons/warning-icon.svg';
 import { usePlayerState } from '../../store/playerStore';
 
 export const NotificationPopUp = () => {

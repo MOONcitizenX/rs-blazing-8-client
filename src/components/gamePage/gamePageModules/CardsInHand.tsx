@@ -99,6 +99,7 @@ export const CardsInHand = ({
         return (
           <div className={styles.cardWrapper} key={card.cardId}>
             <img
+              draggable="false"
               onLoad={() => {
                 setIsLoaded(true);
               }}
