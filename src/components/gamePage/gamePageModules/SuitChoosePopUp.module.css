@@ -32,9 +32,9 @@
   height: 40rem;
 }
 
-.suit-wrapper {
+.suit-wrapper,
+.suit-wrapper-animation {
   position: absolute;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
   border-radius: 2rem;
   width: 16.6rem;
@@ -42,9 +42,12 @@
   transform: rotate(45deg);
 }
 
+.suit-wrapper {
+  cursor: pointer;
+}
+
 .suit {
   position: absolute;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
   border-radius: 2rem;
   display: flex;
@@ -57,42 +60,54 @@
   background-color: yellow;
 }
 
-.suit-wrapper:nth-of-type(1) {
+.suit.choose {
+  cursor: pointer;
+}
+
+.suit-wrapper:nth-of-type(1),
+.suit-wrapper-animation:nth-of-type(1) {
   top: 0;
   background-color: #426b91;
 }
 
-.suit-wrapper:nth-of-type(2) {
+.suit-wrapper:nth-of-type(2),
+.suit-wrapper-animation:nth-of-type(2) {
   left: 0;
   background-color: #52ae92;
 }
 
-.suit-wrapper:nth-of-type(3) {
+.suit-wrapper:nth-of-type(3),
+.suit-wrapper-animation:nth-of-type(3) {
   right: 0;
   background-color: #ce4331;
 }
 
-.suit-wrapper:nth-of-type(4) {
+.suit-wrapper:nth-of-type(4),
+.suit-wrapper-animation:nth-of-type(4) {
   bottom: 0;
   background-color: #ea8a24;
 }
 
-.suit-wrapper:nth-of-type(1) > .suit {
+.suit-wrapper:nth-of-type(1) > .suit,
+.suit-wrapper-animation:nth-of-type(1) > .suit {
   top: 0;
   background-color: #547ea6;
 }
 
-.suit-wrapper:nth-of-type(2) > .suit {
+.suit-wrapper:nth-of-type(2) > .suit,
+.suit-wrapper-animation:nth-of-type(2) > .suit {
   left: 0;
   background-color: #6ecaaf;
 }
 
-.suit-wrapper:nth-of-type(3) > .suit {
+.suit-wrapper:nth-of-type(3) > .suit,
+.suit-wrapper-animation:nth-of-type(3) > .suit {
   right: 0;
   background-color: #f15743;
 }
 
-.suit-wrapper:nth-of-type(4) > .suit {
+.suit-wrapper:nth-of-type(4) > .suit,
+.suit-wrapper-animation:nth-of-type(4) > .suit {
   bottom: 0;
   background-color: #f69c3e;
 }
@@ -106,4 +121,20 @@
   height: 10rem;
   filter: invert(50%) sepia(43%) saturate(266%) hue-rotate(-41deg) brightness(187%) contrast(100%);
   transform: rotate(-45deg);
+}
+
+.pulse {
+  animation: pulse 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
 }

@@ -47,7 +47,7 @@ export const GameDeckField = ({
   return (
     <div className={styles.deckFieldBorder}>
       <div className={styles.deckField}>
-        {isSuitChooseAnimation && <SuitChooseAnimation />}
+        {isSuitChooseAnimation && <SuitChoosePopUp isAnimationOn={isSuitChooseAnimation} />}
         {isSuitChoosePopUp && <SuitChoosePopUp socket={socket} />}
         <img
           aria-hidden
