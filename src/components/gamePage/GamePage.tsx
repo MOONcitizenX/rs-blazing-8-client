@@ -21,8 +21,6 @@ interface GamePageProps {
 
 export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
-  // const [isCardTaken, setIsCardTaken] = useState<boolean>(false);
-
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -38,7 +36,6 @@ export const GamePage = ({ socket }: GamePageProps) => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
       setIsTurnCanBeSkipped(true);
-      // setIsCardTaken(true);
     }
   };
 
@@ -52,21 +49,10 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const endTurnHandler = () => {
     socket.emit('pass-turn');
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
-
-  /* const skipTurnHandler = () => {
-    if (!isCardTaken && isPlayerTurn) {
-      socket.emit('draw-card');
-    }
-    socket.emit('pass-turn');
-    setIsTurnCanBeSkipped(false);
-    setIsCardTaken(false);
-  }; */
 
   const cardWasPlayedHandler = () => {
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
 
   return (
