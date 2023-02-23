@@ -4,7 +4,6 @@ declare const styles: {
   readonly "transitionsItem": string;
   readonly "suit": string;
   readonly "cardElement": string;
-  readonly "pulse": string;
 };
 export = styles;
 

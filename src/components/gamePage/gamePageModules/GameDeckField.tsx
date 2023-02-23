@@ -6,7 +6,6 @@ import { usePlayerState } from '../../../store/playerStore';
 import { useRoomState } from '../../../store/roomStore';
 import { SoundPlayer } from '../../../utils/SoundPlayer';
 import styles from './GameDeckField.module.css';
-import { SuitChooseAnimation } from './SuitChooseAnimation';
 import { SuitChoosePopUp } from './SuitChoosePopUp';
 
 interface GameDeckFieldProps {
@@ -47,7 +46,7 @@ export const GameDeckField = ({
   return (
     <div className={styles.deckFieldBorder}>
       <div className={styles.deckField}>
-        {isSuitChooseAnimation && <SuitChooseAnimation />}
+        {isSuitChooseAnimation && <SuitChoosePopUp isAnimationOn={isSuitChooseAnimation} />}
         {isSuitChoosePopUp && <SuitChoosePopUp socket={socket} />}
         <img
           aria-hidden
