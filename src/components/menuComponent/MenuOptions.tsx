@@ -76,7 +76,7 @@ export const MenuOptions = ({ rulesChangeHandler }: MenuOptionsProps) => {
       </li>
       <li className={styles.menu__item}>
         <span>Music</span>
-        <CheckBox isOn={false} onChange={musicValueChangeHandler} />
+        <CheckBox isOn={isMusicOn} onChange={musicValueChangeHandler} />
       </li>
       {musicTransition(
         (style, item) =>
