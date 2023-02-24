@@ -14,6 +14,7 @@ import { Player } from '../basicComponents/player';
 import { Timer } from '../basicComponents/timer';
 import { PlayerCards } from '../basicComponents/playerCards';
 import { CardsSortButtons } from './gamePageModules/CardsSortButtons';
+import { EmojiComponent } from './gamePageModules/Emoji';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -70,7 +71,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return <Player key={el.id} player={el} />;
+              return <Player key={el.id} socket={socket} player={el} />;
             }
             return null;
           })}
@@ -88,6 +89,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
             );
           })}
         </div>
+        <EmojiComponent socket={socket} />
         <div className={style.startTable}>
           <GameDeckField
             cardTakeHandler={cardTakeHandler}
