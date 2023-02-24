@@ -6,6 +6,7 @@ import { IWinnerResponse } from './IWinnerResponse';
 import { ISwapCardsResponce } from './ISwapCardsResponce';
 import { ITimerUpdateResponce } from './ITimerResponse';
 import { IPlayedCardPlayer } from './IPlayedCardPlayer';
+import { ICardDrawResponse } from './ICardDrawResponse';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -20,4 +21,5 @@ export interface ServerToClientEvents {
   'swap-cards': (value: ISwapCardsResponce) => void;
   'timer-update': (value: ITimerUpdateResponce) => void;
   'player-played-card': (value: IPlayedCardPlayer) => void;
+  'card-draw': (value: ICardDrawResponse) => void;
 }
