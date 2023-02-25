@@ -1,12 +1,12 @@
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
-import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
-import style from './playerCards.module.css';
-import { usePlayerState } from '../../store/playerStore';
-import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
-import { getPlayerIndex } from '../../utils/getPlayerIndex';
-import { useRoomState } from '../../store/roomStore';
+import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
+import style from './PlayerCards.module.css';
+import { usePlayerState } from '../../../store/playerStore';
+import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
+import { getPlayerIndex } from '../../../utils/getPlayerIndex';
+import { useRoomState } from '../../../store/roomStore';
 
 interface PlayerCardsProps {
   player: IPlayerResponse;

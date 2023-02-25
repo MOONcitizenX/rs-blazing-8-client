@@ -4,16 +4,16 @@ import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
 import { cardMap } from '../../utils/cardsMap';
-import { CardHint } from '../basicComponents/cardHint';
 import { TableArrows } from '../basicComponents/tableArrows';
 import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
-import { Player } from '../basicComponents/player';
-import { Timer } from '../basicComponents/timer';
-import { PlayerCards } from '../basicComponents/playerCards';
 import { CardsSortButtons } from './gamePageModules/CardsSortButtons';
+import { Timer } from './gamePageModules/timer';
+import { CardHint } from './gamePageModules/cardHint';
+import { Player } from './gamePageModules/player';
+import { PlayerCards } from './gamePageModules/playerCards';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;

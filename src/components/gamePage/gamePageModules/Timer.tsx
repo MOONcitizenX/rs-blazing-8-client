@@ -1,10 +1,10 @@
 import { useSpring, animated } from '@react-spring/web';
 import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
-import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
-import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
-import { useRoomState } from '../../store/roomStore';
-import style from './timer.module.css';
+import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
+import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
+import { useRoomState } from '../../../store/roomStore';
+import style from './Timer.module.css';
 
 interface TimerProps {
   socket: Socket<ServerToClientEvents>;

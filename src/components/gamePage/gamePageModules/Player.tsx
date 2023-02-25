@@ -1,6 +1,6 @@
-import { avatarsArray } from '../../store/basicMedia';
-import style from './player.module.css';
-import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
+import { avatarsArray } from '../../../store/basicMedia';
+import style from './Player.module.css';
+import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
 
 interface PlayerProps {
   player: IPlayerResponse;
