@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
-import { avatarsArray, emojiArray } from '../../store/basicMedia';
-import style from './player.module.css';
-import { IPlayerResponse } from '../../API/types/interfaces/IPlayerResponse';
-import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
+import style from './Player.module.css';
+import { avatarsArray, emojiArray } from '../../../store/basicMedia';
+import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
+import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
 
 interface PlayerProps {
   socket: Socket<ServerToClientEvents>;

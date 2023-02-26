@@ -7,6 +7,7 @@ import { ISwapCardsResponse } from './ISwapCardsResponse';
 import { ITimerUpdateResponse } from './ITimerResponse';
 import { IPlayedCardPlayer } from './IPlayedCardPlayer';
 import { IEmojiResponse } from './IEmojiResponse';
+import { ICardDrawResponse } from './ICardDrawResponse';
 
 export interface ServerToClientEvents {
   noArg: () => void;
@@ -21,5 +22,6 @@ export interface ServerToClientEvents {
   'swap-cards': (value: ISwapCardsResponse) => void;
   'timer-update': (value: ITimerUpdateResponse) => void;
   'player-played-card': (value: IPlayedCardPlayer) => void;
+  'card-draw': (value: ICardDrawResponse) => void;
   emoji: (value: IEmojiResponse) => void;
 }

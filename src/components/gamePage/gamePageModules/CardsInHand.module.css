@@ -24,7 +24,6 @@
 }
 
 .my-card:hover {
-  /* top: 40%; */
   --card-y: -100%;
   transform-origin: center 400%;
 }
