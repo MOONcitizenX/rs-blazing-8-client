@@ -22,4 +22,6 @@ export interface ServerToClientEvents {
   'swap-cards': (value: ISwapCardsResponse) => void;
   'timer-update': (value: ITimerUpdateResponse) => void;
   'player-played-card': (value: IPlayedCardPlayer) => void;
+  'card-draw': (value: ICardDrawResponse) => void;
+  emoji: (value: IEmojiResponse) => void;
 }
