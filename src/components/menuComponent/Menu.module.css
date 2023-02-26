@@ -9,6 +9,7 @@
   z-index: 11;
   backdrop-filter: blur(10px);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .option {
