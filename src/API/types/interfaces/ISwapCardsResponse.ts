@@ -1,4 +1,4 @@
-export interface ISwapCardsResponce {
+export interface ISwapCardsResponse {
   playerId: string;
   nextPlayerId: string;
   playerCards: string[] | number;
