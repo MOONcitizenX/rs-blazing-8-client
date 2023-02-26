@@ -7,19 +7,19 @@ export const GameRules = ({ rulesChangeHandler }: GameRulesProps) => {
   return (
     <div className={styles.container} role="presentation">
       <h1 className={styles.title}>Blazing 8s Rules</h1>
-      <h2>Object of the Game</h2>
+      <h2 className={styles.subtitle}>Object of the Game</h2>
       <p>The object of the game is to be the first player to get rid of all of their cards.</p>
-      <h2>Cards</h2>
+      <h2 className={styles.subtitle}>Cards</h2>
       <p>A standard deck of 52 playing cards is used. Aces are high and twos are low.</p>
-      <h2>Game Setup</h2>
+      <h2 className={styles.subtitle}>Game Setup</h2>
       <ol>
-        <li>Shuffle the deck and deal five cards to each player.</li>
+        <li>The deck is shuffled and five cards are dealed to each player.</li>
         <li>
-          Place the remaining cards in a draw pile in the center of the table, with the top card
-          turned over and placed next to it to start the discard pile.
+          The remaining cards are placed in a draw pile in the center of the table, with the top
+          card turned over and placed next to it to start the discard pile.
         </li>
       </ol>
-      <h2>Game Play</h2>
+      <h2 className={styles.subtitle}>Game Play</h2>
       <ol>
         <li>The player to the left of the dealer goes first and play proceeds clockwise.</li>
         <li>
@@ -42,7 +42,7 @@ export const GameRules = ({ rulesChangeHandler }: GameRulesProps) => {
           king.
         </li>
       </ol>
-      <h2>Winning</h2>
+      <h2 className={styles.subtitle}>Winning</h2>
       <p>
         The game ends when a player has no cards left in their hand. That player is declared the
         winner.
