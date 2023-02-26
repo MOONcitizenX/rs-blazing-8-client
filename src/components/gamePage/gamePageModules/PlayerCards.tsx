@@ -7,6 +7,8 @@ import { usePlayerState } from '../../../store/playerStore';
 import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClientEvents';
 import { getPlayerIndex } from '../../../utils/getPlayerIndex';
 import { useRoomState } from '../../../store/roomStore';
+import { cardMap } from '../../../utils/cardsMap';
+import { ICard } from '../../../store/types/interfaces/ICard';
 
 interface PlayerCardsProps {
   player: IPlayerResponse;
@@ -24,6 +26,18 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   const topCard = useRoomState((state) => state.topCard?.image);
   const [cardPlayedIndex, setCardPlayedIndex] = useState<number | null>(null);
   const [cardDrawIndex, setCardDrawIndex] = useState<number | null>(null);
+  const [cardDraw, setCardDraw] = useState<ICard | null>(null);
+  const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
+
+  const getCardDrawImage = () => {
+    if (cardDraw) {
+      if (cardDraw?.value === '8') {
+        return eightCardImage;
+      }
+      return cardDraw.image;
+    }
+    return undefined;
+  };
 
   socket.on('swap-cards', ({ playerId, nextPlayerId }) => {
     setPlayerIndex(getPlayerIndex(orderedPlayers, playerId));
@@ -34,8 +48,11 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     setCardPlayedIndex(getPlayerIndex(orderedPlayers, id));
   });
 
-  socket.on('card-draw', ({ id }) => {
+  socket.on('card-draw', ({ id, cardId }) => {
     setCardDrawIndex(getPlayerIndex(orderedPlayers, id));
+    if (cardId) {
+      setCardDraw(cardMap[cardId]);
+    }
   });
 
   const swap = useSpring({
@@ -117,7 +134,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
       />
       <animated.img
         className={[style.drawCard, style[`draw-card-${index}`]].join(' ')}
-        src={cardback} // TODO ---------------- {cardDrawIndex === 0 ? card : cardback}
+        src={cardDrawIndex === 0 ? getCardDrawImage() : cardback} // TODO ---------------- {cardDrawIndex === 0 ? card : cardback}
         alt="Card"
         style={cardDrawIndex === index ? drawCardAnimation : undefined}
       />

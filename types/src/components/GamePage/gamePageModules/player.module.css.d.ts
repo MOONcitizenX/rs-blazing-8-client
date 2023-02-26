@@ -3,6 +3,8 @@ declare const styles: {
   readonly "player": string;
   readonly "avatar": string;
   readonly "name": string;
+  readonly "emoji": string;
+  readonly "emojiImage": string;
 };
 export = styles;
 
