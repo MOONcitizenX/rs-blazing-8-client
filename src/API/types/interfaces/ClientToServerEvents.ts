@@ -15,4 +15,5 @@ export interface ClientToServerEvents {
   'choose-color': () => void;
   'add-chat-message': ({ message }: { message: string }) => void;
   'convert-to-lobby': () => void;
+  emoji: ({ emojiIndex }: { emojiIndex: number }) => void;
 }

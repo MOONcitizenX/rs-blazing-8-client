@@ -10,10 +10,11 @@ import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { CardsSortButtons } from './gamePageModules/CardsSortButtons';
-import { Timer } from './gamePageModules/timer';
-import { CardHint } from './gamePageModules/cardHint';
-import { Player } from './gamePageModules/player';
-import { PlayerCards } from './gamePageModules/playerCards';
+import { Timer } from './gamePageModules/Timer';
+import { CardHint } from './gamePageModules/CardHint';
+import { Player } from './gamePageModules/Player';
+import { PlayerCards } from './gamePageModules/PlayerCards';
+import { EmojiComponent } from './gamePageModules/Emoji';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -70,7 +71,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return <Player key={el.id} player={el} />;
+              return <Player key={el.id} socket={socket} player={el} />;
             }
             return null;
           })}
@@ -88,6 +89,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
             );
           })}
         </div>
+        <EmojiComponent socket={socket} />
         <div className={style.startTable}>
           <GameDeckField
             cardTakeHandler={cardTakeHandler}
