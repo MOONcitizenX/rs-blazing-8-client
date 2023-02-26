@@ -4,16 +4,17 @@ import { useRoomState } from '../../store/roomStore';
 import { Players } from '../basicComponents/playersWidget';
 import style from './GamePage.module.css';
 import { cardMap } from '../../utils/cardsMap';
-import { CardHint } from '../basicComponents/cardHint';
 import { TableArrows } from '../basicComponents/tableArrows';
 import { GameDeckField } from './gamePageModules/GameDeckField';
 import { CardsInHand } from './gamePageModules/CardsInHand';
 import { Button } from '../basicComponents/button';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
-import { Player } from '../basicComponents/player';
-import { Timer } from '../basicComponents/timer';
-import { PlayerCards } from '../basicComponents/playerCards';
 import { CardsSortButtons } from './gamePageModules/CardsSortButtons';
+import { Timer } from './gamePageModules/Timer';
+import { CardHint } from './gamePageModules/CardHint';
+import { Player } from './gamePageModules/Player';
+import { PlayerCards } from './gamePageModules/PlayerCards';
+import { EmojiComponent } from './gamePageModules/Emoji';
 
 interface GamePageProps {
   socket: Socket<ClientToServerEvents>;
@@ -21,7 +22,6 @@ interface GamePageProps {
 
 export const GamePage = ({ socket }: GamePageProps) => {
   const [isTurnCanBeSkipped, setIsTurnCanBeSkipped] = useState<boolean>(false);
-  // const [isCardTaken, setIsCardTaken] = useState<boolean>(false);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const myId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -30,37 +30,30 @@ export const GamePage = ({ socket }: GamePageProps) => {
   const myCards = orderedPlayers[0].cards.map((el) => cardMap[el]);
   const topCard = useRoomState((state) => state.topCard);
   const isPlayerTurn = playerTurn === myId;
+  const cardsInDeck = useRoomState((state) => state.closedDeck);
+  const isDeckEmpty = cardsInDeck === 0;
 
   const cardTakeHandler = () => {
     if (isPlayerTurn) {
       socket.emit('draw-card');
       setIsTurnCanBeSkipped(true);
-      // setIsCardTaken(true);
     }
   };
 
   useEffect(() => {
     setIsTurnCanBeSkipped(false);
-  }, [playerTurn]);
+    if (isDeckEmpty && isPlayerTurn) {
+      setIsTurnCanBeSkipped(true);
+    }
+  }, [playerTurn, isDeckEmpty, isPlayerTurn]);
 
   const endTurnHandler = () => {
     socket.emit('pass-turn');
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
-
-  /* const skipTurnHandler = () => {
-    if (!isCardTaken && isPlayerTurn) {
-      socket.emit('draw-card');
-    }
-    socket.emit('pass-turn');
-    setIsTurnCanBeSkipped(false);
-    setIsCardTaken(false);
-  }; */
 
   const cardWasPlayedHandler = () => {
     setIsTurnCanBeSkipped(false);
-    // setIsCardTaken(false);
   };
 
   return (
@@ -78,7 +71,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
         <div className={style.players}>
           {orderedPlayers.map((el, index) => {
             if (index !== 0) {
-              return <Player key={el.id} player={el} />;
+              return <Player key={el.id} socket={socket} player={el} />;
             }
             return null;
           })}
@@ -96,6 +89,7 @@ export const GamePage = ({ socket }: GamePageProps) => {
             );
           })}
         </div>
+        <EmojiComponent socket={socket} />
         <div className={style.startTable}>
           <GameDeckField
             cardTakeHandler={cardTakeHandler}

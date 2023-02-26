@@ -21,6 +21,7 @@ export const UserConnect = ({ onSubmit, roomIdHandler, roomId, isUserName }: Use
           value: roomId,
           required: true,
           placeholder: 'Room ID',
+          type: 'text',
         }}
       />
       <Button attributes={{ disabled: isUserName || (!isUserName && !!error), type: 'submit' }}>

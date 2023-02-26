@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+import classNames from 'classnames';
 import styles from './SuitChoosePopUp.module.css';
 import { ClientToServerEvents } from '../../../API/types/interfaces/ClientToServerEvents';
 import { CardColor } from '../../../store/types/types/CardColor';
@@ -22,32 +23,52 @@ export const cardsIconsDataArr: IIconsArr[] = [
 ];
 
 interface SuitChoosePopUpProps {
-  socket: Socket<ClientToServerEvents>;
+  socket?: Socket<ClientToServerEvents>;
+  isAnimationOn?: boolean;
 }
-export const SuitChoosePopUp = ({ socket }: SuitChoosePopUpProps) => {
+export const SuitChoosePopUp = ({ socket, isAnimationOn }: SuitChoosePopUpProps) => {
   const isSoundOn = usePlayerState((state) => state.sound);
   const player = SoundPlayer.getInstance();
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
-  const suitChangeHandler = (e: React.MouseEvent<HTMLImageElement>, suit: CardColor) => {
+  const suitChangeHandler = (suit: CardColor) => {
     if (isSoundOn) player.play('click');
-    socket.emit('play-card', { card: `8${suit}` });
-    setIsCardSuitChoose(false);
+    if (socket) {
+      socket.emit('play-card', { card: `8${suit}` });
+      setIsCardSuitChoose(false);
+    }
   };
   return (
     <div className={styles.chooseSuitWrapper}>
-      <div className={styles.chooseSuit}>
+      <div className={classNames(styles.chooseSuit, { [styles.choose]: !isAnimationOn })}>
         <div className={styles.transitionsItem}>
           {cardsIconsDataArr.map((el) => {
             return (
-              <div key={el.suit} className={styles.suitWrapper}>
-                <div className={styles.suit}>
-                  <img
-                    aria-hidden
-                    onClick={(e) => suitChangeHandler(e, el.suit)}
-                    className={styles.cardElement}
-                    src={el.icon}
-                    alt="Card color"
-                  />
+              <div
+                key={el.suit}
+                className={classNames(
+                  { [styles.suitWrapper]: !isAnimationOn },
+                  { [styles.suitWrapperAnimation]: isAnimationOn },
+                )}
+              >
+                <div className={classNames(styles.suit, { [styles.pulse]: isAnimationOn })}>
+                  {isAnimationOn ? (
+                    <img
+                      draggable="false"
+                      aria-hidden
+                      className={styles.cardElement}
+                      src={el.icon}
+                      alt="Card color"
+                    />
+                  ) : (
+                    <img
+                      aria-hidden
+                      draggable="false"
+                      onClick={() => suitChangeHandler(el.suit)}
+                      className={styles.cardElement}
+                      src={el.icon}
+                      alt="Card color"
+                    />
+                  )}
                 </div>
               </div>
             );

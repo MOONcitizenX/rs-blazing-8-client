@@ -12,7 +12,7 @@
   border-radius: 50%;
   border: 3px solid var(--green-color);
   background-color: var(--beige-color);
-  z-index: 2;
+  z-index: 4;
 }
 
 .avatar {
@@ -74,4 +74,19 @@
 .player-wrapper:nth-of-type(4) {
   top: calc(50% + 16rem);
   left: calc(50% + 34rem);
+}
+
+.emoji {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  top: 3rem;
+  left: -8rem;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+}
+
+.emoji-image {
+  width: 6rem;
+  height: 6rem;
 }

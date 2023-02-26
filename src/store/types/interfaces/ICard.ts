@@ -6,4 +6,5 @@ export interface ICard {
   image: string;
   cardId: string;
   sortValue: number;
+  sortSuit?: string;
 }

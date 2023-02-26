@@ -1,9 +1,9 @@
-import { ICard } from '../../store/types/interfaces/ICard';
-import style from './cardHint.module.css';
-import blueIcon from '../../assets/icons/blue.png';
-import greenIcon from '../../assets/icons/green.png';
-import redIcon from '../../assets/icons/red.png';
-import yellowIcon from '../../assets/icons/yellow.png';
+import { ICard } from '../../../store/types/interfaces/ICard';
+import style from './CardHint.module.css';
+import blueIcon from '../../../assets/icons/blue.png';
+import greenIcon from '../../../assets/icons/green.png';
+import redIcon from '../../../assets/icons/red.png';
+import yellowIcon from '../../../assets/icons/yellow.png';
 
 const getColorIcon = (color: string) => {
   if (color === 'B') return blueIcon;
