@@ -33,7 +33,7 @@ export const GameDeckField = ({
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const playerTurn = useRoomState((state) => state.playerTurn);
   const [isTopCardChanged, setIsTopCardChanged] = useState(false);
-  const [topCardImage, setTopCardImage] = useState<string | undefined>(undefined);
+  const [topCardImage, setTopCardImage] = useState<string>(cardBack);
 
   const cardTakeClick = () => {
     if (!isCardTaken) {
@@ -49,7 +49,9 @@ export const GameDeckField = ({
   useEffect(() => {
     setTimeout(() => {
       setIsTopCardChanged(true);
-      setTopCardImage(topCard?.image);
+      if (topCard) {
+        setTopCardImage(topCard.image);
+      }
     }, 900);
 
     setTimeout(() => {
