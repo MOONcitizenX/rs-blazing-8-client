@@ -8,6 +8,7 @@ import { Separator } from '../basicComponents/separator';
 import { usePlayerState } from '../../store/playerStore';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { TableArrows } from '../basicComponents/tableArrows';
+import { Footer } from '../footer/Footer';
 
 interface StartPageProps {
   socket: Socket<ClientToServerEvents>;
@@ -59,6 +60,7 @@ export const StartPage = ({ socket }: StartPageProps) => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
