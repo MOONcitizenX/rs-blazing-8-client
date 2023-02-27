@@ -1,7 +1,7 @@
 .footer-wrapper {
   position: fixed;
-  width: 100vw;
-  z-index: 10;
+  width: calc(100vw - 18rem);
+  z-index: 6;
 }
 
 .footer {
@@ -12,7 +12,7 @@
   align-items: center;
   height: 100%;
   margin: 0 auto;
-  padding: 1.2rem 9rem;
+  padding: 1.2rem 0;
   font-weight: 200;
   text-align: center;
 }
@@ -45,7 +45,7 @@
   opacity: 0;
   position: absolute;
   bottom: 2rem;
-  left: 15rem;
+  left: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

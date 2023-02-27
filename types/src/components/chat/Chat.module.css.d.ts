@@ -6,6 +6,7 @@ declare const styles: {
   readonly "chatIconButton": string;
   readonly "chatIcon": string;
   readonly "chatIconButtonTop": string;
+  readonly "overflow": string;
 };
 export = styles;
 
