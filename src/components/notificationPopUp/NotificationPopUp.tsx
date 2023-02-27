@@ -7,7 +7,7 @@ import warningIcon from '../../assets/icons/warning-icon.svg';
 import { usePlayerState } from '../../store/playerStore';
 
 export const NotificationPopUp = () => {
-  const isSoundOn = usePlayerState((state) => state.soundVolume);
+  const isSoundOn = usePlayerState((state) => state.sound);
   const error = useRoomState((state) => state.error);
   const setError = useRoomState((state) => state.setError);
 
