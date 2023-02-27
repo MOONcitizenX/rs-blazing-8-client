@@ -134,7 +134,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
       />
       <animated.img
         className={[style.drawCard, style[`draw-card-${index}`]].join(' ')}
-        src={cardDrawIndex === 0 ? getCardDrawImage() : cardback} // TODO ---------------- {cardDrawIndex === 0 ? card : cardback}
+        src={cardDrawIndex === 0 ? getCardDrawImage() : cardback}
         alt="Card"
         style={cardDrawIndex === index ? drawCardAnimation : undefined}
       />
