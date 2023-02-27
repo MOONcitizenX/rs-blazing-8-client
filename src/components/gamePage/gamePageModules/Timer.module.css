@@ -9,27 +9,27 @@
 
 .timer-0 {
   top: calc(50% + 43rem);
-  left: calc(50% - 16rem);
+  left: calc(50% + -16rem);
 }
 
 .timer-1 {
   top: calc(50% + 29rem);
-  left: calc(50% - 48rem);
+  left: calc(50% + -48rem);
 }
 
 .timer-2 {
-  top: calc(50% - 5rem);
-  left: calc(50% - 46rem);
+  top: calc(50% + -5rem);
+  left: calc(50% + -46rem);
 }
 
 .timer-3 {
-  top: calc(50% - 5rem);
-  left: calc(50% + 40rem);
+  top: calc(50% + -5rem);
+  left: calc(50% + 42rem);
 }
 
 .timer-4 {
   top: calc(50% + 29rem);
-  left: calc(50% + 40rem);
+  left: calc(50% + 42rem);
 }
 
 .timer {
