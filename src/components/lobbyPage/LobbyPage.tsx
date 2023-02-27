@@ -25,8 +25,6 @@ const maxPlayers = 5;
 
 export const LobbyPage = ({ socket }: LobbyPageProps) => {
   const userId = useRoomState((state) => state.id);
-  const roomId = useRoomState((state) => state.roomId);
-
   const players = useRoomState((state) => state.players);
   const isHost = userId === players[0].id;
 
@@ -50,7 +48,7 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
           {isHost ? (
             <div className={style.hostTable}>
               <div className={style.roomIdWrapper}>
-                <div className={style.roomId}>{roomId}</div>
+                <div className={style.roomId}>Copy link to invite your friends</div>
                 <CopyButton />
               </div>
               <div className={style.hostMessage}>
