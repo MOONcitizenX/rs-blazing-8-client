@@ -82,3 +82,7 @@
 .draw-card-4 {
   transform: translate(-53rem, 16.5rem);
 }
+
+.offline {
+  filter: grayscale(1);
+}

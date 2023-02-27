@@ -13,6 +13,7 @@ declare const styles: {
   readonly "drawCard2": string;
   readonly "drawCard3": string;
   readonly "drawCard4": string;
+  readonly "offline": string;
 };
 export = styles;
 
