@@ -110,3 +110,7 @@
   top: 3rem;
   left: 13rem;
 }
+
+.offline {
+  filter: grayscale(1);
+}

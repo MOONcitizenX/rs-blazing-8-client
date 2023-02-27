@@ -9,6 +9,7 @@ declare const styles: {
   readonly "emoji2": string;
   readonly "emoji3": string;
   readonly "emoji4": string;
+  readonly "offline": string;
 };
 export = styles;
 

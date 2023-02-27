@@ -1,6 +1,7 @@
 import { useSpring, animated } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
 import style from './PlayerCards.module.css';
 import { usePlayerState } from '../../../store/playerStore';
@@ -18,7 +19,7 @@ interface PlayerCardsProps {
 }
 
 export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCardsProps) => {
-  const { cards } = player;
+  const { cards, online } = player;
   const [playerIndex, setPlayerIndex] = useState<number | null>(null);
   const [nextPlayerIndex, setNextPlayerIndex] = useState<number | null>(null);
   const cardback = usePlayerState((state) => state.cardback);
@@ -125,7 +126,9 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
 
   return (
     <animated.div
-      className={[style.playerCards, style[`player-cards-${index}`]].join(' ')}
+      className={classNames([style.playerCards, style[`player-cards-${index}`]].join(' '), {
+        [style.offline]: !online,
+      })}
       style={checkSwapIndex(index)}
     >
       <animated.img
