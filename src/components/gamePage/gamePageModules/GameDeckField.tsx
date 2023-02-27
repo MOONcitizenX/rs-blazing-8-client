@@ -1,3 +1,4 @@
+import { useSpring, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
@@ -29,6 +30,7 @@ export const GameDeckField = ({
   const isSuitChoosePopUp = isCardSuitChoose && isPlayerTurn;
   const player = SoundPlayer.getInstance();
   const cardsQuantity = useRoomState((state) => state.closedDeck);
+  const status = useRoomState((state) => state.status);
   const isLastCard = cardsQuantity === 0;
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const playerTurn = useRoomState((state) => state.playerTurn);
@@ -48,16 +50,31 @@ export const GameDeckField = ({
 
   useEffect(() => {
     setTimeout(() => {
-      setIsTopCardChanged(true);
       if (topCard) {
         setTopCardImage(topCard.image);
       }
+      setIsTopCardChanged(true);
     }, 900);
 
     setTimeout(() => {
       setIsTopCardChanged(false);
     }, 1500);
   }, [topCard]);
+
+  const deckToTop = useSpring({
+    from: {
+      transform: 'translateX(0)',
+      opacity: 1,
+      zIndex: 10,
+    },
+    to: {
+      transform: `translateX(15rem)`,
+      opacity: 1,
+      zIndex: -1,
+    },
+
+    duration: 500,
+  });
 
   return (
     <div className={styles.deckFieldBorder}>
@@ -75,6 +92,13 @@ export const GameDeckField = ({
             { [styles.disabled]: !isPlayerTurn },
           )}
           src={cardBack}
+          alt="deck"
+        />
+        <animated.img
+          aria-hidden
+          className={styles.deckTopCard}
+          style={status === 'playing' ? deckToTop : undefined}
+          src={topCardImage}
           alt="deck"
         />
         <LayCardAnimation condition={isTopCardChanged} />

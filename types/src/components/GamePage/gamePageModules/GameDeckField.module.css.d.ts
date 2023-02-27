@@ -5,6 +5,7 @@ declare const styles: {
   readonly "card": string;
   readonly "disabled": string;
   readonly "hidden": string;
+  readonly "deckTopCard": string;
 };
 export = styles;
 
