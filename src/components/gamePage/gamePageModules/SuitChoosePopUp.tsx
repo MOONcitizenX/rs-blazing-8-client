@@ -44,7 +44,9 @@ export const SuitChoosePopUp = ({ socket, isAnimationOn }: SuitChoosePopUpProps)
           {cardsIconsDataArr.map((el) => {
             return (
               <div
+                aria-hidden
                 key={el.suit}
+                onClick={() => suitChangeHandler(el.suit)}
                 className={classNames(
                   { [styles.suitWrapper]: !isAnimationOn },
                   { [styles.suitWrapperAnimation]: isAnimationOn },
@@ -63,7 +65,6 @@ export const SuitChoosePopUp = ({ socket, isAnimationOn }: SuitChoosePopUpProps)
                     <img
                       aria-hidden
                       draggable="false"
-                      onClick={() => suitChangeHandler(el.suit)}
                       className={styles.cardElement}
                       src={el.icon}
                       alt="Card color"
