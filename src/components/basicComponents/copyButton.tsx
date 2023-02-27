@@ -4,10 +4,12 @@ import style from './copyButton.module.css';
 import copyIcon from '../../assets/icons/copy.svg';
 import doneIcon from '../../assets/icons/check.svg';
 import { useRoomState } from '../../store/roomStore';
+import { createInviteLink } from '../../API/joinOnInviteLink';
 
 export const CopyButton = () => {
   const [isActive, setIsActive] = useState(false);
   const roomId = useRoomState((state) => state.roomId);
+  const inviteLink = createInviteLink(roomId);
 
   return (
     <button
@@ -16,7 +18,7 @@ export const CopyButton = () => {
       title="Copy room id"
       onClick={() => {
         setIsActive(true);
-        navigator.clipboard.writeText(roomId);
+        navigator.clipboard.writeText(inviteLink);
         setTimeout(() => {
           setIsActive(false);
         }, 1000);
