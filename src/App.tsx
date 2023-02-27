@@ -50,6 +50,9 @@ export const App = ({ socket }: AppProps) => {
 
   return (
     <div
+      onDragStart={(e) => {
+        e.preventDefault();
+      }}
       className={
         background === backgroundsArray[0] ? style.firstBackground : style.secondBackground
       }

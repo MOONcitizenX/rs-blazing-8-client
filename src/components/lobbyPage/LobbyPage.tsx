@@ -24,6 +24,13 @@ interface LobbyPageProps {
 const minPlayers = 2;
 const maxPlayers = 5;
 
+const getPlayers = (amount: number) => {
+  if (amount === 1) {
+    return 'player';
+  }
+  return 'players';
+};
+
 export const LobbyPage = ({ socket }: LobbyPageProps) => {
   const userId = useRoomState((state) => state.id);
   const players = useRoomState((state) => state.players);
@@ -76,7 +83,8 @@ export const LobbyPage = ({ socket }: LobbyPageProps) => {
               >
                 <p className={style.startMessage}>Start now!</p>
                 <p className={style.playersMessage}>
-                  <span className={style.players}>{players.length}</span> players
+                  <span className={style.players}>{players.length}</span>{' '}
+                  {getPlayers(players.length)}
                 </p>
               </Button>
             </div>
