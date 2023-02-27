@@ -25,7 +25,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   const cardsArray = index === 0 ? cards : [...new Array(cards)];
   const topCard = useRoomState((state) => state.topCard?.image);
   const [cardPlayedIndex, setCardPlayedIndex] = useState<number | null>(null);
-  const [cardDrawIndex, setCardDrawIndex] = useState<number | null>(null);
+  const [cardDrawIndex, setCardDrawIndex] = useState<number[]>([]);
   const [cardDraw, setCardDraw] = useState<ICard | null>(null);
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
 
@@ -49,10 +49,15 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   });
 
   socket.on('card-draw', ({ id, cardId }) => {
-    setCardDrawIndex(getPlayerIndex(orderedPlayers, id));
     if (cardId) {
       setCardDraw(cardMap[cardId]);
+      /* if (cardId === 'KY' || cardId === 'KB' || cardId === 'KG' || cardId === 'KR') {
+        setCardDrawIndex('all');
+      } */
     }
+    setCardDrawIndex((prev) => {
+      return [...prev, getPlayerIndex(orderedPlayers, id)];
+    });
   });
 
   const swap = useSpring({
@@ -73,7 +78,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
 
   useEffect(() => {
     setTimeout(() => {
-      setCardDrawIndex(null);
+      setCardDrawIndex([]);
     }, 500);
   }, [cardDrawIndex]);
 
@@ -134,9 +139,9 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
       />
       <animated.img
         className={[style.drawCard, style[`draw-card-${index}`]].join(' ')}
-        src={cardDrawIndex === 0 ? getCardDrawImage() : cardback}
+        src={cardDrawIndex.includes(0) ? getCardDrawImage() : cardback}
         alt="Card"
-        style={cardDrawIndex === index ? drawCardAnimation : undefined}
+        style={cardDrawIndex.includes(index) ? drawCardAnimation : undefined}
       />
       {cardsArray.map((el, i) => {
         const count = index === 0 ? cards.length : +cards;
