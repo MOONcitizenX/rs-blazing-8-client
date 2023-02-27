@@ -51,9 +51,6 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   socket.on('card-draw', ({ id, cardId }) => {
     if (cardId) {
       setCardDraw(cardMap[cardId]);
-      /* if (cardId === 'KY' || cardId === 'KB' || cardId === 'KG' || cardId === 'KR') {
-        setCardDrawIndex('all');
-      } */
     }
     setCardDrawIndex((prev) => {
       return [...prev, getPlayerIndex(orderedPlayers, id)];
