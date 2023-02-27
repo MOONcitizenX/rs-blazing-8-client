@@ -24,7 +24,7 @@ export const Player = ({ socket, player }: PlayerProps) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setEmojiInd(null);
-    }, 30000);
+    }, 4000);
     return () => clearTimeout(timeout);
   }, [emojiInd]);
 

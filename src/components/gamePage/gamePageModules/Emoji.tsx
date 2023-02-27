@@ -26,6 +26,7 @@ export const EmojiComponent = ({ socket }: EmojiComponentProps) => {
     const timeout = setTimeout(() => {
       setEmojiIndex(null);
     }, 4000);
+
     return () => clearTimeout(timeout);
   }, [emojiIndex]);
 

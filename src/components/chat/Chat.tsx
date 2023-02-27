@@ -1,6 +1,7 @@
 import { useState, FormEvent, useRef, MutableRefObject, useEffect } from 'react';
 import { animated, useSpring } from '@react-spring/web';
 import { Socket } from 'socket.io-client';
+import classNames from 'classnames';
 import { useChatState } from '../../store/chatStore';
 import { ChatItem } from './ChatItem';
 import { ServerToClientEvents } from '../../API/types/interfaces/ServerToClientEvents';
@@ -58,7 +59,10 @@ export const Chat = ({ socket }: ChatProps) => {
   });
 
   return (
-    <animated.div style={fadeAnimation} className={styles.chatWrapper}>
+    <animated.div
+      style={fadeAnimation}
+      className={classNames(styles.chatWrapper, { [styles.overflow]: isChatOpen })}
+    >
       {isChatOpen ? (
         <div className={styles.wrapper}>
           <Button attributes={closeChatButtonAttributes}>Close Chat</Button>

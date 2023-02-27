@@ -10,8 +10,9 @@
 .emoji-menu {
   position: absolute;
   all: unset;
-  width: 4rem;
-  height: 4rem;
+  display: flex;
+  width: 6rem;
+  height: 6rem;
   background-color: transparent;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
