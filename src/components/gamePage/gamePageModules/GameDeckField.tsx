@@ -34,6 +34,7 @@ export const GameDeckField = ({
   const isLastCard = cardsQuantity === 0;
   const setIsCardSuitChoose = useRoomState((state) => state.setIsCardSuitChoose);
   const playerTurn = useRoomState((state) => state.playerTurn);
+  const [isTopCardAppeared, setIsTopCardAppeared] = useState(false);
   const [isTopCardChanged, setIsTopCardChanged] = useState(false);
   const [topCardImage, setTopCardImage] = useState<string>(cardBack);
 
@@ -64,16 +65,17 @@ export const GameDeckField = ({
   const deckToTop = useSpring({
     from: {
       transform: 'translateX(0)',
-      opacity: 1,
       zIndex: 10,
     },
     to: {
       transform: `translateX(15rem)`,
-      opacity: 1,
       zIndex: -1,
     },
+    onRest: () => {
+      setIsTopCardAppeared(true);
+    },
 
-    duration: 500,
+    duration: 1000,
   });
 
   return (
@@ -96,7 +98,7 @@ export const GameDeckField = ({
         />
         <animated.img
           aria-hidden
-          className={styles.deckTopCard}
+          className={classNames(styles.deckTopCard, { [styles.hidden]: isTopCardAppeared })}
           style={status === 'playing' ? deckToTop : undefined}
           src={topCardImage}
           alt="deck"
