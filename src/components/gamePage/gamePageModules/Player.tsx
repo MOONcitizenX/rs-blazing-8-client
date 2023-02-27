@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
+import classNames from 'classnames';
 import style from './Player.module.css';
 import { avatarsArray, emojiArray } from '../../../store/basicMedia';
 import { IPlayerResponse } from '../../../API/types/interfaces/IPlayerResponse';
@@ -8,11 +9,11 @@ import { ServerToClientEvents } from '../../../API/types/interfaces/ServerToClie
 interface PlayerProps {
   socket: Socket<ServerToClientEvents>;
   player: IPlayerResponse;
+  index: number;
 }
 
-export const Player = ({ socket, player }: PlayerProps) => {
-  const { avatarId, name } = player;
-
+export const Player = ({ socket, player, index }: PlayerProps) => {
+  const { avatarId, name, online } = player;
   const [emojiInd, setEmojiInd] = useState<number | null>(null);
 
   socket.on('emoji', ({ id, emojiIndex }) => {
@@ -30,11 +31,11 @@ export const Player = ({ socket, player }: PlayerProps) => {
 
   return (
     <div className={style.playerWrapper}>
-      <div className={style.player}>
+      <div className={classNames(style.player, { [style.offline]: !online })}>
         <img className={style.avatar} src={avatarsArray[+avatarId]} alt="Player avatar" />
         <div className={style.name}>{name}</div>
         {emojiInd !== null && (
-          <div className={style.emoji}>
+          <div className={[style.emoji, style[`emoji-${index}`]].join(' ')}>
             <picture>
               <source srcSet={emojiArray[emojiInd].image} type="image/webp" />
               <img

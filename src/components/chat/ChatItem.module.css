@@ -8,6 +8,7 @@
   background-color: var(--beige-color);
   color: #565656;
   border-radius: 1rem;
+  word-wrap: break-word;
 }
 
 .my-box {
