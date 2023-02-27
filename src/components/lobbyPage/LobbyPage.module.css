@@ -27,7 +27,7 @@
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 44%;
+  top: 37%;
   left: 50%;
   transform: translate(-50%);
   gap: 1rem;
@@ -90,7 +90,7 @@
 
 .pattern-wrapper {
   position: absolute;
-  bottom: 47%;
+  bottom: 40%;
   width: fit-content;
   height: 15%;
   display: flex;

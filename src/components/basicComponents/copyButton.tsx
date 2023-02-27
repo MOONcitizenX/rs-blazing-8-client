@@ -3,11 +3,13 @@ import { useState } from 'react';
 import style from './copyButton.module.css';
 import copyIcon from '../../assets/icons/copy.svg';
 import doneIcon from '../../assets/icons/check.svg';
-import { useRoomState } from '../../store/roomStore';
 
-export const CopyButton = () => {
+interface CopyButtonProps {
+  copyText: string;
+}
+
+export const CopyButton = ({ copyText }: CopyButtonProps) => {
   const [isActive, setIsActive] = useState(false);
-  const roomId = useRoomState((state) => state.roomId);
 
   return (
     <button
@@ -16,7 +18,7 @@ export const CopyButton = () => {
       title="Copy room id"
       onClick={() => {
         setIsActive(true);
-        navigator.clipboard.writeText(roomId);
+        navigator.clipboard.writeText(copyText);
         setTimeout(() => {
           setIsActive(false);
         }, 1000);

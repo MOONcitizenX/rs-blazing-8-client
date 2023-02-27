@@ -9,6 +9,7 @@ import { usePlayerState } from '../../store/playerStore';
 import { ClientToServerEvents } from '../../API/types/interfaces/ClientToServerEvents';
 import { TableArrows } from '../basicComponents/tableArrows';
 import { Footer } from '../footer/Footer';
+import { joinOnInviteLink } from '../../API/joinOnInviteLink';
 
 interface StartPageProps {
   socket: Socket<ClientToServerEvents>;
@@ -17,7 +18,7 @@ interface StartPageProps {
 export const StartPage = ({ socket }: StartPageProps) => {
   const addName = usePlayerState((state) => state.addName);
   const [userName, setUserName] = useState<string>(usePlayerState((state) => state.name) || '');
-  const [roomId, setRoomId] = useState<string>('');
+  const [roomId, setRoomId] = useState<string>(() => joinOnInviteLink());
 
   const avatarId = usePlayerState((state) => state.avatarId);
 
