@@ -26,7 +26,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
   const cardsArray = index === 0 ? cards : [...new Array(cards)];
   const topCard = useRoomState((state) => state.topCard?.image);
   const [cardPlayedIndex, setCardPlayedIndex] = useState<number | null>(null);
-  const [cardDrawIndex, setCardDrawIndex] = useState<number[]>([]);
+  const [cardDrawIndex, setCardDrawIndex] = useState<number | null>(null);
   const [cardDraw, setCardDraw] = useState<ICard | null>(null);
   const eightCardImage = 'https://raw.githubusercontent.com/mkoroleva5/blazing-8s-cards/main/8.png';
 
@@ -53,9 +53,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
     if (cardId) {
       setCardDraw(cardMap[cardId]);
     }
-    setCardDrawIndex((prev) => {
-      return [...prev, getPlayerIndex(orderedPlayers, id)];
-    });
+    setCardDrawIndex(getPlayerIndex(orderedPlayers, id));
   });
 
   const swap = useSpring({
@@ -76,7 +74,7 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
 
   useEffect(() => {
     setTimeout(() => {
-      setCardDrawIndex([]);
+      setCardDrawIndex(null);
     }, 500);
   }, [cardDrawIndex]);
 
@@ -139,9 +137,9 @@ export const PlayerCards = ({ socket, player, orderedPlayers, index }: PlayerCar
       />
       <animated.img
         className={[style.drawCard, style[`draw-card-${index}`]].join(' ')}
-        src={cardDrawIndex.includes(0) ? getCardDrawImage() : cardback}
+        src={cardDrawIndex === 0 ? getCardDrawImage() : cardback}
         alt="Card"
-        style={cardDrawIndex.includes(index) ? drawCardAnimation : undefined}
+        style={cardDrawIndex === index ? drawCardAnimation : undefined}
       />
       {cardsArray.map((el, i) => {
         const count = index === 0 ? cards.length : +cards;
