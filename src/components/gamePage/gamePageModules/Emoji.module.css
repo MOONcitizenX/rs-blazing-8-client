@@ -1,0 +1,74 @@
+.emoji-wrapper {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  top: calc(50% + 44.5rem);
+  left: calc(50% - 29rem);
+  z-index: 10;
+}
+
+.emoji-menu {
+  position: absolute;
+  all: unset;
+  display: flex;
+  width: 6rem;
+  height: 6rem;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.emoji-menu:hover {
+  transform: scale(1.1);
+}
+
+.menu-image {
+  width: 4rem;
+  height: 4rem;
+}
+
+.menu-image-active {
+  width: 6rem;
+  height: 6rem;
+  transform: translate(-7px, -7px);
+}
+
+.emoji-array {
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.emoji-array-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.emoji {
+  position: absolute;
+  all: unset;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.shown-emoji:nth-of-type(1) {
+  transform: translate(0px, -50px);
+}
+
+.shown-emoji:nth-of-type(2) {
+  transform: translate(-15px, -95px);
+}
+
+.shown-emoji:nth-of-type(3) {
+  transform: translate(-5px, -115px);
+}
+
+.shown-emoji:nth-of-type(4) {
+  transform: translate(5px, -95px);
+}
+
+.shown-emoji:nth-of-type(5) {
+  transform: translate(-10px, -50px);
+}

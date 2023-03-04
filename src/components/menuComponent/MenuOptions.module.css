@@ -1,0 +1,73 @@
+.menu__options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 4rem;
+  gap: 2rem;
+}
+
+.menu__item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.menu__item:first-child {
+  justify-content: center;
+}
+
+.game-rules {
+  font-family: 'BlobSpongey';
+  font-size: 5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.game-rules:hover {
+  color: var(--green-color);
+}
+
+.volume-input,
+.music-input {
+  position: relative;
+  --volume-before-width: 100%;
+  --music-before-width: 100%;
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.volume-input::before,
+.music-input::before {
+  border-radius: 15px;
+  position: absolute;
+  content: '';
+  background-color: var(--green-color);
+  height: 107%;
+  top: 0;
+  left: 0;
+}
+
+.volume-input::before {
+  width: var(--volume-before-width);
+}
+
+.music-input::before {
+  width: var(--music-before-width);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+}

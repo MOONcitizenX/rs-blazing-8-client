@@ -1,0 +1,54 @@
+.message-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  padding: 1rem;
+  background-color: var(--beige-color);
+  color: #565656;
+  border-radius: 1rem;
+  word-wrap: break-word;
+}
+
+.my-box {
+  background-color: #67bf8d;
+  color: white;
+}
+
+.author {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.author-name {
+  color: #f15743;
+}
+
+.my-name {
+  color: white;
+}
+
+.time-stamp {
+  color: rgb(204, 202, 202);
+  font-size: 1.2rem;
+}
+
+.my-time {
+  color: rgb(217 217 217);
+}
+
+.client-message {
+  justify-content: flex-end;
+}
+
+.message {
+  width: 100%;
+  text-align: left;
+}
+
+.my-message {
+  text-align: right;
+}

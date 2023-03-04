@@ -1,0 +1,118 @@
+.timer-wrapper {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  border: 3px solid white;
+  border-radius: 50%;
+  z-index: 6;
+}
+
+.timer-0 {
+  top: calc(50% + 43rem);
+  left: calc(50% + -16rem);
+}
+
+.timer-1 {
+  top: calc(50% + 29rem);
+  left: calc(50% + -48rem);
+}
+
+.timer-2 {
+  top: calc(50% + -5rem);
+  left: calc(50% + -46rem);
+}
+
+.timer-3 {
+  top: calc(50% + -5rem);
+  left: calc(50% + 42rem);
+}
+
+.timer-4 {
+  top: calc(50% + 29rem);
+  left: calc(50% + 42rem);
+}
+
+.timer {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgb(74, 168, 74);
+  overflow: hidden;
+  animation: gradient 30s linear;
+  animation-delay: 1s;
+}
+
+.shadow {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.2);
+  animation: shadow 30s linear;
+  animation-delay: 1s;
+}
+
+@keyframes shadow {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.timer-count {
+  position: absolute;
+  top: 1.1rem;
+  content: '30';
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-family: 'Casagrande';
+  font-size: 2.6rem;
+}
+
+.timer-count {
+  position: absolute;
+  top: 1.1rem;
+  content: '30';
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-family: 'Casagrande';
+  font-size: 2.6rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-color: rgb(74, 168, 74);
+  }
+  10% {
+    background-color: rgb(116, 168, 74);
+  }
+  20% {
+    background-color: rgb(137, 168, 74);
+  }
+  30% {
+    background-color: rgb(146, 168, 74);
+  }
+  40% {
+    background-color: rgb(168, 168, 74);
+  }
+  50% {
+    background-color: rgb(168, 154, 74);
+  }
+  60% {
+    background-color: rgb(168, 146, 74);
+  }
+  70% {
+    background-color: rgb(168, 135, 74);
+  }
+  80% {
+    background-color: rgb(168, 119, 74);
+  }
+  90% {
+    background-color: rgb(168, 97, 74);
+  }
+  100% {
+    background-color: rgb(168, 74, 74);
+  }
+}

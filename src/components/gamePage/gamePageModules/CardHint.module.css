@@ -1,0 +1,28 @@
+.card-hint {
+  width: fit-content;
+  height: fit-content;
+  max-height: 7rem;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  font-family: 'BlobSpongey';
+  font-size: max(2vw);
+  background-color: var(--dark-red-color);
+  border-radius: 10rem;
+  z-index: 3;
+}
+
+.value {
+  font-family: 'Casagrande';
+  font-size: max(3vw);
+}
+
+.color {
+  height: calc(100vw / 35);
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,140 @@
+.choose-suit-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500vw;
+  height: 500vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  backdrop-filter: blur(10px);
+}
+
+.choose-suit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.transitions-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  height: 40rem;
+}
+
+.suit-wrapper,
+.suit-wrapper-animation {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  border-radius: 2rem;
+  width: 16.6rem;
+  height: 16.6rem;
+  transform: rotate(45deg);
+}
+
+.suit-wrapper {
+  cursor: pointer;
+}
+
+.suit {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  width: 16.6rem;
+  height: 16.6rem;
+  transform: translate(-10px, -10px);
+  background-color: yellow;
+}
+
+.suit.choose {
+  cursor: pointer;
+}
+
+.suit-wrapper:nth-of-type(1),
+.suit-wrapper-animation:nth-of-type(1) {
+  top: 0;
+  background-color: #426b91;
+}
+
+.suit-wrapper:nth-of-type(2),
+.suit-wrapper-animation:nth-of-type(2) {
+  left: 0;
+  background-color: #52ae92;
+}
+
+.suit-wrapper:nth-of-type(3),
+.suit-wrapper-animation:nth-of-type(3) {
+  right: 0;
+  background-color: #ce4331;
+}
+
+.suit-wrapper:nth-of-type(4),
+.suit-wrapper-animation:nth-of-type(4) {
+  bottom: 0;
+  background-color: #ea8a24;
+}
+
+.suit-wrapper:nth-of-type(1) > .suit,
+.suit-wrapper-animation:nth-of-type(1) > .suit {
+  top: 0;
+  background-color: #547ea6;
+}
+
+.suit-wrapper:nth-of-type(2) > .suit,
+.suit-wrapper-animation:nth-of-type(2) > .suit {
+  left: 0;
+  background-color: #6ecaaf;
+}
+
+.suit-wrapper:nth-of-type(3) > .suit,
+.suit-wrapper-animation:nth-of-type(3) > .suit {
+  right: 0;
+  background-color: #f15743;
+}
+
+.suit-wrapper:nth-of-type(4) > .suit,
+.suit-wrapper-animation:nth-of-type(4) > .suit {
+  bottom: 0;
+  background-color: #f69c3e;
+}
+
+.suit-wrapper:hover {
+  transform: translateY(-10px) rotate(45deg);
+}
+
+.card-element {
+  width: 10rem;
+  height: 10rem;
+  filter: invert(50%) sepia(43%) saturate(266%) hue-rotate(-41deg) brightness(187%) contrast(100%);
+  transform: rotate(-45deg);
+}
+
+.pulse {
+  animation: pulse 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
+}

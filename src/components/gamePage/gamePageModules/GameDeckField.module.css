@@ -1,0 +1,92 @@
+.deckFieldBorder {
+  background-color: var(--red-color);
+  border: 0.2rem solid transparent;
+  border-radius: 1rem;
+  top: 0;
+  width: 35%;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.deckFieldBorder::after,
+.deckFieldBorder::before,
+.deckField::after,
+.deckField::before {
+  position: absolute;
+  content: '';
+  border-left: 0.5vw solid transparent;
+  border-right: 0.5vw solid transparent;
+  border-top: 0.5vw solid #fbf4a8;
+  width: 1vw;
+  height: 1vh;
+}
+
+.deckField::before {
+  top: 1vh;
+  right: 0.2vw;
+  transform: rotate(220deg);
+}
+
+.deckField::after {
+  bottom: 1vh;
+  right: 0.2vw;
+  transform: rotate(310deg);
+}
+
+.deckFieldBorder::before {
+  transform: rotate(140deg);
+  left: 0.2vw;
+  top: 1vh;
+}
+
+.deckFieldBorder::after {
+  bottom: 1vh;
+  left: 0.2vw;
+  transform: rotate(40deg);
+}
+
+.deckField {
+  background-color: var(--dark-red-color);
+  flex: 1;
+  border-radius: 1rem;
+  border: 0.3rem solid #fbf4a8;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.deck,
+.card {
+  width: 37%;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  transition: filter 0.3s ease;
+}
+
+.deck {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: auto;
+  filter: brightness(50%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.deck-top-card {
+  position: absolute;
+  top: 2.3rem;
+  left: 4.3rem;
+  width: 11rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  transform: translateX(0);
+  transition: all 0.5s ease;
+}

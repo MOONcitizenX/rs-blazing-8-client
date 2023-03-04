@@ -1,0 +1,116 @@
+.footer-wrapper {
+  position: fixed;
+  width: calc(100vw - 18rem);
+  z-index: 6;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  padding: 1.2rem 0;
+  font-weight: 200;
+  text-align: center;
+}
+
+.github-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem;
+}
+
+.github-menu {
+  all: unset;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.github-menu:hover {
+  transform: scale(1.1);
+}
+
+.github-menu-image {
+  width: 4rem;
+  height: 4rem;
+  filter: invert(65%) sepia(51%) saturate(292%) hue-rotate(322deg) brightness(274%) contrast(92%);
+}
+
+.github-links-wrapper {
+  opacity: 0;
+  position: absolute;
+  bottom: 2rem;
+  left: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(-300%);
+  opacity: 0;
+}
+
+.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: var(--beige-color);
+  transition: 0.2s;
+}
+
+.github-logo {
+  width: 20px;
+  height: 20px;
+  filter: invert(65%) sepia(51%) saturate(292%) hue-rotate(322deg) brightness(274%) contrast(92%);
+  transition: 0.2s;
+}
+
+.github-name {
+  color: var(--beige-color);
+  transition: 0.2s;
+}
+
+.github-link:hover .github-logo {
+  filter: invert(70%) sepia(81%) saturate(309%) hue-rotate(322deg) brightness(202%) contrast(91%);
+}
+
+.year {
+  font-family: 'Casagrande';
+  font-size: 2.4rem;
+}
+
+.rs-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3rem;
+}
+
+.rs-link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rs-logo {
+  height: 30px;
+  filter: invert(65%) sepia(51%) saturate(292%) hue-rotate(322deg) brightness(274%) contrast(92%);
+  transition: 0.2s;
+}
+
+.rs-logo:hover {
+  filter: invert(70%) sepia(81%) saturate(309%) hue-rotate(322deg) brightness(202%) contrast(91%);
+}

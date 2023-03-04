@@ -1,0 +1,12 @@
+.icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 1s ease;
+}
+
+.icon:hover {
+  transform: rotate(90deg);
+}

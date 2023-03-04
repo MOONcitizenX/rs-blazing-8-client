@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$branch" = "develop" ]; then
+  echo "You can't commit directly to DEVELOP branch\nSWITCH TO YOUR WORKING BRANCH ! ! !"
+  exit 1
+fi
