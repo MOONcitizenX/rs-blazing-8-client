@@ -6,6 +6,10 @@
 - [@MOONcitizenX](https://www.github.com/MOONcitizenX)
 - [@mskmee](https://www.github.com/mskmee)
 
+## Tech stack
+
+ViteJS, ReactJS, TypeScript, React Spring, Zustand, Socket.io
+
 ## Deployment  
 
 - [Blazing 8s clone](https://blazing-8s-rs.netlify.app/)
